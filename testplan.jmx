@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.5" jmeter="2.10 r1533061">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree/>
+    <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="Thread Group" enabled="true">
+      <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+      <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="false">
+        <boolProp name="LoopController.continue_forever">false</boolProp>
+        <intProp name="LoopController.loops">1</intProp>
+      </elementProp>
+      <intProp name="ThreadGroup.num_threads">1</intProp>
+      <intProp name="ThreadGroup.ramp_time">1</intProp>
+      <longProp name="ThreadGroup.start_time">0</longProp>
+      <longProp name="ThreadGroup.end_time">0</longProp>
+      <boolProp name="ThreadGroup.scheduler">false</boolProp>
+      <longProp name="ThreadGroup.duration">0</longProp>
+      <longProp name="ThreadGroup.delay">0</longProp>
+    </SetupThreadGroup>
+    <hashTree>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <stringProp name="HTTPSampler.domain"></stringProp>
+        <intProp name="HTTPSampler.port">0</intProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        <stringProp name="HTTPSampler.implementation"></stringProp>
+        <stringProp name="HTTPSampler.protocol"></stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.path"></stringProp>
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.proxyHost"></stringProp>
+        <stringProp name="HTTPSampler.proxyPort"></stringProp>
+        <stringProp name="HTTPSampler.proxyUser"></stringProp>
+        <stringProp name="HTTPSampler.proxyPass"></stringProp>
+        <boolProp name="HTTPSampler.image_parser">false</boolProp>
+        <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+        <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="Accept-Language" elementType="Header">
+            <stringProp name="Header.name">Accept-Language</stringProp>
+            <stringProp name="Header.value">de-de,de;q=0.8,en-us;q=0.5,en;q=0.3</stringProp>
+          </elementProp>
+          <elementProp name="Accept" elementType="Header">
+            <stringProp name="Header.name">Accept</stringProp>
+            <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</stringProp>
+          </elementProp>
+          <elementProp name="User-Agent" elementType="Header">
+            <stringProp name="Header.name">User-Agent</stringProp>
+            <stringProp name="Header.value">Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0</stringProp>
+          </elementProp>
+          <elementProp name="DNT" elementType="Header">
+            <stringProp name="Header.name">DNT</stringProp>
+            <stringProp name="Header.value">1</stringProp>
+          </elementProp>
+          <elementProp name="Accept-Encoding" elementType="Header">
+            <stringProp name="Header.name">Accept-Encoding</stringProp>
+            <stringProp name="Header.value">gzip, deflate</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <stringProp name="TestPlan.comments">generated</stringProp>
+        <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+        <stringProp name="CookieManager.implementation">HC3CookieHandler</stringProp>
+      </CookieManager>
+      <hashTree/>
+      <net.voorn.markov4jmeter.control.MarkovController guiclass="net.voorn.markov4jmeter.control.gui.MarkovControllerGui" testclass="net.voorn.markov4jmeter.control.MarkovController" testname="Markov Session Controller" enabled="true">
+        <elementProp name="MarkovController.behaviorMix" elementType="net.voorn.markov4jmeter.control.BehaviorMix">
+          <collectionProp name="UserBehaviorMix.behaviorEntries">
+            <elementProp name="" elementType="net.voorn.markov4jmeter.control.BehaviorMixEntry">
+              <stringProp name="Behavior.name">user behavior</stringProp>
+              <doubleProp>
+                <name>Behavior.frequency</name>
+                <value>1.0</value>
+                <savedValue>0.0</savedValue>
+              </doubleProp>
+              <stringProp name="Behavior.filename">behaviormodel.csv</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <boolProp name="MarkovController.arrivalCtrl">true</boolProp>
+        <stringProp name="MarkovController.arrivalNumSessions">1</stringProp>
+        <boolProp name="MarkovController.arrivalCtrlLogging">false</boolProp>
+        <stringProp name="MarkovController.arrivalCtrlLogFile"></stringProp>
+      </net.voorn.markov4jmeter.control.MarkovController>
+      <hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="logout" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="795924648" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">795924648</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2122421084" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2122421084</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">795924648</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="logout.shtml" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="logout" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">logout</stringProp>
+                  <stringProp name="Argument.value">true</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">default.xhtml</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1097329270">logout</stringProp>
+                <stringProp name="1729399491">logout_flow</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="goodbye.shtml" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8082</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">port8082.xhtml</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="login" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="795924648" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">795924648</intProp>
+                <stringProp name="ApplicationState.guard">isSignedIn = true</stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="2122421084" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2122421084</intProp>
+                <stringProp name="ApplicationState.guard">isSignedIn = false</stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">2122421084</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="login.shtml" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <intProp name="HTTPSampler.port">0</intProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="103149417">login</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="welcome.shtml" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <intProp name="HTTPSampler.port">0</intProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1233099618">welcome</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+        <stringProp name="RegexExtractor.useHeaders">responseData</stringProp>
+        <stringProp name="RegexExtractor.refname"></stringProp>
+        <stringProp name="RegexExtractor.regex"></stringProp>
+        <stringProp name="RegexExtractor.template"></stringProp>
+        <stringProp name="RegexExtractor.default"></stringProp>
+        <intProp name="RegexExtractor.match_number">0</intProp>
+      </RegexExtractor>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>true</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+          </value>
+        </objProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>true</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+          </value>
+        </objProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
