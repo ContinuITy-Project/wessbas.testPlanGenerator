@@ -56,11 +56,11 @@ public abstract class AbstractFilter {
      * @param testPlan
      *     Test Plan to be modified.
      * @param workloadModel
-     *     Workload model which provides required information.
+     *     workload model which provides required information.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
-     * @return  The modified Test Plan.
+     * @return  the modified Test Plan.
      */
     public abstract ListedHashTree modifyTestPlan (
             final ListedHashTree testPlan,
@@ -78,10 +78,10 @@ public abstract class AbstractFilter {
      * match will be used, and a warning message will be given.
      *
      * @param testPlan  Test Plan to be explored.
-     * @param type      Type of element to be searched for.
+     * @param type      type of element to be searched for.
      *
      * @return
-     *     A valid element, or <code>null</code> if no element is available.
+     *     a valid element, or <code>null</code> if no element is available.
      */
     protected <T extends AbstractTestElement> T findUniqueTestPlanElement (
             final ListedHashTree testPlan,

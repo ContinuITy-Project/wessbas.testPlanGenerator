@@ -13,12 +13,19 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 /**
  * This service class simplifies the reading of XMI-files as Ecore-models and
- * provides methods for writing them back.
+ * provides methods for writing them back. It is implemented as <i>Singleton</i>
+ * pattern, offering a unique instance to be used.
+ *
+ * <p>The implementation of this class corresponds to the <i>singleton</i>
+ * pattern; consequently, there is one unique instance which can be requested
+ * by invoking method {@link #getInstance()}.
+ *
+ * <p>This class is <u>not</u> intended to be sub-classed.
  *
  * @author   Eike Schulz (esc@informatik.uni-kiel.de)
  * @version  1.0
  */
-public class XmiEcoreHandler {
+public final class XmiEcoreHandler {
 
     /** Error message for the case that a file reading error occurred. */
     private final static String ERROR_RESOURCE_READING_FAILED =
@@ -29,8 +36,27 @@ public class XmiEcoreHandler {
             "Could not write resource \"%s\": %s";
 
 
+    /* ***************************  constructors  *************************** */
+
+
+    /**
+     * Constructor, makes the standard constructor <code>private</code>.
+     */
+    private XmiEcoreHandler () { }
+
+
     /* **************************  public methods  ************************** */
 
+
+    /**
+     * Returns a unique instance of an XMI Ecore Handler.
+     *
+     * @return An instance of {@link XmiEcoreHandler}.
+     */
+    public static XmiEcoreHandler getInstance () {
+
+        return XmiEcoreHandler.SingletonHolder.instance;
+    }
 
     /**
      * Writes an Ecore-model to an XMI-file and optionally registers a file
@@ -40,11 +66,11 @@ public class XmiEcoreHandler {
      * the model-related Ecore package must have been initialized before!
      *
      * @param model
-     *     The Ecore-model which shall be written to the specified XMI-file.
+     *     the Ecore-model which shall be written to the specified XMI-file.
      * @param xmiFile
      *     XMI-file to be written.
      * @param extension
-     *     File extension to be optionally registered in the XMI resource
+     *     file extension to be optionally registered in the XMI resource
      *     factory; this might be even <code>null</code>, if no extension shall
      *     be registered.
      *
@@ -111,7 +137,7 @@ public class XmiEcoreHandler {
      * Writes an Ecore-model to an XMI-file.
      *
      * @param model
-     *     The Ecore-model which shall be written to the specified XMI-file.
+     *     the Ecore-model which shall be written to the specified XMI-file.
      * @param xmiFile
      *     XMI-file to be written.
      *
@@ -133,11 +159,11 @@ public class XmiEcoreHandler {
      * @param xmiFile
      *     XMI-file to be read.
      * @param extension
-     *     File extension to be optionally registered in the XMI resource
+     *     file extension to be optionally registered in the XMI resource
      *     factory; this might be even <code>null</code>, if no extension shall
      *     be registered.
      *
-     * @return  The Ecore-model which has been read from the specified XMI-file.
+     * @return  the Ecore-model which has been read from the specified XMI-file.
      *
      * @throws IOException  if any error while reading occurs.
      */
@@ -175,7 +201,7 @@ public class XmiEcoreHandler {
      *
      * @param xmiFile  XMI-file to be read.
      *
-     * @return  The Ecore-model which has been read from the given XMI-file.
+     * @return  the Ecore-model which has been read from the given XMI-file.
      *
      * @throws IOException  if any error while reading occurs.
      */
@@ -191,7 +217,7 @@ public class XmiEcoreHandler {
     /**
      * Registers a file extension in the XMI resource factory.
      *
-     * @param extension  File extension to be registered.
+     * @param extension  file extension to be registered.
      *
      * @throws NullPointerException
      *     if <code>null</code> has been passed as <code>extension</code>.
@@ -213,9 +239,9 @@ public class XmiEcoreHandler {
     /**
      * Reads an XMI-file from a given location.
      *
-     * @param xmiFile  Location of the XMI-file to be read.
+     * @param xmiFile  location of the XMI-file to be read.
      *
-     * @return  The content which has been read from file.
+     * @return  the content which has been read from file.
      *
      * @throws IOException  if any error while reading occurs.
      */
@@ -245,5 +271,18 @@ public class XmiEcoreHandler {
         }
 
         return resource;
+    }
+
+
+    /* ************************** internal classes ************************** */
+
+
+    /**
+     * SingletonHolder for singleton pattern; loaded on the first execution of
+     * {@link XmiEcoreHandler#getInstance()}.
+     */
+    private static class SingletonHolder {
+
+        public static XmiEcoreHandler instance = new XmiEcoreHandler();
     }
 }

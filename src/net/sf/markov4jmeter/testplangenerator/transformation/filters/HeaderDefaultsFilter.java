@@ -74,9 +74,9 @@ public class HeaderDefaultsFilter extends AbstractFilter {
      * Sampler data to be moved into the newly created element.
      *
      * @param testPlan                Test Plan to be explored.
-     * @param testPlanElementFactory  Factory for creating Test Plan elements.
+     * @param testPlanElementFactory  factory for creating Test Plan elements.
      *
-     * @return  The newly created Config Test Element.
+     * @return  the newly created Config Test Element.
      */
     private ConfigTestElement createConfigElement (
             final ListedHashTree testPlan,

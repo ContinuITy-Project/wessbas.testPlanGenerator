@@ -40,8 +40,8 @@ public class CSVReader {
 
     /**
      * Constructor for an CSV-Reader which uses a specific separator.
-     * 
-     * @param separator  Separator to be used.
+     *
+     * @param separator  separator to be used.
      */
     public CSVReader (final String separator) {
 
@@ -56,7 +56,7 @@ public class CSVReader {
      * Returns the used separator.
      *
      * @return
-     *     A valid <code>String</code> instance which denotes the used
+     *     a valid <code>String</code> instance which denotes the used
      *     separator.
      */
     public String getSeparator () {
@@ -68,10 +68,10 @@ public class CSVReader {
      * Reads values from a CSV-file, which is specified by its name.
      *
      * @param filename
-     *     Name of the CSV-file to be read.
+     *     name of the CSV-file to be read.
      *
      * @return
-     *     The values which have been read, as an array of lines; each line
+     *     the values which have been read, as an array of lines; each line
      *     might contain an individual amount of values.
      *
      * @throws FileNotFoundException
@@ -86,12 +86,13 @@ public class CSVReader {
 
         final ArrayList<String[]> values = new ArrayList<String[]>();
 
-        BufferedReader bufferedReader = null; 
+        BufferedReader bufferedReader = null;
 
         // might throw a FileNotFoundException or NullPointerException;
         final FileReader fileReader = new FileReader(filename);
 
         bufferedReader = new BufferedReader(fileReader);
+
         try {
 
             String line;
@@ -106,12 +107,15 @@ public class CSVReader {
 
                     tokens[i] = tokens[i].trim();
                 }
+
                 values.add(tokens);
             }
+
         } finally {
 
             bufferedReader.close();
         }
+
         return values.toArray( new String[][]{} );
     }
 }

@@ -25,10 +25,6 @@ import org.apache.jorphan.collections.ListedHashTree;
  */
 public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
 
-    /** Instance for transforming M4J-DSL Protocol Layer EFSMs to Test Plan
-     *  fragments. */
-    private final SimpleProtocolLayerEFSMTransformer protocolLayerEFSMTransformer;
-
     /** Instance for transforming M4J-DSL Session Layer EFSMs to Test Plan
      *  fragments. */
     private final SessionLayerEFSMTransformer sessionLayerEFSMTransformer;
@@ -47,7 +43,9 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
     public SimpleTestPlanTransformer (
             final AbstractRequestTransformer requestTransformer) {
 
-        this.protocolLayerEFSMTransformer =
+        // build an instance for transforming M4J-DSL Protocol Layer EFSMs to
+        // Test Plan fragments in a "simple" way.
+        final SimpleProtocolLayerEFSMTransformer protocolLayerEFSMTransformer =
                 new SimpleProtocolLayerEFSMTransformer(requestTransformer);
 
         this.sessionLayerEFSMTransformer =
@@ -79,7 +77,7 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
      * dedicated filter for Behavior Mix installation.
      *
      * @return
-     *     A newly created Test Plan, structured as indicated by the regarding
+     *     a newly created Test Plan, structured as indicated by the regarding
      *     transformer, or <code>null</code> if any error through applying the
      *     Behavior Mix installation filter occurs.
      */
@@ -141,6 +139,11 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
                 this.sessionLayerEFSMTransformer.transform(
                         sessionLayerEFSM,
                         testPlanElementFactory);
+
+        final String formula =
+                workloadModel.getWorkloadIntensity().getFormula();
+
+        markovController.setArrivalCtrlNumSessions(formula);
 
         // add Session Layer EFSM as child of Markov Controller;
         // in case the list-tree is empty, the add() method won't add any node;

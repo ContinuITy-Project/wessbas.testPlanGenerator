@@ -73,7 +73,7 @@ public class EcoreObjectValidator {
      *
      * @param eObject  Ecore object to be validated.
      *
-     * @return  The diagnostic results.
+     * @return  the diagnostic results.
      */
     public Diagnostic validate (final EObject eObject) {
 
@@ -86,7 +86,7 @@ public class EcoreObjectValidator {
     /**
      * Prints a given diagnostic result.
      *
-     * @param diagnostic  The diagnostic result to be printed.
+     * @param diagnostic  the diagnostic result to be printed.
      */
     private void printDiagnostic (final Diagnostic diagnostic) {
 
@@ -96,8 +96,8 @@ public class EcoreObjectValidator {
     /**
      * Prints a given diagnostic result instance with a leading indent.
      *
-     * @param diagnostic  The diagnostic result to be printed.
-     * @param indent      Indent to be inserted.
+     * @param diagnostic  the diagnostic result to be printed.
+     * @param indent      indent to be inserted.
      */
     private void printDiagnostic (
             final Diagnostic diagnostic,

@@ -94,7 +94,7 @@
             </elementProp>
           </collectionProp>
         </elementProp>
-        <boolProp name="MarkovController.arrivalCtrl">true</boolProp>
+        <boolProp name="MarkovController.arrivalCtrl">false</boolProp>
         <stringProp name="MarkovController.arrivalNumSessions">1</stringProp>
         <boolProp name="MarkovController.arrivalCtrlLogging">false</boolProp>
         <stringProp name="MarkovController.arrivalCtrlLogFile"></stringProp>
@@ -103,21 +103,21 @@
         <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="logout" enabled="true">
           <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
             <collectionProp name="ApplicationStateTransitions.transitions">
-              <elementProp name="795924648" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">795924648</intProp>
+              <elementProp name="2029412961" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2029412961</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">true</boolProp>
               </elementProp>
-              <elementProp name="2122421084" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">2122421084</intProp>
+              <elementProp name="839036172" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">839036172</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">true</boolProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <intProp name="ApplicationState.id">795924648</intProp>
+          <intProp name="ApplicationState.id">2029412961</intProp>
         </net.voorn.markov4jmeter.control.ApplicationState>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="logout.shtml" enabled="true">
@@ -188,21 +188,21 @@
         <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="login" enabled="true">
           <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
             <collectionProp name="ApplicationStateTransitions.transitions">
-              <elementProp name="795924648" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">795924648</intProp>
+              <elementProp name="2029412961" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2029412961</intProp>
                 <stringProp name="ApplicationState.guard">isSignedIn = true</stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">false</boolProp>
               </elementProp>
-              <elementProp name="2122421084" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">2122421084</intProp>
+              <elementProp name="839036172" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">839036172</intProp>
                 <stringProp name="ApplicationState.guard">isSignedIn = false</stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">false</boolProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <intProp name="ApplicationState.id">2122421084</intProp>
+          <intProp name="ApplicationState.id">839036172</intProp>
         </net.voorn.markov4jmeter.control.ApplicationState>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="login.shtml" enabled="true">

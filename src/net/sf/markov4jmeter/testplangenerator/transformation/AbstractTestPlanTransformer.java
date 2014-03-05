@@ -31,16 +31,16 @@ public abstract class AbstractTestPlanTransformer {
      * a sequence of modification filters on it.
      *
      * @param workloadModel
-     *     Workload model providing the information which is required for
+     *     workload model providing the information which is required for
      *     building a related Test Plan.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      * @param filters
-     *     A sequence of filters to be applied on the newly created Test Plan;
+     *     a sequence of filters to be applied on the newly created Test Plan;
      *     might be even <code>null</code>, if no filters shall be applied.
      *
      * @return
-     *     A newly created Test Plan, possibly modified through the specified
+     *     a newly created Test Plan, possibly modified through the specified
      *     filters.
      */
     public ListedHashTree transform (
@@ -73,13 +73,13 @@ public abstract class AbstractTestPlanTransformer {
      * Builds a new Test Plan for the given M4J-DSL workload model.
      *
      * @param workloadModel
-     *     Workload model providing the information which is required for
+     *     workload model providing the information which is required for
      *     building a related Test Plan.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
      * @return
-     *     A newly created Test Plan, structured as indicated by the regarding
+     *     a newly created Test Plan, structured as indicated by the regarding
      *     transformer.
      */
     protected abstract ListedHashTree transform (

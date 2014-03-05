@@ -34,9 +34,6 @@ extends AbstractProtocolLayerEFSMTransformer {
     private final static Log LOG =
             LogFactory.getLog(SimpleProtocolLayerEFSMTransformer.class);
 
-    /** Instance for transforming M4J-DSL Requests to Test Plan fragments. */
-    private final AbstractRequestTransformer requestTransformer;
-
 
     /* ***************************  constructors  *************************** */
 
@@ -45,12 +42,12 @@ extends AbstractProtocolLayerEFSMTransformer {
      * Constructor for a Simple Protocol Layer EFSM Transformer.
      *
      * @param requestTransformer
-     *     Instance for transforming M4J-DSL requests to Test Plan fragments.
+     *     instance for transforming M4J-DSL requests to Test Plan fragments.
      */
     public SimpleProtocolLayerEFSMTransformer (
             final AbstractRequestTransformer requestTransformer) {
 
-        this.requestTransformer = requestTransformer;
+        super(requestTransformer);
     }
 
 
@@ -77,7 +74,7 @@ extends AbstractProtocolLayerEFSMTransformer {
         final Request request = state.getRequest();
 
         // create a named Sampler with properties and parameters;
-        ListedHashTree sampler = this.requestTransformer.transform(
+        ListedHashTree sampler = this.transformRequest(
                 request,
                 testPlanElementFactory);
 

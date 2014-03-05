@@ -83,10 +83,10 @@ public class SessionLayerEFSMTransformer {
      * @param sessionLayerEFSM
      *     Session Layer EFSM to be transformed into a Test Plan fragment.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
      * @return
-     *     A Listed Hash Tree which represents a Test Plan fragment
+     *     a Listed Hash Tree which represents a Test Plan fragment
      *     corresponding to the given Session Layer EFSM.
      */
     public ListedHashTree transform (
@@ -124,7 +124,7 @@ public class SessionLayerEFSMTransformer {
      * explicitly.
      *
      * @param markovStates
-     *     Set of Markov States whose outgoing transitions shall be completed.
+     *     set of Markov States whose outgoing transitions shall be completed.
      */
     private void addDummyMarkovTransitions (final ListedHashTree markovStates) {
 
@@ -177,7 +177,7 @@ public class SessionLayerEFSMTransformer {
      *     ID of the target state to be searched for.
      *
      * @return
-     *     A matching transition, or <code>null</code> if no matching transition
+     *     a matching transition, or <code>null</code> if no matching transition
      *     can be found.
      */
     private ApplicationStateTransition findTransitionWithTargetState (
@@ -204,15 +204,15 @@ public class SessionLayerEFSMTransformer {
      * transitions of the given Application State.
      *
      * @param state
-     *     State to be transformed.
+     *     state to be transformed.
      * @param visitedStates
-     *     Set of states which have been already visited, including their
+     *     set of states which have been already visited, including their
      *     corresponding Markov States.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
      * @return
-     *     A Listed Hash Tree with all Markov States which have been visited
+     *     a Listed Hash Tree with all Markov States which have been visited
      *     recursively. The order of Markov States is the reverse order of the
      *     corresponding states being visited.
      */
@@ -301,10 +301,10 @@ public class SessionLayerEFSMTransformer {
      * @param targetStateId
      *     ID of the Markov State which denotes the transition target.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
      * @return
-     *     A Markov4JMeter transition which includes guards and actions as they
+     *     a Markov4JMeter transition which includes guards and actions as they
      *     are indicated by the given M4J-DSL transition.
      */
     private ApplicationStateTransition
@@ -332,10 +332,10 @@ public class SessionLayerEFSMTransformer {
      * @param state
      *     M4J-DSL state for which a Markov State shall be created.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
      * @return
-     *     A Markov State named like the service which is associated with the
+     *     a Markov State named like the service which is associated with the
      *     given M4J-DSL state.
      */
     private ApplicationState createMarkovStateForM4JApplicationState (

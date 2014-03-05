@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<m4jdsl:WorkloadModel
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:m4jdsl="http://m4jdsl/1.0"
-    xsi:schemaLocation="http://m4jdsl/1.0 ../../../net.sf.markov4jmeter.m4jdsl/model/m4jdsl.ecore">
+<m4jdsl:WorkloadModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:m4jdsl="http://m4jdsl/1.0" xsi:schemaLocation="http://m4jdsl/1.0 ../../../net.sf.markov4jmeter.m4jdsl/model/m4jdsl.ecore">
   <workloadIntensity xsi:type="m4jdsl:ConstantWorkloadIntensity" formula="1"/>
   <applicationModel>
     <sessionLayerEFSM initialState="//@applicationModel/@sessionLayerEFSM/@states.0" exitState="//@applicationModel/@sessionLayerEFSM/@states.1">

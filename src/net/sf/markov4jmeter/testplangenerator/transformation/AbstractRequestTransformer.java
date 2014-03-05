@@ -26,10 +26,10 @@ public abstract class AbstractRequestTransformer {
      * Transforms a given M4J-DSL request into a corresponding Test Plan
      * fragment.
      *
-     * @param request                 The request to be transformed.
-     * @param testPlanElementFactory  Factory for creating Test Plan elements.
+     * @param request                 the request to be transformed.
+     * @param testPlanElementFactory  factory for creating Test Plan elements.
      *
-     * @return A Test Plan fragment which represents the given request.
+     * @return a Test Plan fragment which represents the given request.
      */
     public abstract ListedHashTree transform (
             final m4jdsl.Request request,
@@ -44,11 +44,11 @@ public abstract class AbstractRequestTransformer {
      * Test Plan fragment.
      *
      * @param request
-     *     The request whose assertions shall be transformed.
+     *     the request whose assertions shall be transformed.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
-     * @return  A Test Plan fragment which represents the given assertions.
+     * @return  a Test Plan fragment which represents the given assertions.
      */
     protected ListedHashTree transformRequestAssertions (
             final Request request,
@@ -79,11 +79,11 @@ public abstract class AbstractRequestTransformer {
      * patterns to be tested, provided by a given list of M4J-DSL assertions.
      *
      * @param assertions
-     *     List of M4J-DSL assertions, providing the patterns to be tested.
+     *     list of M4J-DSL assertions, providing the patterns to be tested.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
-     * @return  A valid instance of {@link ResponseAssertion}.
+     * @return  a valid instance of {@link ResponseAssertion}.
      */
     private ResponseAssertion createResponseAssertion (
             final List<m4jdsl.Assertion> assertions,

@@ -14,7 +14,7 @@ public class ModificationException extends Exception {
     /**
      * Constructor with a specific error message.
      *
-     * @param message  Additional information about the error which occurred.
+     * @param message  additional information about the error which occurred.
      */
     public ModificationException (final String message) {
 

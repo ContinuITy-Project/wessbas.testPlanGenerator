@@ -88,15 +88,15 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
      * parameters.
      *
      * @param eId
-     *     Identifier of the element.
+     *     identifier of the element.
      * @param properties
-     *     Required properties for a request to be sent (e.g., port, domain).
+     *     required properties for a request to be sent (e.g., port, domain).
      * @param parameters
-     *     Parameters to be sent (e.g., form input data).
+     *     parameters to be sent (e.g., form input data).
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
-     * @return  A valid instance of {@link HTTPSamplerProxy}.
+     * @return  a valid instance of {@link HTTPSamplerProxy}.
      */
     private HTTPSamplerProxy createHttpSamplerProxy (
             final String eId,

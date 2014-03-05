@@ -90,7 +90,7 @@ public class Configuration extends Properties {
     /**
      * Constructor for a configuration with specific default parameters.
      *
-     * @param defaults  Default parameters to be initialized.
+     * @param defaults  default parameters to be initialized.
      */
     public Configuration (final Configuration defaults) {
 
@@ -104,8 +104,8 @@ public class Configuration extends Properties {
     /**
      * Loads the key/value pairs from a specified properties file.
      *
-     * @param filename  Name of the properties file to be loaded.
-     * 
+     * @param filename  name of the properties file to be loaded.
+     *
      * @throws FileNotFoundException
      *     in case the denoted file does not exist.
      * @throws IOException
@@ -136,10 +136,10 @@ public class Configuration extends Properties {
     /**
      * Returns a value of type <code>String</code> for the given key.
      *
-     * @param propertyKey  Key whose value shall be returned.
+     * @param propertyKey  key whose value shall be returned.
      *
      * @return
-     *     The value which is assigned to the given key; in case the value
+     *     the value which is assigned to the given key; in case the value
      *     is not available, a warning will be logged, and a default value
      *     (empty <code>String</code>) will be returned.
      */
@@ -164,10 +164,10 @@ public class Configuration extends Properties {
     /**
      * Returns a value of type <code>boolean</code> for the given key.
      *
-     * @param propertyKey  Key whose value shall be returned.
+     * @param propertyKey  key whose value shall be returned.
      *
      * @return
-     *     The value which is assigned to the given key; in case the value
+     *     the value which is assigned to the given key; in case the value
      *     is not available, a warning will be logged, and a default value
      *     (<code>false</code>) will be returned.
      */
@@ -193,9 +193,9 @@ public class Configuration extends Properties {
                     Configuration.WARNING_UNVALID_BOOLEAN,
                     propertyKey,
                     Configuration.DEFAULT_BOOLEAN);
-    
+
             Configuration.LOG.warn(message);
-    
+
             value = Configuration.DEFAULT_BOOLEAN;
         }
         return value;
@@ -204,10 +204,10 @@ public class Configuration extends Properties {
     /**
      * Returns a value of type <code>int</code> for the given key.
      *
-     * @param propertyKey  Key whose value shall be returned.
+     * @param propertyKey  key whose value shall be returned.
      *
      * @return
-     *     The value which is assigned to the given key; in case the value
+     *     the value which is assigned to the given key; in case the value
      *     is not available, a warning will be logged, and a default value
      *     (<code>0</code>) will be returned.
      */
@@ -237,10 +237,10 @@ public class Configuration extends Properties {
     /**
      * Returns a value of type <code>long</code> for the given key.
      *
-     * @param propertyKey  Key whose value shall be returned.
+     * @param propertyKey  key whose value shall be returned.
      *
      * @return
-     *     The value which is assigned to the given key; in case the value
+     *     the value which is assigned to the given key; in case the value
      *     is not available, a warning will be logged, and a default value
      *     (<code>0L</code>) will be returned.
      */
@@ -270,10 +270,10 @@ public class Configuration extends Properties {
     /**
      * Returns a value of type <code>double</code> for the given key.
      *
-     * @param propertyKey  Key whose value shall be returned.
+     * @param propertyKey  key whose value shall be returned.
      *
      * @return
-     *     The value which is assigned to the given key; in case the value
+     *     the value which is assigned to the given key; in case the value
      *     is not available, a warning will be logged, and a default value
      *     (<code>0.0D</code>) will be returned.
      */

@@ -68,5 +68,6 @@
 	<classpathentry kind="lib" path="lib/validation/pivot/misc/resources/org.eclipse.core.resources.win32.x86_64_3.5.0.v20121203-0906.jar"/>
 	<classpathentry kind="lib" path="lib/validation/pivot/misc/resources/org.eclipse.ui.navigator.resources_3.4.500.v20130516-1049.jar"/>
 	<classpathentry kind="lib" path="lib/validation/pivot/misc/resources/org.eclipse.uml2.uml.resources_4.1.0.v20130902-0826.jar"/>
+	<classpathentry kind="lib" path="lib/jmeter/xpp3_min-1.1.4c.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

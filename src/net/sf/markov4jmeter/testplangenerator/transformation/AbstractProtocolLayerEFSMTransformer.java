@@ -3,6 +3,7 @@ package net.sf.markov4jmeter.testplangenerator.transformation;
 import java.util.HashSet;
 
 import m4jdsl.ProtocolLayerEFSM;
+import m4jdsl.Request;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
 
 import org.apache.jorphan.collections.ListedHashTree;
@@ -17,6 +18,20 @@ import org.apache.jorphan.collections.ListedHashTree;
 public abstract class AbstractProtocolLayerEFSMTransformer {
 
 
+    /** Instance for transforming M4J-DSL Requests to Test Plan fragments. */
+    private final AbstractRequestTransformer requestTransformer;
+
+
+    /* ***************************  constructors  *************************** */
+
+
+    public AbstractProtocolLayerEFSMTransformer (
+            final AbstractRequestTransformer requestTransformer) {
+
+        this.requestTransformer = requestTransformer;
+    }
+
+
     /* **************************  public methods  ************************** */
 
 
@@ -27,10 +42,10 @@ public abstract class AbstractProtocolLayerEFSMTransformer {
      * @param protocolLayerEFSM
      *     Protocol Layer EFSM to be transformed into a Test Plan fragment.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
      * @return
-     *     A Listed Hash Tree which represents a Test Plan fragment
+     *     a Listed Hash Tree which represents a Test Plan fragment
      *     corresponding to the given Protocol Layer EFSM.
      */
     public ListedHashTree transform (
@@ -54,6 +69,31 @@ public abstract class AbstractProtocolLayerEFSMTransformer {
         return protocolLayerEFSMTree;
     }
 
+    /**
+     * Transforms the given request into a Test Plan fragment which includes a
+     * corresponding Sampler.
+     *
+     * @param request
+     *     request to be transformed into a Test Plan fragment.
+     * @param testPlanElementFactory
+     *     factory for creating Test Plan elements.
+     *
+     * @return
+     *     a Listed Hash Tree which represents a Test Plan fragment
+     *     corresponding to the given request.
+     */
+    public ListedHashTree transformRequest (
+            final Request request,
+            final TestPlanElementFactory testPlanElementFactory) {
+
+        // create a named Sampler with properties and parameters;
+        final ListedHashTree sampler = this.requestTransformer.transform(
+                request,
+                testPlanElementFactory);
+
+        return sampler;
+    }
+
 
     /* *************************  protected methods  ************************ */
 
@@ -65,14 +105,14 @@ public abstract class AbstractProtocolLayerEFSMTransformer {
      * to the indicated EFSM structure with the given state as initial state.
      *
      * @param state
-     *     State to be transformed.
+     *     state to be transformed.
      * @param visitedStates
-     *     Set of states which have been already visited.
+     *     set of states which have been already visited.
      * @param testPlanElementFactory
-     *     Factory for creating Test Plan elements.
+     *     factory for creating Test Plan elements.
      *
      * @return
-     *     A Listed Hash Tree which represents a Test Plan fragment.
+     *     a Listed Hash Tree which represents a Test Plan fragment.
      */
     protected abstract ListedHashTree transformProtocolState (
             final m4jdsl.ProtocolState state,

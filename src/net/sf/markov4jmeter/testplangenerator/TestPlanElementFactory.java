@@ -98,12 +98,12 @@ public final class TestPlanElementFactory {
 
     /* IMPLEMENTATION NOTE:
      * --------------------
-     * Some of the supported JMeter Test Plan elements provide ambiguous set()-
+     * some of the supported JMeter Test Plan elements provide ambiguous set()-
      * methods for their properties; in particular, parameters of type String
      * and (simple) data types, e.g. int or long, are sometimes possible
      * alternatively; in those cases, the latter mentioned set() methods have
      * been used for setting the values for keeping the type control as strict
-     * as possible.
+     * as possible;
      */
 
     // property keys (no further comments given here);
@@ -365,9 +365,9 @@ public final class TestPlanElementFactory {
      * configuration of the elements to be created.
      *
      * @param configuration
-     *     Configuration of the elements to be created.
+     *     configuration of the elements to be created.
      * @param useForcedValues
-     *     Flag which indicates whether properties must be defined in the used
+     *     flag which indicates whether properties must be defined in the used
      *     configuration.
      *     <ul>
      *       <li> If the flag is set <code>true</code>, a warning will be given
@@ -396,7 +396,7 @@ public final class TestPlanElementFactory {
      * Returns the configuration of the elements to be created.
      *
      * @return
-     *     A valid instance of {@link Configuration} which has been passed to
+     *     a valid instance of {@link Configuration} which has been passed to
      *     the constructor of this class.
      *
      * @see TestPlanElementFactory#TestPlanElementFactory(Configuration, boolean)
@@ -425,7 +425,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link TestPlan} instance with default properties.
      *
-     * @return  A valid instance of {@link TestPlan}.
+     * @return  a valid instance of {@link TestPlan}.
      */
     public TestPlan createTestPlan () {
 
@@ -521,7 +521,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates an {@link Arguments} instance with default properties.
      *
-     * @return  A valid instance of {@link Arguments}.
+     * @return  a valid instance of {@link Arguments}.
      */
     public Arguments createArguments () {
 
@@ -572,7 +572,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link SetupThreadGroup} instance with default properties.
      *
-     * @return  A valid instance of {@link SetupThreadGroup}.
+     * @return  a valid instance of {@link SetupThreadGroup}.
      */
     public SetupThreadGroup createSetupThreadGroup () {
 
@@ -717,7 +717,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link LoopController} instance with default values.
      *
-     * @return  A valid instance of {@link LoopController}.
+     * @return  a valid instance of {@link LoopController}.
      */
     public LoopController createLoopController () {
 
@@ -764,7 +764,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link WhileController} instance with default values.
      *
-     * @return  A valid instance of {@link WhileController}.
+     * @return  a valid instance of {@link WhileController}.
      */
     public WhileController createWhileController () {
 
@@ -801,7 +801,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link GaussianRandomTimer} instance with default values.
      *
-     * @return  A valid instance of {@link GaussianRandomTimer}.
+     * @return  a valid instance of {@link GaussianRandomTimer}.
      */
     public GaussianRandomTimer createGaussianRandomTimer () {
 
@@ -847,7 +847,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link CookieManager} instance with default values.
      *
-     * @return  A valid instance of {@link CookieManager}.
+     * @return  a valid instance of {@link CookieManager}.
      */
     public CookieManager createCookieManager () {
 
@@ -917,7 +917,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link ResponseAssertion} instance with default values.
      *
-     * @return  A valid instance of {@link ResponseAssertion}.
+     * @return  a valid instance of {@link ResponseAssertion}.
      */
     public ResponseAssertion createResponseAssertion () {
 
@@ -1016,7 +1016,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link CounterConfig} instance with default values.
      *
-     * @return  A valid instance of {@link CounterConfig}.
+     * @return  a valid instance of {@link CounterConfig}.
      */
     public CounterConfig createCounterConfig () {
 
@@ -1117,7 +1117,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link RegexExtractor} instance with default values.
      *
-     * @return  A valid instance of {@link RegexExtractor}.
+     * @return  a valid instance of {@link RegexExtractor}.
      */
     public RegexExtractor createRegexExtractor () {
 
@@ -1243,7 +1243,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link HeaderManager} instance with default values.
      *
-     * @return  A valid instance of {@link HeaderManager}.
+     * @return  a valid instance of {@link HeaderManager}.
      */
     public HeaderManager createHeaderManager () {
 
@@ -1294,7 +1294,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link HTTPSamplerProxy} instance with default values.
      *
-     * @return  A valid instance of {@link HTTPSamplerProxy}.
+     * @return  a valid instance of {@link HTTPSamplerProxy}.
      */
     public HTTPSamplerProxy createHTTPSamplerProxy () {
 
@@ -1661,7 +1661,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link ConfigTestElement} instance with default values.
      *
-     * @return  A valid instance of {@link ConfigTestElement}.
+     * @return  a valid instance of {@link ConfigTestElement}.
      */
     public ConfigTestElement createConfigTestElement () {
 
@@ -1903,7 +1903,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates a {@link MarkovController} instance with default values.
      *
-     * @return  A valid instance of {@link MarkovController}.
+     * @return  a valid instance of {@link MarkovController}.
      */
     public MarkovController createMarkovController () {
 
@@ -2023,7 +2023,7 @@ public final class TestPlanElementFactory {
     /**
      * Creates an {@link ApplicationState} instance with default values.
      *
-     * @return  A valid instance of {@link ApplicationState}.
+     * @return  a valid instance of {@link ApplicationState}.
      */
     public ApplicationState createApplicationState () {
 
@@ -2051,7 +2051,7 @@ public final class TestPlanElementFactory {
      * Creates a {@link ResultCollector} instance with default values,
      * represented in JMeter as a <i>Response Time Graph</i>.
      *
-     * @return  A valid instance of {@link ResultCollector}.
+     * @return  a valid instance of {@link ResultCollector}.
      */
     public ResultCollector createResponseTimeGraph () {
 
@@ -2086,7 +2086,7 @@ public final class TestPlanElementFactory {
      * Creates a {@link ResultCollector} instance with default values,
      * represented in JMeter as a <i>View Results Tree</i>.
      *
-     * @return  A valid instance of {@link ResultCollector}.
+     * @return  a valid instance of {@link ResultCollector}.
      */
     public ResultCollector createViewResultsTrue () {
 
@@ -2122,17 +2122,17 @@ public final class TestPlanElementFactory {
 
 
     /**
-     * Sets the "name"-, "comment"- and "enabled"-properties of a given Test
+     * Sets the properties for "name", "comment" and "enabled" of a given Test
      * Plan element.
      *
      * @param testElement
      *     Test Plan element whose properties shall be set.
      * @param propertyKeyForName
-     *     Key for the "name"-property.
+     *     key for the "name" property.
      * @param propertyKeyForComment
-     *     Key for the "comment"-property.
+     *     key for the "comment" property.
      * @param propertyKeyForEnabled
-     *     Key for the "enabled"-property.
+     *     key for the "enabled" property.
      */
     private void setTestElementProperties (
             final TestElement testElement,
@@ -2183,9 +2183,9 @@ public final class TestPlanElementFactory {
      * additionally.
      *
      * @param str     <code>String</code> to be parsed.
-     * @param parent  The type of element for which the parsing shall be done.
+     * @param parent  the type of element for which the parsing shall be done.
      *
-     * @return  The parsed value, or 0.0 by default if parsing fails.
+     * @return  the parsed value, or 0.0 by default if parsing fails.
      */
     private double stringToDouble (final String str, final Class<?> parent) {
 
@@ -2230,7 +2230,7 @@ public final class TestPlanElementFactory {
      * that is, it does not equal <code>null</code> and does neither denote the
      * empty <code>String</code> (<code>""</code>) nor a whitespace sequence.
      *
-     * @param value  Value to be checked.
+     * @param value  value to be checked.
      *
      * @return  <code>true</code> if and only if the given value is valid.
      */
@@ -2251,10 +2251,10 @@ public final class TestPlanElementFactory {
      * reading is done for a certain type of Test Plan element, the type must
      * be specified additionally.
      *
-     * @param filename  Name of the file to be read.
-     * @param parent    The type of element for which the reading shall be done.
+     * @param filename  name of the file to be read.
+     * @param parent    the type of element for which the reading shall be done.
      *
-     * @return  An array of strings which have been read.
+     * @return  an array of all <code>String</code>s which have been read.
      */
     private final String[] readSimpleList (
             final String filename, final Class<?> parent) {
@@ -2282,11 +2282,11 @@ public final class TestPlanElementFactory {
      * <p>Since the reading is done for a certain type of Test Plan element,
      * the type must be specified additionally.
      *
-     * @param filename  Name of the file to be read.
-     * @param parent    The type of element for which the reading shall be done.
-     * @param columns   Number of parameter values.
+     * @param filename  name of the file to be read.
+     * @param parent    the type of element for which the reading shall be done.
+     * @param columns   number of parameter values.
      *
-     * @return  An array of parameters which have been read.
+     * @return  an array of all parameters which have been read.
      */
     private String[][] readParameters (
             final String filename, final Class<?> parent, final int columns) {
@@ -2309,15 +2309,15 @@ public final class TestPlanElementFactory {
      * the type must be specified additionally.
      *
      * @param filename
-     *     Name of the file to be read.
+     *     name of the file to be read.
      * @param parent
-     *     The type of element for which the reading shall be done.
+     *     the type of element for which the reading shall be done.
      * @param columns
-     *     Number of parameter values.
+     *     number of parameter values.
      * @param separator
-     *     Regular expression which describes the separator to be used.
+     *     regular expression which describes the separator to be used.
      *
-     * @return  An array of parameters which have been read.
+     * @return  an array of all parameters which have been read.
      */
     private String[][] readParameters (
             final String filename,
@@ -2397,7 +2397,7 @@ public final class TestPlanElementFactory {
      * Sets the "type" property of a Response Assertion.
      *
      * @param responseAssertion  Response Assertion whose type shall be set.
-     * @param type               Type to be set.
+     * @param type               type to be set.
      */
     private void setType (
             final ResponseAssertion responseAssertion,
@@ -2440,7 +2440,7 @@ public final class TestPlanElementFactory {
      * @param responseAssertion
      *     Response Assertion whose test field shall be set.
      * @param testField
-     *     Test field to be set.
+     *     test field to be set.
      */
     private void setTestField (
             final ResponseAssertion responseAssertion,
@@ -2485,8 +2485,8 @@ public final class TestPlanElementFactory {
     /**
      * Sets the "scope" property of an "Abstract Scoped Test Element".
      *
-     * @param abstractScopedTestElement  Element whose scope shall be set.
-     * @param scope                      Scope to be set.
+     * @param abstractScopedTestElement  element whose scope shall be set.
+     * @param scope                      scope to be set.
      */
     private void setScope (
             final AbstractScopedTestElement abstractScopedTestElement,
@@ -2518,10 +2518,10 @@ public final class TestPlanElementFactory {
      * @param parametersFile
      *     CSV-file which provides the parameters information.
      * @param parent
-     *     Type of element for which the parameters shall be read.
+     *     type of element for which the parameters shall be read.
      *
      * @return
-     *     A valid instance of {@link Arguments}, which might contain no
+     *     a valid instance of {@link Arguments}, which might contain no
      *     elements in case reading fails.
      */
     private Arguments readParametersForHTTPRequest (

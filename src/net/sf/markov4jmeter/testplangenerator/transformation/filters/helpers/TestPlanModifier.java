@@ -14,7 +14,7 @@ import org.apache.jorphan.collections.ListedHashTree;
  * {@link TestPlan} instances. In particular, it simplifies requesting, adding,
  * replacing and removing elements of Test Plans.
  *
- * <p>It is assumed that occurrences of Test Plan elements are unique for
+ * <p>It is assumed that occurrences of Test Plan elements are <u>unique</u> for
  * identifying them by reference.
  *
  * @author   Eike Schulz (esc@informatik.uni-kiel.de)
@@ -49,12 +49,12 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be modified.
      * @param childElement
-     *     Element to be added as child.
+     *     element to be added as child.
      * @param parentElement
-     *     Element to become the parent of the added child element.
+     *     element to become the parent of the added child element.
      *
      * @return
-     *     A newly created {@link HashTree} node which embeds the added element;
+     *     a newly created {@link HashTree} node which embeds the added element;
      *     in case the element could not be added, <code>null</code> will be
      *     returned.
      */
@@ -81,17 +81,17 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be modified.
      * @param childElement
-     *     Element to be added as child.
+     *     element to be added as child.
      * @param parentElement
-     *     Element to become the parent of the added child element.
+     *     element to become the parent of the added child element.
      * @param index
-     *     Index position of the new child in the parent's children list,
+     *     index position of the new child in the parent's children list,
      *     starting with index 0; if the index equals or exceeds the number of
      *     existing children, the new child will be added at the last position;
      *     a negative index will be treated as 0.
      *
      * @return
-     *     A newly created {@link HashTree} node which embeds the added element;
+     *     a newly created {@link HashTree} node which embeds the added element;
      *     in case the element could not be added, <code>null</code> will be
      *     returned.
      */
@@ -156,10 +156,10 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be explored.
      * @param childElement
-     *     Element whose index position shall be determined.
+     *     element whose index position shall be determined.
      *
      * @return
-     *     An index position >=  0; in case no parent element for the specified
+     *     an index position >=  0; in case no parent element for the specified
      *     element can be determined, e.g., if it denotes a root node of the
      *     given Test Plan and is no child therewith, -1 will be returned.
      */
@@ -202,10 +202,10 @@ public class TestPlanModifier {
      * Removes an element from the given Test Plan.
      *
      * @param testPlan  Test Plan to be modified.
-     * @param element   Element to be removed.
+     * @param element   element to be removed.
      *
      * @return
-     *     The {@link HashTree} node which embeds the removed element; in case
+     *     the {@link HashTree} node which embeds the removed element; in case
      *     the element could not be removed, <code>null</code> will be returned.
      */
     public HashTree removeElement (
@@ -239,10 +239,10 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be modified.
      * @param currentElement
-     *     Element to be replaced, not denoting the root of a Test Plan
+     *     element to be replaced, not denoting the root of a Test Plan
      *     (trivial case).
      * @param newElement
-     *     Element to be inserted.
+     *     element to be inserted.
      *
      * @return
      *     <code>true</code> if and only if the replacement was successful;
@@ -294,12 +294,12 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be modified.
      * @param siblingElement
-     *     Element to be added as sibling.
+     *     element to be added as sibling.
      * @param relativeElement
-     *     Element to become the sibling of the added element.
+     *     element to become the sibling of the added element.
      *
      * @return
-     *     A newly created {@link HashTree} node which embeds the added child
+     *     a newly created {@link HashTree} node which embeds the added child
      *     element; in case the element could not be added, <code>null</code>
      *     will be returned.
      */
@@ -323,12 +323,12 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be modified.
      * @param siblingElement
-     *     Element to be added as sibling.
+     *     element to be added as sibling.
      * @param relativeElement
-     *     Element to become the sibling of the added element.
+     *     element to become the sibling of the added element.
      *
      * @return
-     *     A newly created {@link HashTree} node which embeds the added element;
+     *     a newly created {@link HashTree} node which embeds the added element;
      *     in case the element could not be added, <code>null</code> will be
      *     returned.
      */
@@ -350,11 +350,11 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be explored.
      * @param name
-     *     Name which must be matched by elements for being included into the
+     *     name which must be matched by elements for being included into the
      *     result list; <code>null</code> will be ignored.
      *
      * @return
-     *     A list of all matching elements.
+     *     a list of all matching elements.
      */
     @SuppressWarnings("unchecked")
     public <T extends AbstractTestElement> LinkedList<T> collectElementsByName (
@@ -396,11 +396,11 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be explored.
      * @param type
-     *     Type which must be matched by elements for being included into the
+     *     type which must be matched by elements for being included into the
      *     result list; <code>null</code> will be ignored.
      *
      * @return
-     *     A list of all matching elements.
+     *     a list of all matching elements.
      */
     @SuppressWarnings("unchecked")
     public <T extends AbstractTestElement> LinkedList<T> collectElementsByType (
@@ -434,11 +434,11 @@ public class TestPlanModifier {
      * Searches for the parent node of the specified element in the given
      * sub-tree.
      *
-     * @param subTree  Sub-tree to be explored.
-     * @param element  Element whose parent node shall be found.
+     * @param subTree  sub-tree to be explored.
+     * @param element  element whose parent node shall be found.
      *
      * @return
-     *     The parent node of the specified element or <code>null</code>, if
+     *     the parent node of the specified element or <code>null</code>, if
      *     the parent node could not be found.
      *
      * @throws ModificationException
@@ -478,15 +478,15 @@ public class TestPlanModifier {
      * @param testPlan
      *     Test Plan to be modified.
      * @param siblingElement
-     *     Element to be added as sibling.
+     *     element to be added as sibling.
      * @param relativeElement
-     *     Element to become the sibling of the added element.
+     *     element to become the sibling of the added element.
      * @param isSubsequent
      *     <code>true</code> if and only if the sibling element shall be
      *     inserted just below the relative element; otherwise the sibling
      *     element will be inserted just above the relative element.
      * @return
-     *     A newly created {@link HashTree} node which embeds the added element;
+     *     a newly created {@link HashTree} node which embeds the added element;
      *     in case the element could not be added, <code>null</code> will be
      *     returned.
      */
@@ -547,9 +547,9 @@ public class TestPlanModifier {
     /**
      * Collects all elements in the given sub-tree.
      *
-     * @param subTree  Sub-tree to be explored.
+     * @param subTree  sub-tree to be explored.
      *
-     * @return  A valid list of all elements.
+     * @return  a valid list of all elements.
      */
     private LinkedList<Object> collectAllKeys (final ListedHashTree subTree) {
 
@@ -580,7 +580,7 @@ public class TestPlanModifier {
          * Returns the list of collected keys.
          *
          * @return
-         *     A valid list of collected keys; might be empty, if no keys are
+         *     a valid list of collected keys; might be empty, if no keys are
          *     available.
          */
         public LinkedList<Object> getKeys() {
@@ -627,7 +627,7 @@ public class TestPlanModifier {
         /**
          * Constructor for a find-parent-node traverser.
          *
-         * @param key  Key whose parent node shall be detected.
+         * @param key  key whose parent node shall be detected.
          */
         public FindParentTreeTraverser (final Object key) {
 
@@ -639,7 +639,7 @@ public class TestPlanModifier {
          * Returns the reference to a detected parent node.
          *
          * @return
-         *     A valid node, or <code>null</code> if no parent node is
+         *     a valid node, or <code>null</code> if no parent node is
          *     available.
          */
         public HashTree getParent() {
@@ -664,7 +664,7 @@ public class TestPlanModifier {
          * Checks whether a given instance of {@link RuntimeException} has been
          * thrown by a {@link FindParentTreeTraverser} instance.
          *
-         * @param ex  Exception to be checked.
+         * @param ex  exception to be checked.
          *
          * @return
          *     <code>true</code> if and only if the given Exception results

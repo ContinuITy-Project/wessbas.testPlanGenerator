@@ -11,19 +11,13 @@ import net.sf.markov4jmeter.testplangenerator.transformation.AbstractTestPlanTra
 import net.sf.markov4jmeter.testplangenerator.transformation.HTTPRequestTransformer;
 import net.sf.markov4jmeter.testplangenerator.transformation.SimpleTestPlanTransformer;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.AbstractFilter;
-import net.sf.markov4jmeter.testplangenerator.transformation.filters.ConstantWorkloadIntensityFilter;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.HeaderDefaultsFilter;
 import net.sf.markov4jmeter.testplangenerator.util.Configuration;
 import net.sf.markov4jmeter.testplangenerator.util.EcoreObjectValidator;
 import net.sf.markov4jmeter.testplangenerator.util.XmiEcoreHandler;
 
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.jmeter.engine.StandardJMeterEngine;
 import org.apache.jmeter.save.SaveService;
-import org.apache.jmeter.util.JMeterUtils;
-import org.apache.jorphan.collections.HashTree;
 import org.apache.jorphan.collections.ListedHashTree;
 
 /**
@@ -47,6 +41,27 @@ import org.apache.jorphan.collections.ListedHashTree;
  */
 public class TestPlanGenerator {
 
+    /* IMPLEMENTATION NOTE:
+     * --------------------
+     * The following elements of the Test Plan Factory have not been used
+     * for creating Markov4JMeter Test Plans, but they are already supported by
+     * the framework:
+     *
+     *   final WhileController whileController = testPlanElementFactory.createWhileController();
+     *   final CounterConfig counterConfig = testPlanElementFactory.createCounterConfig();
+     *
+     * The following elements are just required as nested parts for other types
+     * of Test Plan elements, but they can be even created independently:
+     *
+     *   final Arguments arguments = testPlanElementFactory.createArguments();
+     *   final LoopController loopController = testPlanElementFactory.createLoopController();
+     */
+
+    /** Default properties file for the Test Plan Generator, to be used in case
+     *  no user-defined properties file can be read from command line. */
+    private final static String GENERATOR_DEFAULT_PROPERTIES =
+            "configuration/generator.default.properties";
+
     /** Property key for the JMeter home directory. */
     private final static String PKEY_JMETER__HOME = "jmeter_home";
 
@@ -56,18 +71,7 @@ public class TestPlanGenerator {
     /** Property key for the language tag which indicates the locality. */
     private final static String PKEY_JMETER__LANGUAGE_TAG = "jmeter_languageTag";
 
-    /** Property key for the file with Test Plan default properties. */
-    private final static String PKEY_TEST_PLAN__PROPERTIES =
-            "testPlan_properties";
-
-    /** Separator to be used by JMeter utilities for handling file paths
-     *  properly. */
-    // the JMeter properties loader, which refers to this separator, uses "/"
-    // by default, so File.separatorChar should not be used here; otherwise
-    // inconsistent file paths might occur, for example, on Windows systems;
-    private final static String JMETER_PROPERTIES_FILE_SEPARATOR = "/";
-
-    // info-, warn- and error-messages (should be self-explaining);
+    // info-, warn- and error-messages (names should be self-explaining);
 
     private final static String ERROR_CONFIGURATION_UNDEFINED =
             "Configuration file is null.";
@@ -77,9 +81,6 @@ public class TestPlanGenerator {
 
     private final static String ERROR_CONFIGURATION_READING_FAILED =
             "Could not read configuration file \"%s\".";
-
-    private final static String ERROR_JMETER_PROPERTIES_READING_FAILED =
-            "Could not read JMeter properties file \"%s\": %s";
 
     private final static String ERROR_TEST_PLAN_PROPERTIES_UNDEFINED =
             "Test Plan properties file is null.";
@@ -93,20 +94,11 @@ public class TestPlanGenerator {
     private final static String ERROR_INITIALIZATION_FAILED =
             "Initialization of Test Plan Generator failed.";
 
-    private final static String INFO_TEST_PLAN_GENERATION_STARTED =
-            "Generating Test  Plan ...";
+    private final static String ERROR_INPUT_FILE_COULD_NOT_BE_READ =
+            "Input file \"%s\" could not be read: %s";
 
-    private final static String INFO_TEST_PLAN_GENERATION_FINISHED =
-            "Finished.";
-
-    private final static String INFO_INITIALIZATION_SUCCESSFUL =
-            "Test Plan Generator has been successfully initialized.";
-
-    private final static String ERROR_INPUT_FILE_NOT_FOUND =
-            "Could not open file \"%s\" for reading input data: %s";
-
-    private final static String ERROR_OUTPUT_FILE_NOT_FOUND =
-            "Could not open file \"%s\" for writing output data: %s";
+    private final static String ERROR_OUTPUT_FILE_COULD_NOT_BE_WRITTEN =
+            "Output file \"%s\" could not be written: %s";
 
     private final static String ERROR_OUTPUT_FILE_ACCESS_FAILED =
             "Could not access file \"%s\" for writing output data: %s";
@@ -114,14 +106,32 @@ public class TestPlanGenerator {
     private final static String ERROR_TREE_SAVING_FAILED =
             "Could not save Test Plan tree \"%s\" via SaveService: %s";
 
+    private final static String INFO_INITIALIZATION_SUCCESSFUL =
+            "Test Plan Generator has been successfully initialized.";
+
+    private final static String INFO_TEST_PLAN_GENERATION_STARTED =
+            "Generating Test  Plan ...";
+
+    private final static String INFO_TEST_PLAN_GENERATION_SUCCESSFUL =
+            "Test Plan generation successful.";
+
+    private final static String ERROR_TEST_PLAN_GENERATION_FAILED =
+            "Test Plan generation failed.";
+
+    private final static String INFO_MODEL_VALIDATION_STARTED =
+            "Validating M4J-DSL model ...";
+
+    private final static String INFO_MODEL_VALIDATION_SUCCESSFUL =
+            "Validation of M4J-DSL model successful.";
+
+    private final static String ERROR_MODEL_VALIDATION_FAILED =
+            "Validation of M4J-DSL model failed.";
+
     private final static String WARNING_OUTPUT_FILE_CLOSING_FAILED =
             "Could not close file-output stream for file \"%s\": %s";
 
-    /** Handler for loading Ecore-models from XMI files. */
-    private final XmiEcoreHandler xmiEcoreHandler;
-
-    /** Log-factory for any warnings or error messages. */
-    private final static Log LOG = LogFactory.getLog(TestPlanGenerator.class);
+    private final static String ERROR_TEST_PLAN_RUN_FAILED =
+            "Could not run Test Plan \"%s\": %s";
 
 
     /* *********************  global (non-final) fields  ******************** */
@@ -137,10 +147,8 @@ public class TestPlanGenerator {
     /**
      * Standard constructor of a Test Plan Generator, without parameters.
      */
-    public TestPlanGenerator () {
-
-        this.xmiEcoreHandler = new XmiEcoreHandler();
-    }
+    // TODO: this could be even implemented as singleton pattern;
+    public TestPlanGenerator () { }
 
 
     /* **************************  public methods  ************************** */
@@ -150,7 +158,7 @@ public class TestPlanGenerator {
      * Returns the Test Plan Factory associated with the Test Plan Generator.
      *
      * @return
-     *     A valid Test Plan Factory, if the Test Plan Generator has been
+     *     a valid Test Plan Factory, if the Test Plan Generator has been
      *     initialized successfully; otherwise <code>null</code> will be
      *     returned.
      */
@@ -178,9 +186,13 @@ public class TestPlanGenerator {
      * configuration file and setting its properties accordingly.
      *
      * @param configurationFile
-     *     Properties file which provides required or optional properties.
+     *     properties file which provides required or optional properties.
+     * @param testPlanProperties
+     *     file with Test Plan default properties.
      */
-    public void init (final String configurationFile) {
+    public void init (
+            final String configurationFile,
+            final String testPlanProperties) {
 
         // read the configuration and give an error message, if reading fails;
         // in that case, null will be returned;
@@ -201,11 +213,11 @@ public class TestPlanGenerator {
             final Locale jMeterLocale =
                     Locale.forLanguageTag(jMeterLanguageTag);
 
-            final String testPlanProperties = configuration.getString(
-                    TestPlanGenerator.PKEY_TEST_PLAN__PROPERTIES);
-
             final boolean success =
-                    this.initJMeter(jMeterHome, jMeterProperties, jMeterLocale);
+                    JMeterEngineGateway.getInstance().initJMeter(
+                            jMeterHome,
+                            jMeterProperties,
+                            jMeterLocale);
 
             if (success) {
 
@@ -225,8 +237,7 @@ public class TestPlanGenerator {
 
         }
 
-        TestPlanGenerator.LOG.error(
-                TestPlanGenerator.ERROR_INITIALIZATION_FAILED);
+        this.logError(TestPlanGenerator.ERROR_INITIALIZATION_FAILED);
     }
 
     /**
@@ -234,42 +245,65 @@ public class TestPlanGenerator {
      * into the specified file.
      *
      * @param workloadModel
-     *     Workload model which provides the values for the Test Plan to be
+     *     workload model which provides the values for the Test Plan to be
      *     generated.
      * @param testPlanBuilder
-     *     Builder to be used for building a Test Plan of certain structure.
+     *     builder to be used for building a Test Plan of certain structure.
      * @param filters
-     *     (Optional) modification filters to be finally applied on the newly
+     *     (optional) modification filters to be finally applied on the newly
      *     generated Test Plan.
      * @param outputFilename
-     *     Name of the file where the Test Plan shall be stored in.
+     *     name of the file where the Test Plan shall be stored in.
+     *
+     * @return
+     *     the generated Test Plan, or <code>null</code> if any error occurs.
      */
-    public void generate (
+    public ListedHashTree generate (
             final WorkloadModel workloadModel,
             final AbstractTestPlanTransformer testPlanBuilder,
             final AbstractFilter[] filters,
             final String outputFilename) {
 
+        ListedHashTree testPlanTree = null;  // to be returned;
+
+        final EcoreObjectValidator validator;
+        final boolean validationSuccessful;
+
         this.logInfo(TestPlanGenerator.INFO_TEST_PLAN_GENERATION_STARTED);
+        this.logInfo(TestPlanGenerator.INFO_MODEL_VALIDATION_STARTED);
 
-        // TODO: log-messages for validation
-        final EcoreObjectValidator validator = new EcoreObjectValidator();
-        final boolean success = validator.validateAndPrintResult(workloadModel);
+        validator = new EcoreObjectValidator();
+        validationSuccessful = validator.validateAndPrintResult(workloadModel);
 
-        if (!success) {
+        this.logInfo(TestPlanGenerator.INFO_MODEL_VALIDATION_SUCCESSFUL);
 
-            System.out.println("Generation process failed through model errors.");
-            System.exit(0);
+        if (!validationSuccessful) {
+
+            this.logError(TestPlanGenerator.ERROR_MODEL_VALIDATION_FAILED);
+            this.logError(TestPlanGenerator.ERROR_TEST_PLAN_GENERATION_FAILED);
+
+        } else {  // validation successful -> generate Test Plan output file;
+
+            testPlanTree = testPlanBuilder.transform(
+                    workloadModel,
+                    this.testPlanElementFactory,
+                    filters);
+
+            final boolean success =
+                    this.writeOutput(testPlanTree, outputFilename);
+
+            if (success) {
+
+                this.logInfo(
+                        TestPlanGenerator.INFO_TEST_PLAN_GENERATION_SUCCESSFUL);
+            } else {
+
+                this.logError(
+                    TestPlanGenerator.ERROR_TEST_PLAN_GENERATION_FAILED);
+            }
         }
 
-        final ListedHashTree testPlanTree = testPlanBuilder.transform(
-                workloadModel,
-                this.testPlanElementFactory,
-                filters);
-
-        this.writeOutput(testPlanTree, outputFilename);
-
-        this.logInfo(TestPlanGenerator.INFO_TEST_PLAN_GENERATION_FINISHED);
+        return testPlanTree;
     }
 
     /**
@@ -281,17 +315,20 @@ public class TestPlanGenerator {
      *     XMI file containing the (Ecore) workload model which provides the
      *     values for the Test Plan to be generated.
      * @param outputFile
-     *     Name of the file where the Test Plan shall be stored in.
+     *     name of the file where the Test Plan shall be stored in.
      * @param testPlanBuilder
-     *     Builder to be used for building a Test Plan of certain structure.
+     *     builder to be used for building a Test Plan of certain structure.
      * @param filters
-     *     (Optional) modification filters to be finally applied on the newly
+     *     (optional) modification filters to be finally applied on the newly
      *     generated Test Plan.
+     *
+     * @return
+     *     the generated Test Plan, or <code>null</code> if any error occurs.
      *
      * @throws IOException
      *     in case any file reading or writing operation failed.
      */
-    public void generate (
+    public ListedHashTree generate (
             final String inputFile,
             final String outputFile,
             final AbstractTestPlanTransformer testPlanBuilder,
@@ -301,10 +338,11 @@ public class TestPlanGenerator {
         M4jdslPackageImpl.init();
 
         // might throw an IOException;
-        final WorkloadModel workloadModel =
-                (WorkloadModel) this.xmiEcoreHandler.xmiToEcore(inputFile, "xmi");
+        final WorkloadModel workloadModel = (WorkloadModel)
+                XmiEcoreHandler.getInstance().xmiToEcore(inputFile, "xmi");
 
-        this.generate(workloadModel, testPlanBuilder, filters, outputFile);
+        return this.generate(
+                workloadModel, testPlanBuilder, filters, outputFile);
     }
 
 
@@ -312,14 +350,15 @@ public class TestPlanGenerator {
 
 
     /**
-     * Writes a given Test Plan to a specified output file.
+     * Writes a given Test Plan into the specified output file.
      *
      * @param testPlanTree    Test Plan to be written into the output file.
-     * @param outputFilename  Name of the output file.
+     * @param outputFilename  name of the output file.
      */
-    protected void writeOutput (
+    protected boolean writeOutput (
             final ListedHashTree testPlanTree, final String outputFilename) {
 
+        boolean success = true;
         FileOutputStream fileOutputStream = null;
 
         try {
@@ -333,11 +372,12 @@ public class TestPlanGenerator {
         } catch (final FileNotFoundException ex) {
 
             final String message = String.format(
-                    TestPlanGenerator.ERROR_OUTPUT_FILE_NOT_FOUND,
+                    TestPlanGenerator.ERROR_OUTPUT_FILE_COULD_NOT_BE_WRITTEN,
                     outputFilename,
                     ex.getMessage());
 
-            TestPlanGenerator.LOG.error(message);
+            this.logError(message);
+            success = false;
 
         } catch (final SecurityException ex) {
 
@@ -346,7 +386,8 @@ public class TestPlanGenerator {
                     outputFilename,
                     ex.getMessage());
 
-            TestPlanGenerator.LOG.error(message);
+            this.logError(message);
+            success = false;
 
         } catch (final IOException ex) {
 
@@ -355,7 +396,8 @@ public class TestPlanGenerator {
                     outputFilename,
                     ex.getMessage());
 
-            TestPlanGenerator.LOG.error(message);
+            this.logError(message);
+            success = false;
 
         } finally {
 
@@ -372,26 +414,14 @@ public class TestPlanGenerator {
                             outputFilename,
                             ex.getMessage());
 
-                    TestPlanGenerator.LOG.warn(message);
+                    this.logWarning(message);
+                    // success remains true, since output file content has been
+                    // written, just the file could not be closed;
                 }
             }
         }
-    }
 
-    /**
-     * Starts the JMeter engine for a given Test Plan.
-     *
-     * @param testPlan  Test Plan to be processed by the JMeter engine.
-     */
-    protected void startJMeterEngine (final HashTree testPlan) {
-
-        // JMeter engine;
-        final StandardJMeterEngine jmeterEngine = new StandardJMeterEngine();
-
-        jmeterEngine.configure(testPlan);
-        jmeterEngine.run();
-
-        // TODO: capture results and return information;
+        return success;
     }
 
 
@@ -402,10 +432,10 @@ public class TestPlanGenerator {
      * Reads all configuration properties from the specified file and gives an
      * error message, if reading fails.
      *
-     * @param propertiesFile  Properties file to be read.
+     * @param propertiesFile  properties file to be read.
      *
      * @return
-     *     A valid configuration, if the specified properties file could be
+     *     a valid configuration, if the specified properties file could be
      *     read successfully; otherwise <code>null</code> will be returned.
      */
     private Configuration readConfiguration (final String propertiesFile) {
@@ -422,7 +452,7 @@ public class TestPlanGenerator {
                     TestPlanGenerator.ERROR_CONFIGURATION_NOT_FOUND,
                     propertiesFile);
 
-            TestPlanGenerator.LOG.error(message);
+            this.logError(message);
             configuration = null;  // indicates an error;
 
         } catch (final IOException ex) {
@@ -431,14 +461,12 @@ public class TestPlanGenerator {
                     TestPlanGenerator.ERROR_CONFIGURATION_READING_FAILED,
                     propertiesFile);
 
-            TestPlanGenerator.LOG.error(message);
+            this.logError(message);
             configuration = null;  // indicates an error;
 
         } catch (final NullPointerException ex) {
 
-            TestPlanGenerator.LOG.error(
-                    TestPlanGenerator.ERROR_CONFIGURATION_UNDEFINED);
-
+            this.logError(TestPlanGenerator.ERROR_CONFIGURATION_UNDEFINED);
             configuration = null;  // indicates an error;
         }
 
@@ -446,65 +474,14 @@ public class TestPlanGenerator {
     }
 
     /**
-     * Initializes the JMeter utilities by setting the required properties
-     * in the {@link JMeterUtils} class.
-     *
-     * @param jMeterHome
-     *     Home directory of JMeter which is the (local) installation directory
-     *     of the tool.
-     * @param jMeterPropertiesFile
-     *     File which contains additional JMeter-specific properties.
-     * @param locale
-     *     The locality to be used.
-     *
-     * @return
-     *     <code>true</code> if and only if the specified properties file could
-     *     be read successfully.
-     */
-    private boolean initJMeter (
-            final String jMeterHome,
-            final String jMeterPropertiesFile,
-            final Locale locale) {
-
-        boolean success = true;  // to be returned;
-
-        final String jMeterPropertiesFilePath =
-                jMeterHome +
-                TestPlanGenerator.JMETER_PROPERTIES_FILE_SEPARATOR +
-                jMeterPropertiesFile;
-
-        JMeterUtils.setJMeterHome(jMeterHome);
-        JMeterUtils.setLocale(locale);
-
-        try {
-
-            // might throw (at least) a RunTimeException;
-            JMeterUtils.loadJMeterProperties(jMeterPropertiesFilePath);
-
-        } catch (final Exception ex) {
-
-            final String message = String.format(
-
-                    TestPlanGenerator.ERROR_JMETER_PROPERTIES_READING_FAILED,
-                    jMeterPropertiesFilePath,
-                    ex.getMessage());
-
-            TestPlanGenerator.LOG.error(message);
-            success = false;
-        }
-
-        return success;
-    }
-
-    /**
      * Creates a Factory which builds Test Plan according to the default
      * properties defined in the specified file.
      *
      * @param propertiesFile
-     *     Properties file with default properties of Test Plan elements.
+     *     properties file with default properties for Test Plan elements.
      *
      * @return
-     *     A valid Test Plan Factory if the properties file could be read
+     *     a valid Test Plan Factory if the properties file could be read
      *     successfully; otherwise <code>null</code> will be returned.
      */
     private TestPlanElementFactory createTestPlanFactory (
@@ -530,7 +507,7 @@ public class TestPlanGenerator {
                     TestPlanGenerator.ERROR_TEST_PLAN_PROPERTIES_NOT_FOUND,
                     propertiesFile);
 
-            TestPlanGenerator.LOG.error(message);
+            this.logError(message);
 
         } catch (final IOException ex) {
 
@@ -538,11 +515,11 @@ public class TestPlanGenerator {
                     TestPlanGenerator.ERROR_TEST_PLAN_PROPERTIES_READING_FAILED,
                     propertiesFile);
 
-            TestPlanGenerator.LOG.error(message);
+            this.logError(message);
 
         } catch (final NullPointerException ex) {
 
-            TestPlanGenerator.LOG.error(
+            this.logError(
                     TestPlanGenerator.ERROR_TEST_PLAN_PROPERTIES_UNDEFINED);
         }
 
@@ -552,7 +529,7 @@ public class TestPlanGenerator {
     /**
      * Logs an information to standard output.
      *
-     * @param message  Information to be logged.
+     * @param message  information to be logged.
      */
     private void logInfo (final String message) {
 
@@ -564,14 +541,132 @@ public class TestPlanGenerator {
         //   TestPlanGenerator.LOG.info(message);
         //
         // --> adjust "commons-logging.properties" accordingly;
+        // --> even better: use JMeter logging unit;
+    }
+
+    /**
+     * Logs a warning message to standard output.
+     *
+     * @param message  warning message to be logged.
+     */
+    private void logWarning (final String message) {
+
+        // TODO: remove print-command, solve the issue below;
+        System.err.println(message);
+
+        // this command would print in non-uniform format:
+        //
+        //   TestPlanGenerator.LOG.warning(message);
+        //
+        // --> adjust "commons-logging.properties" accordingly;
+        // --> even better: use JMeter logging unit;
+    }
+
+    /**
+     * Logs an error message to standard output.
+     *
+     * @param message  error message to be logged.
+     */
+    private void logError (final String message) {
+
+        // TODO: remove print-command, solve the issue below;
+        System.err.println(message);
+
+        // this command would print in non-uniform format:
+        //
+        //   TestPlanGenerator.LOG.error(message);
+        //
+        // --> adjust "commons-logging.properties" accordingly;
+        // --> even better: use JMeter logging unit;
+    }
+
+    /**
+     * Generates a Test Plan for the (Ecore) workload model which is stored in
+     * the given XMI-file; the result will be written into the specified output
+     * file.
+     *
+     * @param inputFile
+     *     XMI file containing the (Ecore) workload model which provides the
+     *     values for the Test Plan to be generated.
+     * @param outputFile
+     *     name of the file where the Test Plan shall be stored in.
+     * @param generatorPropertiesFile
+     *     properties file which provides the core settings for the Test Plan
+     *     Generator.
+     * @param testPlanPropertiesFile
+     *     properties file which provides the default settings for the Test
+     *     Plans to be generated.
+     * @param filterFlags
+     *     (optional) modification filters to be finally applied on the newly
+     *     generated Test Plan.
+     *
+     * @return
+     *     the generated Test Plan, or <code>null</code> if any error occurs.
+     */
+    public ListedHashTree generate (
+            final String inputFile,
+            final String outputFile,
+            final String generatorPropertiesFile,
+            final String testPlanPropertiesFile,
+            final String filterFlags) {
+
+        ListedHashTree testPlan = null;  // to be returned;
+
+        final TestPlanGenerator testPlanGenerator = new TestPlanGenerator();
+
+        // TODO: collect these filters according to the command line flags;
+        final AbstractFilter[] filters = new AbstractFilter[]{
+
+                // new ConstantWorkloadIntensityFilter(),
+
+                /* this is just for testing, think times will be taken from the
+                 * workload model and managed by the Markov Controller;
+                 *
+                     new GaussianThinkTimeDistributionFilter(
+                        "Think Time",
+                        "",
+                        true,
+                        300.0d,
+                        100.0d),
+                 */
+                new HeaderDefaultsFilter()
+        };
+
+        testPlanGenerator.init(generatorPropertiesFile, testPlanPropertiesFile);
+
+        if (testPlanGenerator.isInitialized()) {
+
+            try {
+
+                testPlan = testPlanGenerator.generate(
+                        inputFile,
+                        outputFile,
+                        new SimpleTestPlanTransformer(new HTTPRequestTransformer()),
+                        filters);
+
+            } catch (final IOException ex) {
+
+                final String message = String.format(
+                        TestPlanGenerator.ERROR_INPUT_FILE_COULD_NOT_BE_READ,
+                        inputFile,
+                        ex.getMessage());
+
+                this.logError(message);
+            }
+        }
+
+        return testPlan;
     }
 
 
+    /* ************************  static main content  *********************** */
+
 
     /**
-     * Main method which parses the command line parameters and
+     * Main method which parses the command line parameters and generates a
+     * Test Plan afterwards.
      *
-     * @param argv Argument vector.
+     * @param argv arguments vector.
      */
     public static void main (final String[] argv) {
 
@@ -582,16 +677,13 @@ public class TestPlanGenerator {
             // NullPointer-, IllegalArgument- or ParseException;
             CommandLineArgumentsHandler.init(argv);
 
-            TestPlanGenerator.generate();
+            TestPlanGenerator.readArgumentsAndGenerate();
 
         } catch (final NullPointerException
                 | IllegalArgumentException
                 | ParseException ex) {
 
-            // TODO: this is just for testing purposes!
-//            TestPlanGenerator.LOG.error(ex.getMessage());
-//            ex.printStackTrace();
-
+            System.err.println(ex.getMessage());
             CommandLineArgumentsHandler.printUsage();
         }
     }
@@ -600,99 +692,63 @@ public class TestPlanGenerator {
      * Starts the generation process with the arguments which have been passed
      * to command line.
      */
-    private static void generate () {
+    private static void readArgumentsAndGenerate () {
 
         final TestPlanGenerator testPlanGenerator = new TestPlanGenerator();
 
-        String inputFile =
+        final String inputFile =
                 CommandLineArgumentsHandler.getInputFile();
 
-        String outputFile =
+        final String outputFile =
                 CommandLineArgumentsHandler.getOutputFile();
+
+        final String testPlanPropertiesFile =
+                CommandLineArgumentsHandler.getTestPlanPropertiesFile();
+
+        final String filters =
+                CommandLineArgumentsHandler.getFilters();
+
+        final boolean runTest =
+                CommandLineArgumentsHandler.getRunTest();
 
         String generatorPropertiesFile =
                 CommandLineArgumentsHandler.getGeneratorPropertiesFile();
 
-        String testPlanPropertiesFile =
-                CommandLineArgumentsHandler.getTestPlanPropertiesFile();
+        if (generatorPropertiesFile == null) {
 
-        String filters =
-                CommandLineArgumentsHandler.getFilters();
+            generatorPropertiesFile =
+                    TestPlanGenerator.GENERATOR_DEFAULT_PROPERTIES;
+        }
 
+        // ignore returned Test Plan, since the output file will provide it
+        // for being tested in the (possibly) following test run;
         testPlanGenerator.generate(
                 inputFile,
                 outputFile,
                 generatorPropertiesFile,
                 testPlanPropertiesFile,
                 filters);
-    }
 
-    /**
-     * Starts the ...
-     * TODO: optional generatorPropertiesFile and filters are not supported yet;
-     *
-     * @param inputFile
-     * @param outputFile
-     * @param generatorPropertiesFile
-     * @param testPlanPropertiesFile
-     * @param filters
-     */
-    public void generate (
-            final String inputFile,
-            final String outputFile,
-            String generatorPropertiesFile,  // TODO: should be final, after open issues have been fixed;
-            final String testPlanPropertiesFile,
-            final String filterFlags) {
+        if (runTest) {
 
-        final TestPlanGenerator testPlanGenerator = new TestPlanGenerator();
-
-        // TODO: collect these filters according to the command line flags;
-        generatorPropertiesFile = "configuration/generator.default.properties";
-        final AbstractFilter[] filters = new AbstractFilter[]{
-
-                new ConstantWorkloadIntensityFilter(),
-/*
-                new GaussianThinkTimeDistributionFilter(  // TODO: just for testing, these values must be taken from workload model;
-                        "Think Time",
-                        "",
-                        true,
-                        300.0d,
-                        100.0d),
-*/
-                new HeaderDefaultsFilter()
-        };
-
-        testPlanGenerator.init(generatorPropertiesFile);
-
-        if (testPlanGenerator.isInitialized()) {
+            // TODO: libraries need to be added for running tests correctly;
+            // otherwise the test fails at runtime (e.g., class HC3CookieHandler
+            // is declared to be still unknown);
 
             try {
 
-                testPlanGenerator.generate(
-                        inputFile,
-                        outputFile,
-                        new SimpleTestPlanTransformer(new HTTPRequestTransformer()),
-                        filters);
+                JMeterEngineGateway.getInstance().startJMeterEngine(outputFile);
 
-            } catch (final IOException ex) {
-ex.printStackTrace();
+            } catch (final Exception ex) {
+
                 final String message = String.format(
-                        TestPlanGenerator.ERROR_INPUT_FILE_NOT_FOUND,
-                        inputFile,
+                        TestPlanGenerator.ERROR_TEST_PLAN_RUN_FAILED,
+                        outputFile,
                         ex.getMessage());
 
-                TestPlanGenerator.LOG.error(message);
+                System.err.println(message);
+                ex.printStackTrace();
             }
-
-            // TODO: invoke JMeter engine optionally;
         }
     }
-    /*
-    // TODO: include these elements!
-    final Arguments arguments = testPlanElementFactory.createArguments();
-    final LoopController loopController = testPlanElementFactory.createLoopController();
-    final WhileController whileController = testPlanElementFactory.createWhileController();
-    final CounterConfig counterConfig = testPlanElementFactory.createCounterConfig();
-     */
-
 }
