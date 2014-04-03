@@ -12,7 +12,7 @@ import org.apache.commons.cli.ParseException;
 import dynamod.aspectlegacy.util.CmdlOptionFactory;
 import dynamod.aspectlegacy.util.CmdlOptionsReader;
 
-/**
+/** TODO: comments for requestType, revise comments!
  * This class defines the command-line options accepted by the Test Plan
  * Generator. Each option is initiated by a leading hyphen; an overview is
  * given below, followed by several examples.
@@ -128,22 +128,31 @@ public class CommandLineArgumentsHandler {
                     "generator.properties",                 // argName;
                     false);                                 // !hasOptionalArg;
 
+    /** Type of requests to be transformed. */
+    private final static Option REQUEST_TYPE =
+            CmdlOptionFactory.createOption(
+                    "r",                                    // opt;
+                    "requesttype",                          // longOpt;
+                    "Type of requests to be transformed.",  // description;
+                    true,                                   // isRequired;
+                    "http|java",                            // argName;
+                    false);                                 // !hasOptionalArg;
+
     /** Filters to be used; this is a sequence of flags in arbitrary
      *  combination and order. */
     // TODO: implementation and description of filters;
-    // TODO: Filter for workload intensity must be passed exclusively.
     private final static Option FILTERS =
             CmdlOptionFactory.createOption(
                     "f",                                    // opt;
                     "filters",                              // longOpt;
                     "(Optional) filters.",                  // description;
                     false,                                  // !isRequired;
-                    "(C|G)*",                               // argName;
+                    "(C|G)+",                               // argName;
                     false);                                 // !hasOptionalArg;
 
     private final static Option START_TEST =
             CmdlOptionFactory.createOption(
-                    "r",                                     // opt;
+                    "j",                                     // opt;
                     "runtest",                               // longOpt;
                     "(Optional) immediate start of a test "  // description;
                     + "run.",
@@ -171,6 +180,9 @@ public class CommandLineArgumentsHandler {
     /** (Optional) generator properties file path which has been read from
      *  command-line. */
     private static String generatorPropertiesFile;
+
+    /** Request type which has been read from command-line. */
+    private static String requestType;
 
     /** Filter flags which have been read from command-line. */
     private static String filters;
@@ -201,6 +213,9 @@ public class CommandLineArgumentsHandler {
 
         CommandLineArgumentsHandler.options.addOption(
                 CommandLineArgumentsHandler.TEST_PLAN_PROPERTIES_FILE);
+
+        CommandLineArgumentsHandler.options.addOption(
+                CommandLineArgumentsHandler.REQUEST_TYPE);
 
         CommandLineArgumentsHandler.options.addOption(
                 CommandLineArgumentsHandler.FILTERS);
@@ -257,6 +272,18 @@ public class CommandLineArgumentsHandler {
     public static String getTestPlanPropertiesFile () {
 
         return CommandLineArgumentsHandler.testPlanPropertiesFile;
+    }
+
+    /**
+     * Returns the request type which has been read from command-line.
+     *
+     * @return
+     *     a valid <code>String</code>, or <code>null</code> if no request type
+     *     has been read.
+     */
+    public static String getRequestType () {
+
+        return CommandLineArgumentsHandler.requestType;
     }
 
     /**
@@ -339,6 +366,11 @@ public class CommandLineArgumentsHandler {
                 CommandLineArgumentsHandler.readOptionValueAsString(
                         commandLine,
                         CommandLineArgumentsHandler.TEST_PLAN_PROPERTIES_FILE);
+
+        CommandLineArgumentsHandler.requestType =
+                CommandLineArgumentsHandler.readOptionValueAsString(
+                        commandLine,
+                        CommandLineArgumentsHandler.REQUEST_TYPE);
 
         CommandLineArgumentsHandler.filters =
                 CommandLineArgumentsHandler.readOptionValueAsString(

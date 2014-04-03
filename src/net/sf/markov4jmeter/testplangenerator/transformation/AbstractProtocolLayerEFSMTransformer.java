@@ -5,6 +5,7 @@ import java.util.HashSet;
 import m4jdsl.ProtocolLayerEFSM;
 import m4jdsl.Request;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.AbstractRequestTransformer;
 
 import org.apache.jorphan.collections.ListedHashTree;
 
@@ -47,10 +48,14 @@ public abstract class AbstractProtocolLayerEFSMTransformer {
      * @return
      *     a Listed Hash Tree which represents a Test Plan fragment
      *     corresponding to the given Protocol Layer EFSM.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public ListedHashTree transform (
             final ProtocolLayerEFSM protocolLayerEFSM,
-            final TestPlanElementFactory testPlanElementFactory) {
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException {
 
         // Test Plan fragment to be returned;
         final ListedHashTree protocolLayerEFSMTree = new ListedHashTree();
@@ -81,10 +86,14 @@ public abstract class AbstractProtocolLayerEFSMTransformer {
      * @return
      *     a Listed Hash Tree which represents a Test Plan fragment
      *     corresponding to the given request.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public ListedHashTree transformRequest (
             final Request request,
-            final TestPlanElementFactory testPlanElementFactory) {
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException {
 
         // create a named Sampler with properties and parameters;
         final ListedHashTree sampler = this.requestTransformer.transform(
@@ -113,9 +122,13 @@ public abstract class AbstractProtocolLayerEFSMTransformer {
      *
      * @return
      *     a Listed Hash Tree which represents a Test Plan fragment.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     protected abstract ListedHashTree transformProtocolState (
             final m4jdsl.ProtocolState state,
             final HashSet<m4jdsl.ProtocolState> visitedStates,
-            final TestPlanElementFactory testPlanElementFactory);
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException;
 }

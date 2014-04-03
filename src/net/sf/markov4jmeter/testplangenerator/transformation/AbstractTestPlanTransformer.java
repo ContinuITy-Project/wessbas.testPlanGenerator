@@ -42,11 +42,14 @@ public abstract class AbstractTestPlanTransformer {
      * @return
      *     a newly created Test Plan, possibly modified through the specified
      *     filters.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public ListedHashTree transform (
             final WorkloadModel workloadModel,
             final TestPlanElementFactory testPlanElementFactory,
-            final AbstractFilter[] filters) {
+            final AbstractFilter[] filters) throws TransformationException {
 
         ListedHashTree testPlan =
                 this.transform(workloadModel, testPlanElementFactory);
@@ -81,8 +84,12 @@ public abstract class AbstractTestPlanTransformer {
      * @return
      *     a newly created Test Plan, structured as indicated by the regarding
      *     transformer.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     protected abstract ListedHashTree transform (
             final WorkloadModel workloadModel,
-            final TestPlanElementFactory testPlanElementFactory);
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException;
 }

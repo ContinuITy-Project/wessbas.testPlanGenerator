@@ -3,9 +3,12 @@ package net.sf.markov4jmeter.testplangenerator.transformation;
 import java.util.HashSet;
 import java.util.List;
 
+import m4jdsl.ProtocolLayerEFSMState;
+import m4jdsl.ProtocolState;
 import m4jdsl.ProtocolTransition;
 import m4jdsl.Request;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.AbstractRequestTransformer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -61,12 +64,14 @@ extends AbstractProtocolLayerEFSMTransformer {
      * transitions; if this restriction does not hold for a state, the run
      * continues with the first outgoing transition, and a warning will be
      * given.
+     * @throws TransformationException
      */
     @Override
     protected ListedHashTree transformProtocolState (
             final m4jdsl.ProtocolState state,
             final HashSet<m4jdsl.ProtocolState> visitedStates,
-            final TestPlanElementFactory testPlanElementFactory) {
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException {
 
         // Test Plan fragment to be returned;
         final ListedHashTree samplers = new ListedHashTree();
@@ -106,15 +111,16 @@ extends AbstractProtocolLayerEFSMTransformer {
             final ProtocolTransition transition = outgoingTransitions.get(0);
 
             // continue with the target state in the M4J-DSL model;
-            final m4jdsl.ProtocolState targetState =
+            final ProtocolLayerEFSMState targetState =
                     transition.getTargetState();
 
-            if ( !visitedStates.contains(targetState) ) {
+            if ( targetState instanceof ProtocolState &&
+                 !visitedStates.contains(targetState) ) {
 
                 // target state has not been visited yet -> transform it;
                 final ListedHashTree targetProtocolStates =
                         this.transformProtocolState(
-                                targetState,
+                                (ProtocolState) targetState,
                                 visitedStates,
                                 testPlanElementFactory);
 

@@ -20,8 +20,10 @@ import org.apache.jmeter.config.Argument;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.config.ConfigTestElement;
 import org.apache.jmeter.config.gui.ArgumentsPanel;
+import org.apache.jmeter.control.IfController;
 import org.apache.jmeter.control.LoopController;
 import org.apache.jmeter.control.WhileController;
+import org.apache.jmeter.control.gui.IfControllerPanel;
 import org.apache.jmeter.control.gui.LoopControlPanel;
 import org.apache.jmeter.control.gui.TestPlanGui;
 import org.apache.jmeter.control.gui.WhileControllerGui;
@@ -34,12 +36,20 @@ import org.apache.jmeter.protocol.http.control.CookieManager;
 import org.apache.jmeter.protocol.http.control.Header;
 import org.apache.jmeter.protocol.http.control.HeaderManager;
 import org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui;
+import org.apache.jmeter.protocol.http.control.gui.SoapSamplerGui;
 import org.apache.jmeter.protocol.http.gui.CookiePanel;
 import org.apache.jmeter.protocol.http.gui.HeaderPanel;
 import org.apache.jmeter.protocol.http.sampler.HTTPSampler;
 import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
+import org.apache.jmeter.protocol.http.sampler.SoapSampler;
 import org.apache.jmeter.protocol.http.util.HTTPArgument;
 import org.apache.jmeter.protocol.http.util.HTTPFileArg;
+import org.apache.jmeter.protocol.java.control.gui.BeanShellSamplerGui;
+import org.apache.jmeter.protocol.java.control.gui.JUnitTestSamplerGui;
+import org.apache.jmeter.protocol.java.control.gui.JavaTestSamplerGui;
+import org.apache.jmeter.protocol.java.sampler.BeanShellSampler;
+import org.apache.jmeter.protocol.java.sampler.JUnitSampler;
+import org.apache.jmeter.protocol.java.sampler.JavaSampler;
 import org.apache.jmeter.reporters.ResultCollector;
 import org.apache.jmeter.testelement.AbstractScopedTestElement;
 import org.apache.jmeter.testelement.TestElement;
@@ -59,11 +69,12 @@ import org.apache.jmeter.visualizers.ViewResultsFullVisualizer;
  * Plan elements with default properties.
  *
  * <p>The following elements are supported (in brackets the related names used
- * in the JMeter GUI):
+ * by the JMeter GUI):
  * <ul>
  *   <li>{@link TestPlan}</li>
  *   <li>{@link Arguments}</li> (User Defined Variables)
  *   <li>{@link SetupThreadGroup}</li> (Thread Group)
+ *   <li>{@link IfController}</li>
  *   <li>{@link LoopController}</li>
  *   <li>{@link WhileController}</li>
  *   <li>{@link GaussianRandomTimer}</li>
@@ -72,7 +83,11 @@ import org.apache.jmeter.visualizers.ViewResultsFullVisualizer;
  *   <li>{@link CounterConfig}</li> (Counter)
  *   <li>{@link RegexExtractor}</li> (Regular Expression Extractor)
  *   <li>{@link HeaderManager}</li>
+ *   <li>{@link BeanShellSampler}</li>
+ *   <li>{@link JavaSampler}</li> (Java Request)
+ *   <li>{@link JUnitSampler}</li> (JUnit Request)
  *   <li>{@link HTTPSamplerProxy}</li> (HTTP Sampler)
+ *   <li>{@link SoapSampler}</li> (SOAP/XML-RPC Request)
  *   <li>{@link ConfigTestElement}</li> (HTTP Request Defaults)
  *   <li>{@link MarkovController}</li> (Markov Session Controller)
  *   <li>{@link ApplicationState}</li> (Markov State)
@@ -134,6 +149,7 @@ public final class TestPlanElementFactory {
     PKEY_SETUP_THREAD_GROUP__SCHEDULER__END_TIME                       = "setupThreadGroup_scheduler_endTime",
     PKEY_SETUP_THREAD_GROUP__SCHEDULER__DURATION                       = "setupThreadGroup_scheduler_duration",
     PKEY_SETUP_THREAD_GROUP__SCHEDULER__DELAY                          = "setupThreadGroup_scheduler_delay",
+
     PKEY_SETUP_THREAD_GROUP__LOOP_CONTROLLER__NAME                     = "setupThreadGroup_loopController_name",
     PKEY_SETUP_THREAD_GROUP__LOOP_CONTROLLER__COMMENT                  = "setupThreadGroup_loopController_comment",
     PKEY_SETUP_THREAD_GROUP__LOOP_CONTROLLER__ENABLED                  = "setupThreadGroup_loopController_enabled",
@@ -150,6 +166,13 @@ public final class TestPlanElementFactory {
     PKEY_WHILE_CONTROLLER__COMMENT                                     = "whileController_comment",
     PKEY_WHILE_CONTROLLER__ENABLED                                     = "whileController_enabled",
     PKEY_WHILE_CONTROLLER__CONDITION                                   = "whileController_condition",
+
+    PKEY_IF_CONTROLLER__NAME                                           = "ifController_name",
+    PKEY_IF_CONTROLLER__COMMENT                                        = "ifController_comment",
+    PKEY_IF_CONTROLLER__ENABLED                                        = "ifController_enabled",
+    PKEY_IF_CONTROLLER__CONDITION                                      = "ifController_condition",
+    PKEY_IF_CONTROLLER__USE_EXPRESSION                                 = "ifController_useExpression",
+    PKEY_IF_CONTROLLER__EVALUATE_ALL                                   = "ifController_evaluateAll",
 
     PKEY_GAUSSIAN_RANDOM_TIMER__NAME                                   = "gaussianRandomTimer_name",
     PKEY_GAUSSIAN_RANDOM_TIMER__COMMENT                                = "gaussianRandomTimer_comment",
@@ -201,6 +224,39 @@ public final class TestPlanElementFactory {
     PKEY_HEADER_MANAGER__ENABLED                                       = "headerManager_enabled",
     PKEY_HEADER_MANAGER__HEADERS_FILE                                  = "headerManager_headersFile",
 
+    PKEY_JUNIT_SAMPLER__NAME                                           = "jUnitSampler_name",
+    PKEY_JUNIT_SAMPLER__COMMENT                                        = "jUnitSampler_comment",
+    PKEY_JUNIT_SAMPLER__ENABLED                                        = "jUnitSampler_enabled",
+    PKEY_JUNIT_SAMPLER__JUNIT4                                         = "jUnitSampler_junit4",
+    PKEY_JUNIT_SAMPLER__FILTER_STRING                                  = "jUnitSampler_filterString",
+    PKEY_JUNIT_SAMPLER__CLASS_NAME                                     = "jUnitSampler_className",
+    PKEY_JUNIT_SAMPLER__CONSTRUCTOR_STRING                             = "jUnitSampler_constructorString",
+    PKEY_JUNIT_SAMPLER__TEST_METHOD                                    = "jUnitSampler_testMethod",
+    PKEY_JUNIT_SAMPLER__SUCCESS_MESSAGE                                = "jUnitSampler_successMessage",
+    PKEY_JUNIT_SAMPLER__SUCCESS_CODE                                   = "jUnitSampler_successCode",
+    PKEY_JUNIT_SAMPLER__FAILURE_MESSAGE                                = "jUnitSampler_failureMessage",
+    PKEY_JUNIT_SAMPLER__FAILURE_CODE                                   = "jUnitSampler_failureCode",
+    PKEY_JUNIT_SAMPLER__ERROR_MESSAGE                                  = "jUnitSampler_errorMessage",
+    PKEY_JUNIT_SAMPLER__ERROR_CODE                                     = "jUnitSampler_errorCode",
+    PKEY_JUNIT_SAMPLER__DO_NOT_SETUP_TEARDOWN                          = "jUnitSampler_doNotSetUpTearDown",
+    PKEY_JUNIT_SAMPLER__APPEND_ERROR                                   = "jUnitSampler_appendError",
+    PKEY_JUNIT_SAMPLER__APPEND_EXCEPTION                               = "jUnitSampler_appendException",
+    PKEY_JUNIT_SAMPLER__CREATE_NEW_INSTANCE_PER_SAMPLE                 = "jUnitSampler_createNewInstancePerSample",
+
+    PKEY_BEAN_SHELL_SAMPLER__NAME                                      = "beanShellSampler_name",
+    PKEY_BEAN_SHELL_SAMPLER__COMMENT                                   = "beanShellSampler_comment",
+    PKEY_BEAN_SHELL_SAMPLER__ENABLED                                   = "beanShellSampler_enabled",
+    PKEY_BEAN_SHELL_SAMPLER__RESET_INTERPRETER                         = "beanShellSampler_resetInterpreter",
+    PKEY_BEAN_SHELL_SAMPLER__PARAMETERS_STRING                         = "beanShellSampler_parametersString",
+    PKEY_BEAN_SHELL_SAMPLER__SCRIPT_FILE                               = "beanShellSampler_scriptFile",
+    PKEY_BEAN_SHELL_SAMPLER__SCRIPT                                    = "beanShellSampler_script",
+
+    PKEY_JAVA_SAMPLER__NAME                                            = "javaSampler_name",
+    PKEY_JAVA_SAMPLER__COMMENT                                         = "javaSampler_comment",
+    PKEY_JAVA_SAMPLER__ENABLED                                         = "javaSampler_enabled",
+    PKEY_JAVA_SAMPLER__CLASSNAME                                       = "javaSampler_classname",
+    PKEY_JAVA_SAMPLER__ARGUMENTS_FILE                                  = "javaSampler_argumentsFile",
+
     PKEY_HTTP_SAMPLER_PROXY__NAME                                      = "httpSamplerProxy_name",
     PKEY_HTTP_SAMPLER_PROXY__COMMENT                                   = "httpSamplerProxy_comment",
     PKEY_HTTP_SAMPLER_PROXY__ENABLED                                   = "httpSamplerProxy_enabled",
@@ -232,6 +288,15 @@ public final class TestPlanElementFactory {
     PKEY_HTTP_SAMPLER_PROXY__IP_SOURCE                                 = "httpSamplerProxy_ipSource",
     PKEY_HTTP_SAMPLER_PROXY__USE_AS_MONITOR                            = "httpSamplerProxy_useAsMonitor",
     PKEY_HTTP_SAMPLER_PROXY__SAVE_RESPONSE_AS_MD5_HASH                 = "httpSamplerProxy_saveResponseAsMD5Hash",
+
+    PKEY_SOAP_SAMPLER__NAME                                            = "soapSampler_name",
+    PKEY_SOAP_SAMPLER__COMMENT                                         = "soapSampler_comment",
+    PKEY_SOAP_SAMPLER__ENABLED                                         = "soapSampler_enabled",
+    PKEY_SOAP_SAMPLER__URL                                             = "soapSampler_url",
+    PKEY_SOAP_SAMPLER__SEND_SOAP_ACTION                                = "soapSampler_sendSoapAction",
+    PKEY_SOAP_SAMPLER__SOAP_ACTION                                     = "soapSampler_soapAction",
+    PKEY_SOAP_SAMPLER__USE_KEEP_ALIVE                                  = "soapSampler_useKeepAlive",
+    PKEY_SOAP_SAMPLER__XML_DATA                                        = "soapSampler_xmlData",
 
     PKEY_CONFIG_TEST_ELEMENT__NAME                                     = "configTestElement_name",
     PKEY_CONFIG_TEST_ELEMENT__COMMENT                                  = "configTestElement_comment",
@@ -799,6 +864,64 @@ public final class TestPlanElementFactory {
     }
 
     /**
+     * Creates an {@link IfController} instance with default values.
+     *
+     * @return  a valid instance of {@link IfController}.
+     */
+    public IfController createIfController () {
+
+        final IfControllerPanel gui = new IfControllerPanel();
+
+        final IfController ifController =
+                (IfController) gui.createTestElement();
+
+        final Configuration c = this.configuration;
+        final boolean forced  = this.useForcedValues;
+
+        String key;
+
+        this.setTestElementProperties(
+                ifController,
+                TestPlanElementFactory.PKEY_IF_CONTROLLER__NAME,
+                TestPlanElementFactory.PKEY_IF_CONTROLLER__COMMENT,
+                TestPlanElementFactory.PKEY_IF_CONTROLLER__ENABLED);
+
+        key = TestPlanElementFactory.PKEY_IF_CONTROLLER__CONDITION;
+
+        if (forced || c.containsKey(key)) {
+
+            // condition to be evaluated (default JavaScript)
+            final String value = c.getString(key);
+
+            ifController.setCondition(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_IF_CONTROLLER__USE_EXPRESSION;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if the condition shall be interpreted as
+            // variable expression;
+            final boolean value = c.getBoolean(key);
+
+            ifController.setUseExpression(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_IF_CONTROLLER__EVALUATE_ALL;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if the evaluation shall be applied to all
+            // children;
+            final boolean value = c.getBoolean(key);
+
+            ifController.setEvaluateAll(value);
+        }
+
+        return ifController;
+    }
+
+    /**
      * Creates a {@link GaussianRandomTimer} instance with default values.
      *
      * @return  a valid instance of {@link GaussianRandomTimer}.
@@ -1289,6 +1412,400 @@ public final class TestPlanElementFactory {
         }
 
         return headerManager;
+    }
+
+    /**
+     * Creates a {@link JUnitSampler} instance with default values.
+     *
+     * @return  a valid instance of {@link JUnitSampler}.
+     */
+    public JUnitSampler createJUnitSampler () {
+
+        final JUnitTestSamplerGui gui = new JUnitTestSamplerGui();
+
+        final JUnitSampler jUnitSampler =
+                (JUnitSampler) gui.createTestElement();
+
+        final Configuration c = this.configuration;
+        final boolean forced  = this.useForcedValues;
+
+        String key;
+
+        this.setTestElementProperties(
+                jUnitSampler,
+                TestPlanElementFactory.PKEY_JUNIT_SAMPLER__NAME,
+                TestPlanElementFactory.PKEY_JUNIT_SAMPLER__COMMENT,
+                TestPlanElementFactory.PKEY_JUNIT_SAMPLER__ENABLED);
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__JUNIT4;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if JUnit 4 (instead of JUnit 3) annotations
+            // shall be searched;
+            final boolean value = c.getBoolean(key);
+
+            jUnitSampler.setJunit4(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__FILTER_STRING;
+
+        if (forced || c.containsKey(key)) {
+
+            // package filter;
+            final String value = c.getString(key);
+
+            jUnitSampler.setFilterString(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__CLASS_NAME;
+
+        if (forced || c.containsKey(key)) {
+
+            // class name;
+            final String value = c.getString(key);
+
+            jUnitSampler.setClassname(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__CONSTRUCTOR_STRING;
+
+        if (forced || c.containsKey(key)) {
+
+            // constructor String;
+            final String value = c.getString(key);
+
+            jUnitSampler.setConstructorString(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__TEST_METHOD;
+
+        if (forced || c.containsKey(key)) {
+
+            // test method;
+            final String value = c.getString(key);
+
+            jUnitSampler.setMethod(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__SUCCESS_MESSAGE;
+
+        if (forced || c.containsKey(key)) {
+
+            // success message;
+            final String value = c.getString(key);
+
+            jUnitSampler.setSuccess(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__SUCCESS_CODE;
+
+        if (forced || c.containsKey(key)) {
+
+            // success code;
+            final String value = c.getString(key);
+
+            jUnitSampler.setSuccessCode(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__FAILURE_MESSAGE;
+
+        if (forced || c.containsKey(key)) {
+
+            // failure message;
+            final String value = c.getString(key);
+
+            jUnitSampler.setFailure(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__FAILURE_CODE;
+
+        if (forced || c.containsKey(key)) {
+
+            // failure code;
+            final String value = c.getString(key);
+
+            jUnitSampler.setFailureCode(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__ERROR_MESSAGE;
+
+        if (forced || c.containsKey(key)) {
+
+            // error message;
+            final String value = c.getString(key);
+
+            jUnitSampler.setError(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__ERROR_CODE;
+
+        if (forced || c.containsKey(key)) {
+
+            // error code;
+            final String value = c.getString(key);
+
+            jUnitSampler.setErrorCode(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__DO_NOT_SETUP_TEARDOWN;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if setUp and tearDown shall not be called;
+            final boolean value = c.getBoolean(key);
+
+            jUnitSampler.setDoNotSetUpTearDown(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__APPEND_ERROR;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if assertion errors shall be appended;
+            final boolean value = c.getBoolean(key);
+
+            jUnitSampler.setAppendError(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__APPEND_EXCEPTION;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if runtime exceptions shall be appended;
+            final boolean value = c.getBoolean(key);
+
+            jUnitSampler.setAppendException(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JUNIT_SAMPLER__CREATE_NEW_INSTANCE_PER_SAMPLE;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if a new instance per sample shall be created;
+            final boolean value = c.getBoolean(key);
+
+            jUnitSampler.setCreateOneInstancePerSample(value);
+        }
+
+        return jUnitSampler;
+    }
+
+    /**
+     * Creates a {@link BeanShellSampler} instance with default values.
+     *
+     * @return  a valid instance of {@link BeanShellSampler}.
+     */
+    public BeanShellSampler createBeanShellSampler () {
+
+        final BeanShellSamplerGui gui = new BeanShellSamplerGui();
+
+        final BeanShellSampler beanShellSampler =
+                (BeanShellSampler) gui.createTestElement();
+
+        final Configuration c = this.configuration;
+        final boolean forced  = this.useForcedValues;
+
+        String key;
+
+        this.setTestElementProperties(
+                beanShellSampler,
+                TestPlanElementFactory.PKEY_BEAN_SHELL_SAMPLER__NAME,
+                TestPlanElementFactory.PKEY_BEAN_SHELL_SAMPLER__COMMENT,
+                TestPlanElementFactory.PKEY_BEAN_SHELL_SAMPLER__ENABLED);
+
+        key = TestPlanElementFactory.PKEY_BEAN_SHELL_SAMPLER__RESET_INTERPRETER;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if the BeanShell interpreter shall be reset
+            // before each call;
+            final boolean value = c.getBoolean(key);
+
+            // do not use setResetInterpreter() instead, since it has no effect
+            // (bug?);
+            // beanShellSampler.setResetInterpreter(value);
+            beanShellSampler.setProperty(
+                    BeanShellSampler.RESET_INTERPRETER,
+                    value);
+        }
+
+        key = TestPlanElementFactory.PKEY_BEAN_SHELL_SAMPLER__PARAMETERS_STRING;
+
+        if (forced || c.containsKey(key)) {
+
+            // parameters String;
+            final String value = c.getString(key);
+
+            // don't use setParameters() instead, since it has no effect (bug?);
+            // beanShellSampler.setParameters(value);
+            beanShellSampler.setProperty(BeanShellSampler.PARAMETERS, value);
+        }
+
+        key = TestPlanElementFactory.PKEY_BEAN_SHELL_SAMPLER__SCRIPT_FILE;
+
+        if (forced || c.containsKey(key)) {
+
+            // script file to be optionally loaded;
+            final String value = c.getString(key);
+
+            // do not use setFilename() instead, since it has no effect (bug?);
+            // beanShellSampler.setFilename(value);
+            beanShellSampler.setProperty(BeanShellSampler.FILENAME, value);
+        }
+
+        key = TestPlanElementFactory.PKEY_BEAN_SHELL_SAMPLER__SCRIPT;
+
+        if (forced || c.containsKey(key)) {
+
+            // script to be interpreted;
+            final String value = c.getString(key);
+
+            // do not use setScript() instead, since it has no effect (bug?);
+            // beanShellSampler.setScript(value);
+            beanShellSampler.setProperty(BeanShellSampler.SCRIPT, value);
+        }
+
+        return beanShellSampler;
+    }
+
+    /**
+     * Creates a {@link JavaSampler} instance with default values.
+     *
+     * @return  a valid instance of {@link JavaSampler}.
+     */
+    public JavaSampler createJavaSampler () {
+
+        final JavaTestSamplerGui gui = new JavaTestSamplerGui();
+        final JavaSampler javaSampler = (JavaSampler) gui.createTestElement();
+
+        final Configuration c = this.configuration;
+        final boolean forced  = this.useForcedValues;
+
+        String key;
+
+        this.setTestElementProperties(
+                javaSampler,
+                TestPlanElementFactory.PKEY_JAVA_SAMPLER__NAME,
+                TestPlanElementFactory.PKEY_JAVA_SAMPLER__COMMENT,
+                TestPlanElementFactory.PKEY_JAVA_SAMPLER__ENABLED);
+
+        key = TestPlanElementFactory.PKEY_JAVA_SAMPLER__CLASSNAME;
+
+        if (forced || c.containsKey(key)) {
+
+            // full name of Sampler class which shall be selected by default;
+            final String value = c.getString(key);
+
+            javaSampler.setClassname(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_JAVA_SAMPLER__ARGUMENTS_FILE;
+
+        if (forced || c.containsKey(key)) {
+
+            final String argumentsFile = c.getString(key);
+
+            if ( this.isValidValue(argumentsFile) ) {
+
+                // user-defined set of request parameters;
+                // this must be an array of name/value pairs;
+                final String[][] requestParameters = this.readParameters(
+                        argumentsFile, JavaSampler.class, 2);
+
+                final Arguments arguments = new Arguments();
+
+                for (String[] parameter : requestParameters) {
+
+                    final String name  = parameter[0];
+                    final String value = parameter[1];
+
+                    final Argument argument = new Argument(name, value);
+
+                    arguments.addArgument(argument);
+                }
+
+                javaSampler.setArguments(arguments);
+            }
+        }
+
+        return javaSampler;
+    }
+
+    /**
+     * Creates a {@link SoapSampler} instance with default values.
+     *
+     * @return  a valid instance of {@link SoapSampler}.
+     */
+    public SoapSampler createSoapSampler () {
+
+        final SoapSamplerGui gui = new SoapSamplerGui();
+
+        final SoapSampler soapSampler = (SoapSampler) gui.createTestElement();
+
+        final Configuration c = this.configuration;
+        final boolean forced  = this.useForcedValues;
+
+        String key;
+
+        this.setTestElementProperties(
+                soapSampler,
+                TestPlanElementFactory.PKEY_SOAP_SAMPLER__NAME,
+                TestPlanElementFactory.PKEY_SOAP_SAMPLER__COMMENT,
+                TestPlanElementFactory.PKEY_SOAP_SAMPLER__ENABLED);
+
+        key = TestPlanElementFactory.PKEY_SOAP_SAMPLER__URL;
+
+        if (forced || c.containsKey(key)) {
+
+            // target URL;
+            final String value = c.getString(key);
+
+            soapSampler.setURLData(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_SOAP_SAMPLER__SEND_SOAP_ACTION;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if a SOAP action shall be sent;
+            final boolean value = c.getBoolean(key);
+
+            soapSampler.setSendSOAPAction(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_SOAP_SAMPLER__SOAP_ACTION;
+
+        if (forced || c.containsKey(key)) {
+
+            // an optional SOAP action to be sent;
+            final String value = c.getString(key);
+
+            soapSampler.setSOAPAction(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_SOAP_SAMPLER__USE_KEEP_ALIVE;
+
+        if (forced || c.containsKey(key)) {
+
+            // true if and only if "Connection: keep-alive" shall be sent;
+            // otherwise "Connection: close" will be sent;
+            final boolean value = c.getBoolean(key);
+
+            soapSampler.setUseKeepAlive(value);
+        }
+
+        key = TestPlanElementFactory.PKEY_SOAP_SAMPLER__XML_DATA;
+
+        if (forced || c.containsKey(key)) {
+
+            // SOAP/XML RPC data;
+            final String value = c.getString(key);
+
+            soapSampler.setXmlData(value);
+        }
+
+        return soapSampler;
     }
 
     /**

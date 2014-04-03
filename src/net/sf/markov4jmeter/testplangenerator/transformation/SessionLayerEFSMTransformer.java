@@ -5,6 +5,7 @@ import java.util.List;
 
 import m4jdsl.ApplicationTransition;
 import m4jdsl.SessionLayerEFSM;
+import m4jdsl.SessionLayerEFSMState;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
 import net.voorn.markov4jmeter.control.ApplicationState;
 import net.voorn.markov4jmeter.control.ApplicationStateTransition;
@@ -88,10 +89,14 @@ public class SessionLayerEFSMTransformer {
      * @return
      *     a Listed Hash Tree which represents a Test Plan fragment
      *     corresponding to the given Session Layer EFSM.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public ListedHashTree transform (
             final SessionLayerEFSM sessionLayerEFSM,
-            final TestPlanElementFactory testPlanElementFactory) {
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException {
 
         // Test Plan fragment to be returned;
         final ListedHashTree sessionLayerEFSMTree = new ListedHashTree();
@@ -215,11 +220,15 @@ public class SessionLayerEFSMTransformer {
      *     a Listed Hash Tree with all Markov States which have been visited
      *     recursively. The order of Markov States is the reverse order of the
      *     corresponding states being visited.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     private ListedHashTree transformApplicationState (
             final m4jdsl.ApplicationState state,
             final HashMap<m4jdsl.ApplicationState,ApplicationState> visitedStates,
-            final TestPlanElementFactory testPlanElementFactory) {
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException {
 
         // Test Plan fragment to be returned;
         final ListedHashTree markovStates = new ListedHashTree();
@@ -240,31 +249,35 @@ public class SessionLayerEFSMTransformer {
         for (final ApplicationTransition transition : outgoingTransitions) {
 
             // continue with the target state in the M4J-DSL model;
-            final m4jdsl.ApplicationState targetState =
+            final SessionLayerEFSMState targetState =
                     transition.getTargetState();
 
-            if ( !visitedStates.containsKey(targetState) ) {
+            // just consider Markov States, ignore the exit state;
+            if (targetState instanceof m4jdsl.ApplicationState) {
 
-                // target state has not been visited yet -> transform it;
-                final ListedHashTree targetMarkovStates =
-                        this.transformApplicationState(
-                                targetState,
-                                visitedStates,
+                if ( !visitedStates.containsKey(targetState) ) {
+
+                    // target state has not been visited yet -> transform it;
+                    final ListedHashTree targetMarkovStates =
+                            this.transformApplicationState(
+                                    (m4jdsl.ApplicationState) targetState,
+                                    visitedStates,
+                                    testPlanElementFactory);
+
+                    markovStates.add(targetMarkovStates);
+                }
+
+                // after the target Markov State has been visited, register the
+                // related outgoing transition in the current Markov State;
+
+                final ApplicationStateTransition markovTransition =
+                        this.createMarkovTransitionForM4JApplicationTransition(
+                                transition,
+                                visitedStates.get(targetState).getId(),
                                 testPlanElementFactory);
 
-                markovStates.add(targetMarkovStates);
+                markovState.getTransitions().addTransition(markovTransition);
             }
-
-            // after the target Markov State has been visited, register the
-            // related outgoing transition in the current Markov State;
-
-            final ApplicationStateTransition markovTransition =
-                    this.createMarkovTransitionForM4JApplicationTransition(
-                            transition,
-                            visitedStates.get(targetState).getId(),
-                            testPlanElementFactory);
-
-            markovState.getTransitions().addTransition(markovTransition);
         }
 
         final ListedHashTree samplers =

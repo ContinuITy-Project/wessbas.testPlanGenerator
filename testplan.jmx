@@ -84,7 +84,7 @@
         <elementProp name="MarkovController.behaviorMix" elementType="net.voorn.markov4jmeter.control.BehaviorMix">
           <collectionProp name="UserBehaviorMix.behaviorEntries">
             <elementProp name="" elementType="net.voorn.markov4jmeter.control.BehaviorMixEntry">
-              <stringProp name="Behavior.name">user behavior</stringProp>
+              <stringProp name="Behavior.name">User Behavior</stringProp>
               <doubleProp>
                 <name>Behavior.frequency</name>
                 <value>1.0</value>
@@ -100,60 +100,42 @@
         <stringProp name="MarkovController.arrivalCtrlLogFile"></stringProp>
       </net.voorn.markov4jmeter.control.MarkovController>
       <hashTree>
-        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="logout" enabled="true">
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="Logout" enabled="true">
           <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
             <collectionProp name="ApplicationStateTransitions.transitions">
-              <elementProp name="2029412961" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">2029412961</intProp>
+              <elementProp name="1811605591" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1811605591</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
-                <boolProp name="ApplicationState.disabled">true</boolProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
               </elementProp>
-              <elementProp name="839036172" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">839036172</intProp>
+              <elementProp name="1054322763" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1054322763</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">true</boolProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <intProp name="ApplicationState.id">2029412961</intProp>
+          <intProp name="ApplicationState.id">1054322763</intProp>
         </net.voorn.markov4jmeter.control.ApplicationState>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="logout.shtml" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="service_logout" enabled="true">
+            <elementProp name="arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
-                <elementProp name="logout" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">logout</stringProp>
-                  <stringProp name="Argument.value">true</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
+                <elementProp name="service" elementType="Argument">
+                  <stringProp name="Argument.name">service</stringProp>
+                  <stringProp name="Argument.value">logout</stringProp>
+                  <stringProp name="Argument.metadata"></stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">127.0.0.1</stringProp>
-            <stringProp name="HTTPSampler.port">8080</stringProp>
-            <stringProp name="HTTPSampler.implementation"></stringProp>
-            <stringProp name="HTTPSampler.protocol"></stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">default.xhtml</stringProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.proxyHost"></stringProp>
-            <stringProp name="HTTPSampler.proxyPort"></stringProp>
-            <stringProp name="HTTPSampler.proxyUser"></stringProp>
-            <stringProp name="HTTPSampler.proxyPass"></stringProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-          </HTTPSamplerProxy>
+            <stringProp name="classname">JMeterTest</stringProp>
+          </JavaSampler>
           <hashTree>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-1097329270">logout</stringProp>
-                <stringProp name="1729399491">logout_flow</stringProp>
               </collectionProp>
               <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
               <boolProp name="Assertion.assume_success">false</boolProp>
@@ -161,72 +143,62 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="goodbye.shtml" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
+          <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="service_byebye" enabled="true">
+            <elementProp name="arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="service" elementType="Argument">
+                  <stringProp name="Argument.name">service</stringProp>
+                  <stringProp name="Argument.value">byebye</stringProp>
+                  <stringProp name="Argument.metadata"></stringProp>
+                </elementProp>
+              </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">localhost</stringProp>
-            <stringProp name="HTTPSampler.port">8082</stringProp>
-            <stringProp name="HTTPSampler.implementation"></stringProp>
-            <stringProp name="HTTPSampler.protocol"></stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">port8082.xhtml</stringProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.proxyHost"></stringProp>
-            <stringProp name="HTTPSampler.proxyPort"></stringProp>
-            <stringProp name="HTTPSampler.proxyUser"></stringProp>
-            <stringProp name="HTTPSampler.proxyPass"></stringProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
+            <stringProp name="classname">JMeterTest</stringProp>
+          </JavaSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1374457536">byebye</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
         </hashTree>
-        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="login" enabled="true">
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="Login" enabled="true">
           <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
             <collectionProp name="ApplicationStateTransitions.transitions">
-              <elementProp name="2029412961" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">2029412961</intProp>
-                <stringProp name="ApplicationState.guard">isSignedIn = true</stringProp>
+              <elementProp name="1054322763" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1054322763</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">false</boolProp>
               </elementProp>
-              <elementProp name="839036172" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">839036172</intProp>
-                <stringProp name="ApplicationState.guard">isSignedIn = false</stringProp>
+              <elementProp name="1811605591" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1811605591</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
-                <boolProp name="ApplicationState.disabled">false</boolProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <intProp name="ApplicationState.id">839036172</intProp>
+          <intProp name="ApplicationState.id">1811605591</intProp>
         </net.voorn.markov4jmeter.control.ApplicationState>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="login.shtml" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
+          <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="service_login" enabled="true">
+            <elementProp name="arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="service" elementType="Argument">
+                  <stringProp name="Argument.name">service</stringProp>
+                  <stringProp name="Argument.value">login</stringProp>
+                  <stringProp name="Argument.metadata"></stringProp>
+                </elementProp>
+              </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain"></stringProp>
-            <intProp name="HTTPSampler.port">0</intProp>
-            <stringProp name="HTTPSampler.implementation"></stringProp>
-            <stringProp name="HTTPSampler.protocol"></stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path"></stringProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.proxyHost"></stringProp>
-            <stringProp name="HTTPSampler.proxyPort"></stringProp>
-            <stringProp name="HTTPSampler.proxyUser"></stringProp>
-            <stringProp name="HTTPSampler.proxyPass"></stringProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-          </HTTPSamplerProxy>
+            <stringProp name="classname">JMeterTest</stringProp>
+          </JavaSampler>
           <hashTree>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
@@ -238,28 +210,18 @@
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="welcome.shtml" enabled="true">
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
+          <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="service_welcome" enabled="true">
+            <elementProp name="arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="service" elementType="Argument">
+                  <stringProp name="Argument.name">service</stringProp>
+                  <stringProp name="Argument.value">welcome</stringProp>
+                  <stringProp name="Argument.metadata"></stringProp>
+                </elementProp>
+              </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain"></stringProp>
-            <intProp name="HTTPSampler.port">0</intProp>
-            <stringProp name="HTTPSampler.implementation"></stringProp>
-            <stringProp name="HTTPSampler.protocol"></stringProp>
-            <stringProp name="HTTPSampler.method">GET</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path"></stringProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-            <stringProp name="HTTPSampler.proxyHost"></stringProp>
-            <stringProp name="HTTPSampler.proxyPort"></stringProp>
-            <stringProp name="HTTPSampler.proxyUser"></stringProp>
-            <stringProp name="HTTPSampler.proxyPass"></stringProp>
-            <boolProp name="HTTPSampler.monitor">false</boolProp>
-          </HTTPSamplerProxy>
+            <stringProp name="classname">JMeterTest</stringProp>
+          </JavaSampler>
           <hashTree>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">

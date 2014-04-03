@@ -8,10 +8,16 @@ import java.util.Locale;
 import m4jdsl.WorkloadModel;
 import m4jdsl.impl.M4jdslPackageImpl;
 import net.sf.markov4jmeter.testplangenerator.transformation.AbstractTestPlanTransformer;
-import net.sf.markov4jmeter.testplangenerator.transformation.HTTPRequestTransformer;
 import net.sf.markov4jmeter.testplangenerator.transformation.SimpleTestPlanTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.TransformationException;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.AbstractFilter;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.HeaderDefaultsFilter;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.AbstractRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.BeanShellRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.HTTPRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.JUnitRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.JavaRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.SOAPRequestTransformer;
 import net.sf.markov4jmeter.testplangenerator.util.Configuration;
 import net.sf.markov4jmeter.testplangenerator.util.EcoreObjectValidator;
 import net.sf.markov4jmeter.testplangenerator.util.XmiEcoreHandler;
@@ -43,19 +49,35 @@ public class TestPlanGenerator {
 
     /* IMPLEMENTATION NOTE:
      * --------------------
-     * The following elements of the Test Plan Factory have not been used
-     * for creating Markov4JMeter Test Plans, but they are already supported by
-     * the framework:
+     * The following elements of the Test Plan Factory have not been used for
+     * creating Markov4JMeter Test Plans, but they are already supported by the
+     * framework:
      *
-     *   final WhileController whileController = testPlanElementFactory.createWhileController();
-     *   final CounterConfig counterConfig = testPlanElementFactory.createCounterConfig();
+     *   WhileController whileController = testPlanElementFactory.createWhileController();
+     *   IfController ifController = testPlanElementFactory.createIfController();
+     *   CounterConfig counterConfig = testPlanElementFactory.createCounterConfig();
      *
      * The following elements are just required as nested parts for other types
      * of Test Plan elements, but they can be even created independently:
      *
-     *   final Arguments arguments = testPlanElementFactory.createArguments();
-     *   final LoopController loopController = testPlanElementFactory.createLoopController();
+     *   Arguments arguments = testPlanElementFactory.createArguments();
+     *   LoopController loopController = testPlanElementFactory.createLoopController();
      */
+
+    /** Type constant for requests of type <i>HTTP</i>. */
+    public final static String REQUEST_TYPE_HTTP = "http";
+
+    /** Type constant for requests of type <i>Java</i>. */
+    public final static String REQUEST_TYPE_JAVA = "java";
+
+    /** Type constant for requests of type <i>BeanShell</i>. */
+    public final static String REQUEST_TYPE_BEANSHELL = "beanshell";
+
+    /** Type constant for requests of type <i>JUnit</i>. */
+    public final static String REQUEST_TYPE_JUNIT = "junit";
+
+    /** Type constant for requests of type <i>SOAP</i>. */
+    public final static String REQUEST_TYPE_SOAP = "soap";
 
     /** Default properties file for the Test Plan Generator, to be used in case
      *  no user-defined properties file can be read from command line. */
@@ -70,6 +92,7 @@ public class TestPlanGenerator {
 
     /** Property key for the language tag which indicates the locality. */
     private final static String PKEY_JMETER__LANGUAGE_TAG = "jmeter_languageTag";
+
 
     // info-, warn- and error-messages (names should be self-explaining);
 
@@ -93,6 +116,9 @@ public class TestPlanGenerator {
 
     private final static String ERROR_INITIALIZATION_FAILED =
             "Initialization of Test Plan Generator failed.";
+
+    private final static String ERROR_UNSUPPORTED_REQUEST_TYPE =
+            "Request type \"%s\" is not supported.";
 
     private final static String ERROR_INPUT_FILE_COULD_NOT_BE_READ =
             "Input file \"%s\" could not be read: %s";
@@ -247,7 +273,7 @@ public class TestPlanGenerator {
      * @param workloadModel
      *     workload model which provides the values for the Test Plan to be
      *     generated.
-     * @param testPlanBuilder
+     * @param testPlanTransformer
      *     builder to be used for building a Test Plan of certain structure.
      * @param filters
      *     (optional) modification filters to be finally applied on the newly
@@ -257,12 +283,15 @@ public class TestPlanGenerator {
      *
      * @return
      *     the generated Test Plan, or <code>null</code> if any error occurs.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public ListedHashTree generate (
             final WorkloadModel workloadModel,
-            final AbstractTestPlanTransformer testPlanBuilder,
+            final AbstractTestPlanTransformer testPlanTransformer,
             final AbstractFilter[] filters,
-            final String outputFilename) {
+            final String outputFilename) throws TransformationException {
 
         ListedHashTree testPlanTree = null;  // to be returned;
 
@@ -284,7 +313,7 @@ public class TestPlanGenerator {
 
         } else {  // validation successful -> generate Test Plan output file;
 
-            testPlanTree = testPlanBuilder.transform(
+            testPlanTree = testPlanTransformer.transform(
                     workloadModel,
                     this.testPlanElementFactory,
                     filters);
@@ -316,7 +345,7 @@ public class TestPlanGenerator {
      *     values for the Test Plan to be generated.
      * @param outputFile
      *     name of the file where the Test Plan shall be stored in.
-     * @param testPlanBuilder
+     * @param testPlanTransformer
      *     builder to be used for building a Test Plan of certain structure.
      * @param filters
      *     (optional) modification filters to be finally applied on the newly
@@ -327,12 +356,15 @@ public class TestPlanGenerator {
      *
      * @throws IOException
      *     in case any file reading or writing operation failed.
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public ListedHashTree generate (
             final String inputFile,
             final String outputFile,
-            final AbstractTestPlanTransformer testPlanBuilder,
-            final AbstractFilter[] filters) throws IOException {
+            final AbstractTestPlanTransformer testPlanTransformer,
+            final AbstractFilter[] filters)
+                    throws IOException, TransformationException {
 
         // initialize the model package;
         M4jdslPackageImpl.init();
@@ -342,7 +374,7 @@ public class TestPlanGenerator {
                 XmiEcoreHandler.getInstance().xmiToEcore(inputFile, "xmi");
 
         return this.generate(
-                workloadModel, testPlanBuilder, filters, outputFile);
+                workloadModel, testPlanTransformer, filters, outputFile);
     }
 
 
@@ -596,19 +628,26 @@ public class TestPlanGenerator {
      * @param testPlanPropertiesFile
      *     properties file which provides the default settings for the Test
      *     Plans to be generated.
+     * @param requestType
+     *     type of requests to be sent; this must be one of the
+     *     <code>REQUEST_TYPE</code> constants of this class.
      * @param filterFlags
      *     (optional) modification filters to be finally applied on the newly
      *     generated Test Plan.
      *
      * @return
      *     the generated Test Plan, or <code>null</code> if any error occurs.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
-    public ListedHashTree generate (
+    private ListedHashTree generate (
             final String inputFile,
             final String outputFile,
             final String generatorPropertiesFile,
             final String testPlanPropertiesFile,
-            final String filterFlags) {
+            final String requestType,
+            final String filterFlags) throws TransformationException {
 
         ListedHashTree testPlan = null;  // to be returned;
 
@@ -632,30 +671,97 @@ public class TestPlanGenerator {
                 new HeaderDefaultsFilter()
         };
 
-        testPlanGenerator.init(generatorPropertiesFile, testPlanPropertiesFile);
+        final AbstractRequestTransformer requestTransformer =
+                this.createRequestTransformer(requestType);
 
-        if (testPlanGenerator.isInitialized()) {
+        if (requestTransformer == null) {
 
-            try {
+            final String message = String.format(
+                    TestPlanGenerator.ERROR_UNSUPPORTED_REQUEST_TYPE,
+                    requestType);
 
-                testPlan = testPlanGenerator.generate(
-                        inputFile,
-                        outputFile,
-                        new SimpleTestPlanTransformer(new HTTPRequestTransformer()),
-                        filters);
+            this.logError(message);
 
-            } catch (final IOException ex) {
+        } else {
 
-                final String message = String.format(
-                        TestPlanGenerator.ERROR_INPUT_FILE_COULD_NOT_BE_READ,
-                        inputFile,
-                        ex.getMessage());
+            testPlanGenerator.init(
+                    generatorPropertiesFile,
+                    testPlanPropertiesFile);
 
-                this.logError(message);
+            if (testPlanGenerator.isInitialized()) {
+
+                try {
+
+                    testPlan = testPlanGenerator.generate(
+                            inputFile,
+                            outputFile,
+                            new SimpleTestPlanTransformer(requestTransformer),
+                            filters);
+
+                } catch (final IOException ex) {
+
+                    final String message = String.format(
+                            TestPlanGenerator.ERROR_INPUT_FILE_COULD_NOT_BE_READ,
+                            inputFile,
+                            ex.getMessage());
+
+                    this.logError(message);
+                }
             }
         }
 
         return testPlan;
+    }
+
+    /**
+     * Creates a Request Transformer of the given type.
+     *
+     * @param requestType
+     *     type of requests to be sent; this must be one of the
+     *     <code>REQUEST_TYPE</code> constants of this class.
+     *
+     * @return
+     *     a valid instance of {@link AbstractRequestTransformer}, or
+     *     <code>null</code> if the specified type is unknown.
+     */
+    private AbstractRequestTransformer createRequestTransformer (
+            final String requestType) {
+
+        final AbstractRequestTransformer requestTransformer;
+
+        switch (requestType.toLowerCase()) {
+
+            case TestPlanGenerator.REQUEST_TYPE_HTTP :
+
+                requestTransformer = new HTTPRequestTransformer();
+                break;
+
+            case TestPlanGenerator.REQUEST_TYPE_JAVA :
+
+                requestTransformer = new JavaRequestTransformer();
+                break;
+
+            case TestPlanGenerator.REQUEST_TYPE_BEANSHELL :
+
+                requestTransformer = new BeanShellRequestTransformer();
+                break;
+
+            case TestPlanGenerator.REQUEST_TYPE_JUNIT :
+
+                requestTransformer = new JUnitRequestTransformer();
+                break;
+
+            case TestPlanGenerator.REQUEST_TYPE_SOAP :
+
+                requestTransformer = new SOAPRequestTransformer();
+                break;
+
+            default:
+
+                requestTransformer = null;
+        }
+
+        return requestTransformer;
     }
 
 
@@ -681,7 +787,8 @@ public class TestPlanGenerator {
 
         } catch (final NullPointerException
                 | IllegalArgumentException
-                | ParseException ex) {
+                | ParseException
+                | TransformationException ex) {
 
             System.err.println(ex.getMessage());
             CommandLineArgumentsHandler.printUsage();
@@ -691,8 +798,12 @@ public class TestPlanGenerator {
     /**
      * Starts the generation process with the arguments which have been passed
      * to command line.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
-    private static void readArgumentsAndGenerate () {
+    private static void readArgumentsAndGenerate ()
+            throws TransformationException {
 
         final TestPlanGenerator testPlanGenerator = new TestPlanGenerator();
 
@@ -704,6 +815,9 @@ public class TestPlanGenerator {
 
         final String testPlanPropertiesFile =
                 CommandLineArgumentsHandler.getTestPlanPropertiesFile();
+
+        final String requestType =
+                CommandLineArgumentsHandler.getRequestType();
 
         final String filters =
                 CommandLineArgumentsHandler.getFilters();
@@ -727,6 +841,7 @@ public class TestPlanGenerator {
                 outputFile,
                 generatorPropertiesFile,
                 testPlanPropertiesFile,
+                requestType,
                 filters);
 
         if (runTest) {

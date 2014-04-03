@@ -1,10 +1,11 @@
-package net.sf.markov4jmeter.testplangenerator.transformation;
+package net.sf.markov4jmeter.testplangenerator.transformation.requests;
 
 import java.util.List;
 
 import m4jdsl.Assertion;
 import m4jdsl.Request;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
+import net.sf.markov4jmeter.testplangenerator.transformation.TransformationException;
 
 import org.apache.jmeter.assertions.ResponseAssertion;
 import org.apache.jorphan.collections.ListedHashTree;
@@ -18,6 +19,11 @@ import org.apache.jorphan.collections.ListedHashTree;
  */
 public abstract class AbstractRequestTransformer {
 
+    /** Error message for the case that a request type does not conform to an
+     *  expected type. */
+    private final static String ERROR_WRONG_REQUEST_TYPE =
+            "detected invalid request type (expected: %s, found: %s)";
+
 
     /* **************************  public methods  ************************** */
 
@@ -26,14 +32,21 @@ public abstract class AbstractRequestTransformer {
      * Transforms a given M4J-DSL request into a corresponding Test Plan
      * fragment.
      *
-     * @param request                 the request to be transformed.
-     * @param testPlanElementFactory  factory for creating Test Plan elements.
+     * @param request
+     *     the request to be transformed.
+     * @param testPlanElementFactory
+     *     factory for creating Test Plan elements.
      *
-     * @return a Test Plan fragment which represents the given request.
+     * @return
+     *     a Test Plan fragment which represents the given request.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public abstract ListedHashTree transform (
             final m4jdsl.Request request,
-            final TestPlanElementFactory testPlanElementFactory);
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException;
 
 
     /* *************************  protected methods  ************************ */
@@ -68,6 +81,33 @@ public abstract class AbstractRequestTransformer {
         listedHashTree = new ListedHashTree(responseAssertion);
 
         return listedHashTree;
+    }
+
+    /**
+     * Checks whether a given type conforms to an expected type and throws a
+     * {@link TransformationException} if not.
+     *
+     * @param expectedType
+     *     the expected type.
+     * @param actualType
+     *     the actual type.
+     *
+     * @throws TransformationException
+     *     if the given type does not conform to the expected type.
+     */
+    protected <T extends Request> void ensureValidRequestType (
+            final Class<T> expectedType,
+            final Class<?> actualType) throws TransformationException {
+
+        if ( !expectedType.isAssignableFrom(actualType) ) {
+
+            final String message = String.format(
+                    AbstractRequestTransformer.ERROR_WRONG_REQUEST_TYPE,
+                    expectedType.getSimpleName(),
+                    actualType.getSimpleName());
+
+            throw new TransformationException(message);
+        }
     }
 
 

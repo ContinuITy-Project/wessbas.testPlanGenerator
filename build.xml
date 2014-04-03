@@ -308,9 +308,6 @@
 		</patternset>
 
 		<tar destfile="${dist.release.dir}/${dist.binBaseName}.tar" longfile="gnu">
-			<tarfileset file="${src.dynamod.aspectlegacy.gui.default.properties}" fullpath="${dist.name}/${dist.dynamod.aspectlegacy.gui.properties}" />
-			<tarfileset file="${src.dynamod.aspectlegacy.logging.default.properties}" fullpath="${dist.name}/${dist.dynamod.aspectlegacy.logging.properties}" />
-			<tarfileset file="${src.dynamod.aspectlegacy.weaver.default.properties}" fullpath="${dist.name}/${dist.dynamod.aspectlegacy.weaver.properties}" />
 			<tarfileset dir="." prefix="${dist.name}" defaultexcludes="yes">
 				<patternset refid="dist_bin_files-nonbinmode" />
 			</tarfileset>
@@ -323,9 +320,6 @@
 		<delete file="${dist.release.dir}/${dist.binBaseName}.tar" />
 
 		<zip zipfile="${dist.release.dir}/${dist.binBaseName}.zip">
-			<zipfileset file="${src.dynamod.aspectlegacy.gui.default.properties}" fullpath="${dist.name}/${dist.dynamod.aspectlegacy.gui.properties}" />
-			<zipfileset file="${src.dynamod.aspectlegacy.logging.default.properties}" fullpath="${dist.name}/${dist.dynamod.aspectlegacy.logging.properties}" />
-			<zipfileset file="${src.dynamod.aspectlegacy.weaver.default.properties}" fullpath="${dist.name}/${dist.dynamod.aspectlegacy.weaver.properties}" />
 			<zipfileset dir="." prefix="${dist.name}" defaultexcludes="yes">
 				<patternset refid="dist_bin_files-nonbinmode" />
 			</zipfileset>

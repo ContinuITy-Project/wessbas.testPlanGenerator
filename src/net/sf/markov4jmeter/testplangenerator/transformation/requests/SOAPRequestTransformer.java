@@ -1,25 +1,25 @@
-package net.sf.markov4jmeter.testplangenerator.transformation;
+package net.sf.markov4jmeter.testplangenerator.transformation.requests;
 
 import java.util.List;
 
 import m4jdsl.Assertion;
-import m4jdsl.HTTPRequest;
-import m4jdsl.Parameter;
 import m4jdsl.Property;
 import m4jdsl.Request;
+import m4jdsl.SOAPRequest;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
+import net.sf.markov4jmeter.testplangenerator.transformation.TransformationException;
 
-import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
+import org.apache.jmeter.protocol.http.sampler.SoapSampler;
 import org.apache.jorphan.collections.ListedHashTree;
 
 /**
- * Transformer class for generating Test Plan fragments for M4J-DSL HTTP
+ * Transformer class for generating Test Plan fragments for M4J-DSL SOAP
  * requests.
  *
  * @author   Eike Schulz (esc@informatik.uni-kiel.de)
  * @version  1.0
  */
-public class HTTPRequestTransformer extends AbstractRequestTransformer {
+public class SOAPRequestTransformer extends AbstractRequestTransformer {
 
 
     /* **************************  public methods  ************************** */
@@ -27,35 +27,39 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
 
     /**
      * {@inheritDoc}
-     * <p>This method is specialized for M4J-DSL <b>HTTP requests</b>.
+     * <p>This method is specialized for M4J-DSL <b>SOAP requests</b>.
+     * @throws TransformationException
      */
     @Override
     public ListedHashTree transform (
             final Request request,
-            final TestPlanElementFactory testPlanElementFactory) {
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException {
 
         // Test Plan fragment to be returned;
         ListedHashTree listedHashTree;
 
-        final HTTPRequest httpRequest = (HTTPRequest) request;
+        // validate the type to ensure that the cast below will not fail;
+        this.ensureValidRequestType(SOAPRequest.class, request.getClass());
 
-        // identifier of the HTTPSamplerProxy to be created;
-        final String eId = httpRequest.getEId();
+        final SOAPRequest soapRequest = (SOAPRequest) request;
 
-        // properties and parameters of the HTTPSamplerProxy to be created;
-        final List<Property>         properties = httpRequest.getProperties();
-        final List<m4jdsl.Parameter> parameters = httpRequest.getParameters();
+        // identifier of the SoapSampler to be created;
+        final String eId = soapRequest.getEId();
 
-        final HTTPSamplerProxy httpSamplerProxy = this.createHttpSamplerProxy(
+        // properties of the SOAPSampler to be created
+        // (note that a SOAPSampler has no parameters);
+        final List<Property> properties = soapRequest.getProperties();
+
+        final SoapSampler soapSampler = this.createSoapSampler(
                 eId,
                 properties,
-                parameters,
                 testPlanElementFactory);
 
         final List<Assertion> assertions = request.getAssertions();
 
         // build tree structure to be returned;
-        listedHashTree = new ListedHashTree(httpSamplerProxy);
+        listedHashTree = new ListedHashTree(soapSampler);
 
         // add ResponseAssertion if and only if any Strings have been defined;
         if (assertions.size() > 0) {
@@ -70,10 +74,10 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
 
             final ListedHashTree responseAssertion =
                     this.transformRequestAssertions(
-                            httpRequest,
+                            soapRequest,
                             testPlanElementFactory);
 
-            listedHashTree.get(httpSamplerProxy).add(responseAssertion);
+            listedHashTree.get(soapSampler).add(responseAssertion);
         }
 
         return listedHashTree;
@@ -84,40 +88,29 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
 
 
     /**
-     * Creates a {@link HttpSamplerProxy} with the given properties and
-     * parameters.
+     * Creates a {@link SoapSampler} with the given properties.
      *
      * @param eId
      *     identifier of the element.
      * @param properties
-     *     required properties for a request to be sent (e.g., port, domain).
-     * @param parameters
-     *     parameters to be sent (e.g., form input data).
+     *     required properties for a request to be sent (e.g., URL).
      * @param testPlanElementFactory
      *     factory for creating Test Plan elements.
      *
-     * @return  a valid instance of {@link HTTPSamplerProxy}.
+     * @return  a valid instance of {@link SoapSampler}.
      */
-    private HTTPSamplerProxy createHttpSamplerProxy (
+    private SoapSampler createSoapSampler (
             final String eId,
-            final List<Property>         properties,
-            final List<m4jdsl.Parameter> parameters,
+            final List<Property> properties,
             final TestPlanElementFactory testPlanElementFactory) {
 
-        // create a Markov state with an automatically assigned ID;
-        final HTTPSamplerProxy sampler =
-                testPlanElementFactory.createHTTPSamplerProxy();
+        final SoapSampler sampler = testPlanElementFactory.createSoapSampler();
 
         sampler.setName(eId);
 
         for (final Property property : properties) {
 
             sampler.setProperty(property.getKey(), property.getValue());
-        }
-
-        for (final Parameter parameter : parameters) {
-
-            sampler.addArgument(parameter.getName(), parameter.getValue());
         }
 
         return sampler;

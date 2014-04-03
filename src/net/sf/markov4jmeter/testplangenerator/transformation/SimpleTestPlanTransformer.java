@@ -4,6 +4,7 @@ import m4jdsl.SessionLayerEFSM;
 import m4jdsl.WorkloadModel;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.BehaviorMixFilter;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.AbstractRequestTransformer;
 import net.voorn.markov4jmeter.control.MarkovController;
 
 import org.apache.jmeter.extractor.RegexExtractor;
@@ -80,11 +81,14 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
      *     a newly created Test Plan, structured as indicated by the regarding
      *     transformer, or <code>null</code> if any error through applying the
      *     Behavior Mix installation filter occurs.
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     @Override
     protected ListedHashTree transform (
             final WorkloadModel workloadModel,
-            final TestPlanElementFactory testPlanElementFactory) {
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException {
 
         // create required Test Plan elements;
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ASCII"?>
+<m4jdsl:WorkloadModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:m4jdsl="http://m4jdsl/1.0" xsi:schemaLocation="http://m4jdsl/1.0 m4jdsl.ecore">
+  <workloadIntensity xsi:type="m4jdsl:ConstantWorkloadIntensity" formula="1" numberOfSessions="1"/>
+  <applicationModel>
+    <sessionLayerEFSM initialState="AS_Login">
+      <applicationStates eId="AS_Login">
+        <service name="Login"/>
+        <protocolDetails initialState="PS_login">
+          <protocolStates eId="PS_login">
+            <request xsi:type="m4jdsl:JUnitRequest" eId="service_login">
+              <assertions patternToTest="login"/>
+            </request>
+            <outgoingTransitions targetState="PS_welcome"/>
+          </protocolStates>
+          <protocolStates eId="PS_welcome">
+            <request xsi:type="m4jdsl:JUnitRequest" eId="service_welcome">
+              <assertions patternToTest="welcome"/>
+            </request>
+            <outgoingTransitions targetState="PS_loginExit"/>
+          </protocolStates>
+          <exitState eId="PS_loginExit"/>
+        </protocolDetails>
+        <outgoingTransitions targetState="AS_Logout"/>
+      </applicationStates>
+      <applicationStates eId="AS_Logout">
+        <service name="Logout"/>
+        <protocolDetails initialState="PS_logout">
+          <protocolStates eId="PS_logout">
+            <request xsi:type="m4jdsl:JUnitRequest" eId="service_logout">
+              <assertions patternToTest="logout"/>
+            </request>
+            <outgoingTransitions targetState="PS_byebye"/>
+          </protocolStates>
+          <protocolStates eId="PS_byebye">
+            <request xsi:type="m4jdsl:JUnitRequest" eId="service_byebye">
+              <assertions patternToTest="byebye"/>
+            </request>
+            <outgoingTransitions targetState="PS_logoutExit"/>
+          </protocolStates>
+          <exitState eId="PS_logoutExit"/>
+        </protocolDetails>
+        <outgoingTransitions targetState="AM_$"/>
+        <outgoingTransitions targetState="AS_Login"/>
+      </applicationStates>
+      <exitState eId="AM_$"/>
+    </sessionLayerEFSM>
+  </applicationModel>
+  <behaviorMix>
+    <relativeFrequencies behaviorModel="//@behaviorModels.0" value="1.0"/>
+  </behaviorMix>
+  <behaviorModels name="User Behavior" filename="behaviormodel.csv" initialState="MS_Login">
+    <markovStates eId="MS_Login" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.0/@service">
+      <outgoingTransitions targetState="MS_Logout" probability="1.0">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime" mean="8.0" deviation="3.0"/>
+      </outgoingTransitions>
+    </markovStates>
+    <markovStates eId="MS_Logout" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.1/@service">
+      <outgoingTransitions targetState="BM1_$" probability="0.8">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime" mean="7.0" deviation="2.0"/>
+      </outgoingTransitions>
+      <outgoingTransitions targetState="MS_Login" probability="0.2">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime" mean="5.0" deviation="2.5"/>
+      </outgoingTransitions>
+    </markovStates>
+    <exitState eId="BM1_$"/>
+  </behaviorModels>
+</m4jdsl:WorkloadModel>
