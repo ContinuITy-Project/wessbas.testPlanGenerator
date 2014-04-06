@@ -8,7 +8,6 @@ import m4jdsl.ProtocolState;
 import m4jdsl.ProtocolTransition;
 import m4jdsl.Request;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
-import net.sf.markov4jmeter.testplangenerator.transformation.requests.AbstractRequestTransformer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,6 +28,8 @@ import org.apache.jorphan.collections.ListedHashTree;
 public class SimpleProtocolLayerEFSMTransformer
 extends AbstractProtocolLayerEFSMTransformer {
 
+    /** Warning message for the case that more than one outgoing transition
+     *  has been detected in a Protocol State. */
     private final static String WARNING_AMBIGUOUS_TRANSITIONS_IN_PROTOCOL_STATE =
             "Protocol State for \"%s\" has more than one outgoing transitions; "
             + "will continue with first target state.";
@@ -36,22 +37,6 @@ extends AbstractProtocolLayerEFSMTransformer {
     /** Log-factory for any warnings or error messages. */
     private final static Log LOG =
             LogFactory.getLog(SimpleProtocolLayerEFSMTransformer.class);
-
-
-    /* ***************************  constructors  *************************** */
-
-
-    /**
-     * Constructor for a Simple Protocol Layer EFSM Transformer.
-     *
-     * @param requestTransformer
-     *     instance for transforming M4J-DSL requests to Test Plan fragments.
-     */
-    public SimpleProtocolLayerEFSMTransformer (
-            final AbstractRequestTransformer requestTransformer) {
-
-        super(requestTransformer);
-    }
 
 
     /* *************************  protected methods  ************************ */
@@ -64,7 +49,6 @@ extends AbstractProtocolLayerEFSMTransformer {
      * transitions; if this restriction does not hold for a state, the run
      * continues with the first outgoing transition, and a warning will be
      * given.
-     * @throws TransformationException
      */
     @Override
     protected ListedHashTree transformProtocolState (

@@ -4,7 +4,7 @@ import m4jdsl.SessionLayerEFSM;
 import m4jdsl.WorkloadModel;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.BehaviorMixFilter;
-import net.sf.markov4jmeter.testplangenerator.transformation.requests.AbstractRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.voorn.markov4jmeter.control.MarkovController;
 
 import org.apache.jmeter.extractor.RegexExtractor;
@@ -37,20 +37,26 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
     /**
      * Constructor for a Simple Test Plan Transformer.
      *
-     * @param requestTransformer
-     *     Request Transformer which generates Test Plan fragments for M4J-DSL
-     *     requests.
+     * @param csvHandler
+     *     handler which provides methods for reading and writing
+     *     comma-separated-values (CSV) files.
+     * @param behaviorModelsOutputPath
+     *     output path for Behavior Model files.
      */
     public SimpleTestPlanTransformer (
-            final AbstractRequestTransformer requestTransformer) {
+            final CSVHandler csvHandler,
+            final String behaviorModelsOutputPath) {
+
+        super(csvHandler, behaviorModelsOutputPath);
 
         // build an instance for transforming M4J-DSL Protocol Layer EFSMs to
         // Test Plan fragments in a "simple" way.
         final SimpleProtocolLayerEFSMTransformer protocolLayerEFSMTransformer =
-                new SimpleProtocolLayerEFSMTransformer(requestTransformer);
+                new SimpleProtocolLayerEFSMTransformer();
 
         this.sessionLayerEFSMTransformer =
                 new SessionLayerEFSMTransformer(protocolLayerEFSMTransformer);
+
     }
 
 
@@ -81,6 +87,7 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
      *     a newly created Test Plan, structured as indicated by the regarding
      *     transformer, or <code>null</code> if any error through applying the
      *     Behavior Mix installation filter occurs.
+     *
      * @throws TransformationException
      *     if any critical error in the transformation process occurs.
      */
@@ -162,10 +169,12 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
 
         // install all behavior-stuff by applying a dedicated filter;
         // in case any error occurs, null will be returned;
-        testPlanTree = new BehaviorMixFilter().modifyTestPlan(
-                testPlanTree,
-                workloadModel,
-                testPlanElementFactory);
+        testPlanTree = new BehaviorMixFilter(
+                this.csvHandler,
+                this.behaviorModelsOutputPath).modifyTestPlan(
+                        testPlanTree,
+                        workloadModel,
+                        testPlanElementFactory);
 
         return testPlanTree;
     }

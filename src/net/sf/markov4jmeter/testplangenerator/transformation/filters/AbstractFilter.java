@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import m4jdsl.WorkloadModel;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
+import net.sf.markov4jmeter.testplangenerator.transformation.TransformationException;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.helpers.TestPlanModifier;
 
 import org.apache.commons.logging.Log;
@@ -43,8 +44,7 @@ public abstract class AbstractFilter {
 
     /** Helper unit which provides methods for requesting, adding, replacing or
      *  deleting Test Plan elements. */
-    protected TestPlanModifier testPlanModifier =
-            new TestPlanModifier();
+    protected TestPlanModifier testPlanModifier = new TestPlanModifier();
 
 
     /* **************************  public methods  ************************** */
@@ -61,11 +61,15 @@ public abstract class AbstractFilter {
      *     factory for creating Test Plan elements.
      *
      * @return  the modified Test Plan.
+     *
+     * @throws TransformationException
+     *     if any critical error in the transformation process occurs.
      */
     public abstract ListedHashTree modifyTestPlan (
             final ListedHashTree testPlan,
             final WorkloadModel workloadModel,
-            final TestPlanElementFactory testPlanElementFactory);
+            final TestPlanElementFactory testPlanElementFactory)
+                    throws TransformationException;
 
 
     /* *************************  protected methods  ************************ */

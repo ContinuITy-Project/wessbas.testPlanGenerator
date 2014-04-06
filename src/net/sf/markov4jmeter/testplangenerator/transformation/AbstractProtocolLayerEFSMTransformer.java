@@ -1,11 +1,22 @@
 package net.sf.markov4jmeter.testplangenerator.transformation;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 import m4jdsl.ProtocolLayerEFSM;
 import m4jdsl.Request;
+import m4jdsl.impl.BeanShellRequestImpl;
+import m4jdsl.impl.HTTPRequestImpl;
+import m4jdsl.impl.JUnitRequestImpl;
+import m4jdsl.impl.JavaRequestImpl;
+import m4jdsl.impl.SOAPRequestImpl;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
 import net.sf.markov4jmeter.testplangenerator.transformation.requests.AbstractRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.BeanShellRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.HTTPRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.JUnitRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.JavaRequestTransformer;
+import net.sf.markov4jmeter.testplangenerator.transformation.requests.SOAPRequestTransformer;
 
 import org.apache.jorphan.collections.ListedHashTree;
 
@@ -18,18 +29,26 @@ import org.apache.jorphan.collections.ListedHashTree;
  */
 public abstract class AbstractProtocolLayerEFSMTransformer {
 
+    /** Error message for the case that an unknown request type has been
+     *  detected. */
+    private final static String ERROR_UNKNOWN_REQUEST_TYPE =
+            "unknown request type detected for request with id %s";
 
-    /** Instance for transforming M4J-DSL Requests to Test Plan fragments. */
-    private final AbstractRequestTransformer requestTransformer;
+    /** Request Transformers registry. */
+    private final static
+    HashMap<Class<? extends Request>, AbstractRequestTransformer>
+    REQUEST_TRANSFORMERS;
 
+    static {
 
-    /* ***************************  constructors  *************************** */
+        // register all available Request Transformers;
+        REQUEST_TRANSFORMERS = new HashMap<Class<? extends Request>, AbstractRequestTransformer>();
 
-
-    public AbstractProtocolLayerEFSMTransformer (
-            final AbstractRequestTransformer requestTransformer) {
-
-        this.requestTransformer = requestTransformer;
+        REQUEST_TRANSFORMERS.put(HTTPRequestImpl.class     , new HTTPRequestTransformer());
+        REQUEST_TRANSFORMERS.put(JavaRequestImpl.class     , new JavaRequestTransformer());
+        REQUEST_TRANSFORMERS.put(BeanShellRequestImpl.class, new BeanShellRequestTransformer());
+        REQUEST_TRANSFORMERS.put(JUnitRequestImpl.class    , new JUnitRequestTransformer());
+        REQUEST_TRANSFORMERS.put(SOAPRequestImpl.class     , new SOAPRequestTransformer());
     }
 
 
@@ -96,7 +115,22 @@ public abstract class AbstractProtocolLayerEFSMTransformer {
                     throws TransformationException {
 
         // create a named Sampler with properties and parameters;
-        final ListedHashTree sampler = this.requestTransformer.transform(
+        final ListedHashTree sampler;
+
+        final AbstractRequestTransformer requestTransformer =
+                AbstractProtocolLayerEFSMTransformer.REQUEST_TRANSFORMERS.get(
+                        request.getClass());
+
+        if (requestTransformer == null) {
+
+            final String message = String.format(
+                    AbstractProtocolLayerEFSMTransformer.ERROR_UNKNOWN_REQUEST_TYPE,
+                    request.getEId());
+
+            throw new TransformationException(message);
+        }
+
+        sampler = requestTransformer.transform(
                 request,
                 testPlanElementFactory);
 

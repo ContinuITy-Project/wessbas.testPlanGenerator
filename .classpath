@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/jmeter/ext/markov4jmeter/Markov4JMeter-1.0.20080617.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/ext/markov4jmeter/org.mozilla.javascript-1.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/ext/ApacheJMeter_components.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/ext/ApacheJMeter_core.jar" sourcepath="C:/Program Files/Work/JMeter/src"/>
@@ -75,5 +74,6 @@
 	<classpathentry kind="lib" path="lib/jmeter/ext/ApacheJMeter_junit.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jmeter/ext/markov4jmeter/Markov4JMeter-1.0.20140405.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

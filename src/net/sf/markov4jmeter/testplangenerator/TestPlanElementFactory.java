@@ -3,7 +3,7 @@ package net.sf.markov4jmeter.testplangenerator;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import net.sf.markov4jmeter.testplangenerator.util.CSVReader;
+import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.sf.markov4jmeter.testplangenerator.util.Configuration;
 import net.voorn.markov4jmeter.control.ApplicationState;
 import net.voorn.markov4jmeter.control.BehaviorMix;
@@ -2843,11 +2843,12 @@ public final class TestPlanElementFactory {
             final String separator) {
 
         final ArrayList<String[]> rValues = new ArrayList<String[]>();
-        final CSVReader csvReader = new CSVReader(separator);
+
+        final CSVHandler csvHandler = new CSVHandler(separator);
 
         try {
 
-            final String[][] values = csvReader.readValues(filename);
+            final String[][] values = csvHandler.readValues(filename);
 
             for (int i = 0, n = values.length; i < n; i++) {
 

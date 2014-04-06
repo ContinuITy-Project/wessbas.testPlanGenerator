@@ -3,6 +3,7 @@ package net.sf.markov4jmeter.testplangenerator.transformation;
 import m4jdsl.WorkloadModel;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.AbstractFilter;
+import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 
 import org.apache.jorphan.collections.ListedHashTree;
 
@@ -21,6 +22,35 @@ import org.apache.jorphan.collections.ListedHashTree;
  * @version  1.0
  */
 public abstract class AbstractTestPlanTransformer {
+
+    /** Handler which provides methods for reading and writing
+     *  comma-separated-values (CSV) files. */
+    protected final CSVHandler csvHandler;
+
+    /** Output path for Behavior Model files. */
+    protected final String behaviorModelsOutputPath;
+
+
+    /* ***************************  constructors  *************************** */
+
+
+    /**
+     * Constructor for an <code>abstract</code> Test Plan Transformer with a
+     * specified CSV-Handler.
+     *
+     * @param csvHandler
+     *     Handler which provides methods for reading and writing
+     *     comma-separated-values (CSV) files.
+     * @param behaviorModelsOutputPath
+     *     output path for Behavior Model files.
+     */
+    public AbstractTestPlanTransformer (
+            final CSVHandler csvHandler,
+            final String behaviorModelsOutputPath) {
+
+        this.csvHandler               = csvHandler;
+        this.behaviorModelsOutputPath = behaviorModelsOutputPath;
+    }
 
 
     /* **************************  public methods  ************************** */
@@ -51,8 +81,9 @@ public abstract class AbstractTestPlanTransformer {
             final TestPlanElementFactory testPlanElementFactory,
             final AbstractFilter[] filters) throws TransformationException {
 
-        ListedHashTree testPlan =
-                this.transform(workloadModel, testPlanElementFactory);
+        ListedHashTree testPlan = this.transform(
+                workloadModel,
+                testPlanElementFactory);
 
         if (filters != null) {
 

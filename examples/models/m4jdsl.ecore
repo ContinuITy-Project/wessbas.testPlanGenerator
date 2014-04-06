@@ -51,10 +51,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BehaviorModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="mustBeUniqueNames mustBeBehaviorModelWithMarkovStatesForAllServices mustBeInitialStateWhichIsIncludedInMarkovStatesList mustBeBehaviorModelWithoutForeignTargetStates"/>
+      <details key="constraints" value="mustBeUniqueNames mustBeUniqueFilenames mustBeBehaviorModelWithMarkovStatesForAllServices mustBeInitialStateWhichIsIncludedInMarkovStatesList mustBeBehaviorModelWithoutForeignTargetStates"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="mustBeUniqueNames" value="&#xA;            BehaviorModel.allInstances()->&#xA;                forAll(b1,b2|&#xA;                 (b1 &lt;> b2 and not(b1.name.oclIsUndefined() or b2.name.oclIsUndefined()))&#xA;                     implies b1.name &lt;> b2.name&#xA;                )"/>
+      <details key="mustBeUniqueNames" value="&#xA;            BehaviorModel.allInstances()->forAll(b1,b2|&#xA;                 (b1 &lt;> b2 and not(b1.name.oclIsUndefined() or b2.name.oclIsUndefined()))&#xA;                     implies b1.name &lt;> b2.name&#xA;                )"/>
+      <details key="mustBeUniqueFilenames" value="&#xA;            BehaviorModel.allInstances()->forAll(b1,b2 |&#xA;                (b1 &lt;> b2 and not(b1.filename.oclIsUndefined() or b2.filename.oclIsUndefined()))&#xA;                    implies b1.filename &lt;> b2.filename)"/>
       <details key="mustBeBehaviorModelWithMarkovStatesForAllServices" value="&#xA;            Service.allInstances()->&#xA;                forAll(s|markovStates->exists(m|m.service = s))"/>
       <details key="mustBeInitialStateWhichIsIncludedInMarkovStatesList" value="&#xA;            not initialState.oclIsUndefined() implies markovStates->includes(initialState)"/>
       <details key="mustBeBehaviorModelWithoutForeignTargetStates" value="&#xA;            markovStates->forAll(s| &#xA;                s.outgoingTransitions->forAll(t|&#xA;                    not t.targetState.oclIsUndefined() implies&#xA;                    (markovStates->includes(t.targetState)&#xA;                    or t.targetState = exitState)))"/>

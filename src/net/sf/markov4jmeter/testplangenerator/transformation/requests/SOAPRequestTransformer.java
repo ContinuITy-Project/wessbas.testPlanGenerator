@@ -28,7 +28,6 @@ public class SOAPRequestTransformer extends AbstractRequestTransformer {
     /**
      * {@inheritDoc}
      * <p>This method is specialized for M4J-DSL <b>SOAP requests</b>.
-     * @throws TransformationException
      */
     @Override
     public ListedHashTree transform (
