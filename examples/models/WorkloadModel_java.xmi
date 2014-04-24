@@ -35,9 +35,9 @@
               <properties key="classname" value="JMeterTest"/>
               <parameters name="service" value="logout"/>
             </request>
-            <outgoingTransitions targetState="PS_byebye"/>
+            <outgoingTransitions targetState="PS_goodbye"/>
           </protocolStates>
-          <protocolStates eId="PS_byebye">
+          <protocolStates eId="PS_goodbye">
             <request xsi:type="m4jdsl:JavaRequest" eId="service_byebye">
               <assertions patternToTest="byebye"/>
               <properties key="classname" value="JMeterTest"/>

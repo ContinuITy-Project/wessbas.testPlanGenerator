@@ -124,12 +124,23 @@ public class Configuration extends Properties {
 
         try {
 
-            // might throw an IOException;
+            // might throw an IO- or IllegalArgumentException;
             this.load(bufferedInputStream);
 
         } finally {
 
-            bufferedInputStream.close();
+            if (bufferedInputStream != null) {
+
+                try {
+
+                    bufferedInputStream.close();
+
+                } catch (final IOException ex) {
+
+                    // ignore IOException, since this is the "finally" block;
+                    // TODO: error message could be written into log-file;
+                }
+            }
         }
     }
 
@@ -158,6 +169,7 @@ public class Configuration extends Properties {
 
             str = Configuration.DEFAULT_STRING;
         }
+
         return str;
     }
 
@@ -198,6 +210,7 @@ public class Configuration extends Properties {
 
             value = Configuration.DEFAULT_BOOLEAN;
         }
+
         return value;
     }
 
@@ -264,6 +277,7 @@ public class Configuration extends Properties {
 
             value = Configuration.DEFAULT_LONG;
         }
+
         return value;
     }
 
@@ -297,6 +311,7 @@ public class Configuration extends Properties {
 
             value = Configuration.DEFAULT_DOUBLE;
         }
+
         return value;
     }
 }

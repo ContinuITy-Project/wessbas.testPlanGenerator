@@ -40,10 +40,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RelativeFrequency">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="mustBeNonnegativeFrequency"/>
+      <details key="constraints" value="mustBeValidFrequency"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="mustBeNonnegativeFrequency" value="&#xA;            value >= 0.0 and value &lt;= 1.0"/>
+      <details key="mustBeValidFrequency" value="&#xA;            value >= 0.0 and value &lt;= 1.0"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorModel" lowerBound="1"
         eType="#//BehaviorModel"/>
@@ -111,10 +111,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ApplicationState" eSuperTypes="#//SessionLayerEFSMState">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="mustBeUniqueOutgoingTransitionTargetStates"/>
+      <details key="constraints" value="mustBeUniqueOutgoingTransitions"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="mustBeUniqueOutgoingTransitionTargetStates" value="&#xA;            outgoingTransitions->&#xA;                forAll(t1,t2|&#xA;                (t1 &lt;> t2 and not(t1.targetState.oclIsUndefined() or t2.targetState.oclIsUndefined()))&#xA;                     implies t1.targetState &lt;> t2.targetState&#xA;                )"/>
+      <details key="mustBeUniqueOutgoingTransitions" value="&#xA;            outgoingTransitions->&#xA;                forAll(t1,t2|&#xA;                (t1 &lt;> t2 and not(t1.targetState.oclIsUndefined() or t2.targetState.oclIsUndefined()))&#xA;                     implies (t1.targetState &lt;> t2.targetState or t1.guard &lt;> t2.guard))"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="service" lowerBound="1"
         eType="#//Service" containment="true"/>
@@ -148,10 +148,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProtocolState" eSuperTypes="#//ProtocolLayerEFSMState">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="mustBeUniqueOutgoingTransitionTargetStates"/>
+      <details key="constraints" value="mustBeUniqueOutgoingTransitions"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="mustBeUniqueOutgoingTransitionTargetStates" value="&#xA;            outgoingTransitions->&#xA;                forAll(t1,t2|&#xA;                    (t1 &lt;> t2 and not(t1.targetState.oclIsUndefined() or t2.targetState.oclIsUndefined()))&#xA;                    implies t1.targetState &lt;> t2.targetState&#xA;                )"/>
+      <details key="mustBeUniqueOutgoingTransitions" value="&#xA;            outgoingTransitions->&#xA;                forAll(t1,t2|&#xA;                    (t1 &lt;> t2 and not(t1.targetState.oclIsUndefined() or t2.targetState.oclIsUndefined()))&#xA;                    implies (t1.targetState &lt;> t2.targetState or t1.guard &lt;> t2.guard))"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="request" lowerBound="1"
         eType="#//Request" containment="true"/>

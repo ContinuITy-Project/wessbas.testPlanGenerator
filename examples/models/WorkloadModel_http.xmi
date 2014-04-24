@@ -38,9 +38,9 @@
               <properties key="HTTPSampler.path" value="example/logout.shtml"/>
               <properties key="HTTPSampler.port" value="8080"/>
             </request>
-            <outgoingTransitions targetState="PS_byebye"/>
+            <outgoingTransitions targetState="PS_goodbye"/>
           </protocolStates>
-          <protocolStates eId="PS_byebye">
+          <protocolStates eId="PS_goodbye">
             <request xsi:type="m4jdsl:HTTPRequest" eId="byebye.shtml">
               <assertions patternToTest="byebye"/>
               <properties key="HTTPSampler.domain" value="127.0.0.1"/>

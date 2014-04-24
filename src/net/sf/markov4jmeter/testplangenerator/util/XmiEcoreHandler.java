@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 /**
@@ -79,7 +80,7 @@ public final class XmiEcoreHandler {
     public void ecoreToXMI (
             final EObject model,
             final String xmiFile,
-            final String extension) throws IOException{
+            final String extension) throws IOException {
 
         final ResourceSet resourceSet = new ResourceSetImpl();
 
@@ -100,6 +101,11 @@ public final class XmiEcoreHandler {
         // however, this is not enough, since the generated meta-model needs to
         // be modified additionally; this has been not been implemented yet,
         // for leaving the generated code as it is;
+        //
+        // (update 2014-04-08:
+        //  method createResource() in class "m4jdsl.impl.M4jdslPackageImpl" has
+        //  been overwritten for these purposes now);
+        options.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
 
         if (extension != null) {
 
@@ -119,7 +125,7 @@ public final class XmiEcoreHandler {
             // add the given model to the content to be written;
             resource.getContents().add(model);
 
-            // save without any options; might throw an IOException;
+            // might throw an IOException;
             resource.save(options);
 
         } catch (final Exception ex) {
@@ -146,7 +152,7 @@ public final class XmiEcoreHandler {
     public void ecoreToXMI (final EObject model, final String xmiFile)
             throws IOException {
 
-        this.ecoreToXMI(model, xmiFile, null);
+        this.ecoreToXMI(model, xmiFile, "xmi");
     }
 
     /**
@@ -207,7 +213,7 @@ public final class XmiEcoreHandler {
      */
     public EObject xmiToEcore (final String xmiFile) throws IOException {
 
-        return this.xmiToEcore(xmiFile, null);
+        return this.xmiToEcore(xmiFile, "xmi");
     }
 
 

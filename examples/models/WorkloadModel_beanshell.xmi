@@ -32,9 +32,9 @@
               <assertions patternToTest="logout"/>
               <properties key="BeanShellSampler.query" value="&lt;service call for logout>"/>
             </request>
-            <outgoingTransitions targetState="PS_byebye"/>
+            <outgoingTransitions targetState="PS_goodbye"/>
           </protocolStates>
-          <protocolStates eId="PS_byebye">
+          <protocolStates eId="PS_goodbye">
             <request xsi:type="m4jdsl:BeanShellRequest" eId="byebye">
               <assertions patternToTest="byebye"/>
               <properties key="BeanShellSampler.query" value="&lt;service call for byebye>"/>

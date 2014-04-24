@@ -415,8 +415,13 @@ public final class TestPlanElementFactory {
      *
      *   <li> If the flag is set <code>false</code>, property definitions are
      *   optional; in that case, an undefined property will be ignored, and the
-     *   default setting of the related Test Plan element will be used. In
-     *   particular, nothing will be set in that case.
+     *   default setting of the related Test Plan element (defined by JMeter)
+     *   will be used. In particular, nothing will be set in that case. If the
+     *   flag is set <code>true</code>, a property value will always be set; in
+     *   case it is undefined, the default value provided by the configuration
+     *   reader will be used (e.g., 0 for an undefined <code>int</code> value),
+     *   and a warning will be given. In none of both cases, the configuration
+     *   process will be stopped.
      * </ul>
      */
     private boolean useForcedValues = true;

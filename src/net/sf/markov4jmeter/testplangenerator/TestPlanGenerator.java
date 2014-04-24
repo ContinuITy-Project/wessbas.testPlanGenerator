@@ -778,7 +778,7 @@ public class TestPlanGenerator {
         if (runTest) {
 
             // TODO: libraries need to be added for running tests correctly;
-            // otherwise the test fails at runtime (e.g., class HC3CookieHandler
+            // otherwise the tests fail at runtime (e.g., class HC3CookieHandler
             // is declared to be still unknown);
 
             try {

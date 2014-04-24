@@ -9,9 +9,6 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import dynamod.aspectlegacy.util.CmdlOptionFactory;
-import dynamod.aspectlegacy.util.CmdlOptionsReader;
-
 /**
  * This class defines the command-line options accepted by the Test Plan
  * Generator. Each option is initiated by a leading hyphen; an overview is
@@ -26,12 +23,12 @@ import dynamod.aspectlegacy.util.CmdlOptionsReader;
  *   <tr><td><code> input </code></td>
  *       <td><code> i     </code></td>
  *       <td> XMI input file which provides the M4J-DSL workload model to be
- *       transformed into a JMeter Test Plan, e.g. "WorkloadModel.xmi". </td>
+ *       transformed into a JMeter Test Plan, e.g., "WorkloadModel.xmi". </td>
  *
  *   <tr><td><code> output </code></td>
  *       <td><code> o      </code></td>
  *       <td> Output file of the JMeter Test Plan; the suffix ".jmx" indicates
- *       a JMeter Test Plan file, e.g. "testplan.jmx".
+ *       a JMeter Test Plan file, e.g., "testplan.jmx".
  *       </td>
  *
  *   <tr><td><code> testplanproperties </code></td>
@@ -60,7 +57,7 @@ import dynamod.aspectlegacy.util.CmdlOptionsReader;
  *   <tr><td><code> generatorproperties </code></td>
  *       <td><code> g                   </code></td>
  *       <td> (Optional) properties file which provides the configuration values
- *       of the Test Plan generator, in particular the locality or other
+ *       of the Test Plan Generator, in particular the locality and further
  *       settings for the JMeter engine; the default settings should be
  *       sufficient, so that this option does not need to be used in general.
  *       </td>
@@ -85,10 +82,11 @@ import dynamod.aspectlegacy.util.CmdlOptionsReader;
  *   <blockquote>
  *     <code>-i WorkloadModel.xmi -o testplan.jmx -t testplan.properties</code>
  *   </blockquote>
- *   denotes a minimum start configuration for the Test Plan generator, since
+ *   denotes a minimum start configuration for the Test Plan Generator, since
  *   it defines the files "WorkloadModel.xmi" and "testplan.jmx" to be used as
  *   input file and output file respectively, and it directs the generator to
- *   use the default values provided by file "testplan.properties".
+ *   use the default values provided by file "testplan.properties" for Test Plan
+ *   elements.
  *   </li>
  *
  *   <li>The options sequence
@@ -97,7 +95,7 @@ import dynamod.aspectlegacy.util.CmdlOptionsReader;
  *     -l 2</code>
  *   </blockquote>
  *   has the same effect as the first one, but it additionally defines a
- *   MacOS-specific line-break type to be used for the CSV-files of the
+ *   MacOS-specific line-break type to be used for the CSV files of the
  *   Behavior Models.
  *
  *   <li>The options sequence
@@ -178,7 +176,7 @@ public class CommandLineArgumentsHandler {
                     false);                                 // !hasOptionalArg;
 
     /** (Optional) properties file which provides the configuration values of
-     *  the Test Plan generator, in particular the locality or further settings
+     *  the Test Plan Generator, in particular the locality and further settings
      *  for the JMeter engine. */
     private final static Option GENERATOR_PROPERTIES_FILE =
             CmdlOptionFactory.createOption(

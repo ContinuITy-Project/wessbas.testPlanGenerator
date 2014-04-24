@@ -15,7 +15,6 @@
 	<classpathentry kind="lib" path="lib/jmeter/oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/xmlpull-1.1.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/xstream-1.4.4.jar"/>
-	<classpathentry kind="lib" path="lib/aspectlegacy.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-20040117.000000.jar"/>
 	<classpathentry kind="lib" path="lib/validation/org.eclipse.ocl.ecore_3.3.0.v20130520-1222.jar"/>
 	<classpathentry kind="lib" path="lib/validation/pivot/ui/ext/org.eclipse.ocl.examples.xtext.markup_3.4.0.v20130815-1843.jar"/>
