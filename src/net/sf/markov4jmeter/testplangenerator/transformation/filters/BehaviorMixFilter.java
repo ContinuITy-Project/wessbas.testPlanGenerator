@@ -167,24 +167,38 @@ public class BehaviorMixFilter extends AbstractFilter {
 
         final BehaviorMix behaviorMix = workloadModel.getBehaviorMix();
 
+        final List<Transition> initialStateTransitions =
+            behaviorMix.getRelativeFrequencies().get(0).getBehaviorModel().
+            getInitialState().getOutgoingTransitions();
+
         // model has been successfully validated -> BM with initial state exists
         // -> BM has at least one transition (possibly to the exit state);
-        final Class<? extends ThinkTime> thinkTimeType =
-                behaviorMix.getRelativeFrequencies().get(0).getBehaviorModel().
-                getInitialState().getOutgoingTransitions().get(0).
-                getThinkTime().getClass();
 
-        final AbstractThinkTimeFormatter thinkTimeFormatter =
-                BehaviorMixFilter.THINK_TIME_FORMATTERS.get(
+        final AbstractThinkTimeFormatter thinkTimeFormatter;
+
+        if ( initialStateTransitions.isEmpty() ) {
+
+            // initial state has no outgoing transitions -> zero matrix;
+            // TODO: NormallyDistributedThinkTimes are chosen by default; better set thinkTimeFormatter to null, and do not use any think times;
+            thinkTimeFormatter = BehaviorMixFilter.THINK_TIME_FORMATTERS.get(
+                    NormallyDistributedThinkTimeImpl.class);
+
+        } else {
+
+            final Class<? extends ThinkTime> thinkTimeType =
+                    initialStateTransitions.get(0).getThinkTime().getClass();
+
+            thinkTimeFormatter =
+                    BehaviorMixFilter.THINK_TIME_FORMATTERS.get(thinkTimeType);
+
+            if (thinkTimeFormatter == null) {
+
+                final String message = String.format(
+                        BehaviorMixFilter.ERROR_UNKNOWN_THINK_TIME_TYPE,
                         thinkTimeType);
 
-        if (thinkTimeFormatter == null) {
-
-            final String message = String.format(
-                    BehaviorMixFilter.ERROR_UNKNOWN_THINK_TIME_TYPE,
-                    thinkTimeType);
-
-            throw new TransformationException(message);
+                throw new TransformationException(message);
+            }
         }
 
         for (final RelativeFrequency relativeFrequency :
