@@ -407,22 +407,19 @@ public final class TestPlanElementFactory {
 
     /**
      * Flag which indicates whether properties must be defined in the used
-     * configuration.
+     * configuration, or if they are optional.
      * <ul>
      *   <li> If the flag is set <code>true</code>, a warning will be given
      *   for each undefined property, and a default value will be set, e.g., 0
-     *   for an undefined <code>int</code> value.
+     *   for an undefined <code>int</code>-typed property. In particular, a
+     *   property value will always be set.
      *
      *   <li> If the flag is set <code>false</code>, property definitions are
      *   optional; in that case, an undefined property will be ignored, and the
      *   default setting of the related Test Plan element (defined by JMeter)
-     *   will be used. In particular, nothing will be set in that case. If the
-     *   flag is set <code>true</code>, a property value will always be set; in
-     *   case it is undefined, the default value provided by the configuration
-     *   reader will be used (e.g., 0 for an undefined <code>int</code> value),
-     *   and a warning will be given. In none of both cases, the configuration
-     *   process will be stopped.
+     *   will be used. In particular, nothing will be set in that case.
      * </ul>
+     *  In none of both cases, the configuration process will be stopped.
      */
     private boolean useForcedValues = true;
 
@@ -438,17 +435,19 @@ public final class TestPlanElementFactory {
      *     configuration of the elements to be created.
      * @param useForcedValues
      *     flag which indicates whether properties must be defined in the used
-     *     configuration.
+     *     configuration, or if they are optional.
      *     <ul>
      *       <li> If the flag is set <code>true</code>, a warning will be given
      *       for each undefined property, and a default value will be set, e.g.,
-     *       0 for an undefined <code>int</code>-typed property.
+     *       0 for an undefined <code>int</code>-typed property. In particular,
+     *       a property value will always be set.
      *
      *       <li> If the flag is set <code>false</code>, property definitions
      *       are optional; in that case, an undefined property will be ignored,
      *       and the default setting of the related Test Plan element will be
      *       used. In particular, nothing will be set in that case.
      *     </ul>
+     *     In none of both cases, the configuration process will be stopped.
      */
     public TestPlanElementFactory (
             final Configuration configuration,

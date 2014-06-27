@@ -54,6 +54,9 @@
             <fileset dir="${lib.validation.pivot.misc.osgi.dir}">
                 <include name="*.jar" />
             </fileset>
+            <fileset dir="${lib.validation.pivot.misc.resources.dir}">
+                <include name="*.jar" />
+            </fileset>
             <fileset dir="${lib.validation.pivot.misc.uml2.dir}">
                 <include name="*.jar" />
             </fileset>
@@ -96,6 +99,9 @@
             <fileset dir="${lib.validation.pivot.misc.osgi.dir}">
                 <include name="*.jar" />
             </fileset>
+            <fileset dir="${lib.validation.pivot.misc.resources.dir}">
+                <include name="*.jar" />
+            </fileset>
             <fileset dir="${lib.validation.pivot.misc.uml2.dir}">
                 <include name="*.jar" />
             </fileset>
@@ -124,9 +130,9 @@
 	</target>
 
 	<target name="clean">
-		<delete dir="tmp"/>
+        <delete dir="${build.dir}" />
+		<delete dir="${tmp.dir}"/>
 		<delete dir="${dist.dir}" />
-		<delete dir="${build.dir}" />
 	</target>
 
 	<target name="build-testPlanGenerator" depends="clean, init">
@@ -173,7 +179,78 @@
 			</fileset>
 		</copy>
 
-
+		<!--
+        <copy todir="${build.main.dir}/lib/">
+            <fileset dir="${lib.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/jmeter/">
+            <fileset dir="${lib.jmeter.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/jmeter/ext/">
+            <fileset dir="${lib.jmeter.ext.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/jmeter/ext/markov4jmeter/">
+            <fileset dir="${lib.jmeter.ext.markov4jmeter.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/m4jdsl/">
+            <fileset dir="${lib.m4jdsl.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/">
+            <fileset dir="${lib.validation.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/">
+            <fileset dir="${lib.validation.pivot.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/misc/">
+            <fileset dir="${lib.validation.pivot.misc.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/misc/osgi/">
+            <fileset dir="${lib.validation.pivot.misc.osgi.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/misc/resources/">
+            <fileset dir="${lib.validation.pivot.misc.resources.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/misc/uml2/">
+            <fileset dir="${lib.validation.pivot.misc.uml2.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/parsing/">
+            <fileset dir="${lib.validation.pivot.parsing.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/ui/">
+            <fileset dir="${lib.validation.pivot.ui.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        <copy todir="${build.main.dir}/lib/validation/pivot/ui/ext/">
+            <fileset dir="${lib.validation.pivot.ui.ext.dir}">
+                <include name="*.jar" />
+            </fileset>
+        </copy>
+        -->
 		<!-- include libs in jar and set classpath in MANIFEST file -->
 		<!-- TODO: Note the jars built in this way can only be executed using 
 		           java -jar from directories with the subdirectory lib/ including 
@@ -213,6 +290,9 @@
                 <include name="*.jar" />
             </fileset>
             <fileset dir="${lib.validation.pivot.misc.osgi.dir}">
+                <include name="*.jar" />
+            </fileset>
+            <fileset dir="${lib.validation.pivot.misc.resources.dir}">
                 <include name="*.jar" />
             </fileset>
             <fileset dir="${lib.validation.pivot.misc.uml2.dir}">

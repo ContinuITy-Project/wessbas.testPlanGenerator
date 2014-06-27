@@ -51,7 +51,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BehaviorModel">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="mustBeUniqueNames mustBeUniqueFilenames mustBeBehaviorModelWithMarkovStatesForAllServices mustBeInitialStateWhichIsIncludedInMarkovStatesList mustBeBehaviorModelWithoutForeignTargetStates"/>
+      <details key="constraints" value="mustBeUniqueNames mustBeUniqueFilenames mustBeBehaviorModelWithMarkovStatesForAllServices mustBeInitialStateWhichIsIncludedInMarkovStatesList mustBeBehaviorModelWithoutForeignTargetStates mustBeMarkovStatesWithUniqueServices"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="mustBeUniqueNames" value="&#xA;            BehaviorModel.allInstances()->forAll(b1,b2|&#xA;                 (b1 &lt;> b2 and not(b1.name.oclIsUndefined() or b2.name.oclIsUndefined()))&#xA;                     implies b1.name &lt;> b2.name&#xA;                )"/>
@@ -59,6 +59,7 @@
       <details key="mustBeBehaviorModelWithMarkovStatesForAllServices" value="&#xA;            Service.allInstances()->&#xA;                forAll(s|markovStates->exists(m|m.service = s))"/>
       <details key="mustBeInitialStateWhichIsIncludedInMarkovStatesList" value="&#xA;            not initialState.oclIsUndefined() implies markovStates->includes(initialState)"/>
       <details key="mustBeBehaviorModelWithoutForeignTargetStates" value="&#xA;            markovStates->forAll(s| &#xA;                s.outgoingTransitions->forAll(t|&#xA;                    not t.targetState.oclIsUndefined() implies&#xA;                    (markovStates->includes(t.targetState)&#xA;                    or t.targetState = exitState)))"/>
+      <details key="mustBeMarkovStatesWithUniqueServices" value="&#xA;            markovStates->forAll(s1,s2|&#xA;                (s1 &lt;> s2 and not(s1.service.oclIsUndefined() or s2.service.oclIsUndefined()))&#xA;                    implies s1.service &lt;> s2.service&#xA;                )"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="markovStates" lowerBound="1"
         upperBound="-1" eType="#//MarkovState" containment="true"/>
@@ -87,11 +88,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MarkovState" eSuperTypes="#//BehaviorModelState">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="mustBeValidProbabilitySum mustBeMarkovStatesWithUniqueServices mustBeOutgoingTransitionsWithUniqueTargetStates mustBeOutgoingTransitionsCorrespondingToSessionLayer"/>
+      <details key="constraints" value="mustBeValidProbabilitySum mustBeOutgoingTransitionsWithUniqueTargetStates mustBeOutgoingTransitionsCorrespondingToSessionLayer"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="mustBeValidProbabilitySum" value="&#xA;            outgoingTransitions.probability->exists(p | p > 0) implies&#xA;            outgoingTransitions.probability->sum() = 1.0"/>
-      <details key="mustBeMarkovStatesWithUniqueServices" value="&#xA;            MarkovState.allInstances()->&#xA;                forAll(s1,s2|&#xA;                (s1 &lt;> s2 and not(s1.service.oclIsUndefined() or s2.service.oclIsUndefined()))&#xA;                    implies s1.service &lt;> s2.service&#xA;                )"/>
       <details key="mustBeOutgoingTransitionsWithUniqueTargetStates" value="&#xA;            outgoingTransitions->&#xA;                forAll(t1,t2|&#xA;                (t1 &lt;> t2 and not(t1.targetState.oclIsUndefined() or t2.targetState.oclIsUndefined()))&#xA;                     implies t1.targetState &lt;> t2.targetState&#xA;                )"/>
       <details key="mustBeOutgoingTransitionsCorrespondingToSessionLayer" value="&#xA;            not service.oclIsUndefined() implies &#xA;            ApplicationState.allInstances()->exists(as|service = as.service and&#xA;                outgoingTransitions->forAll(t|&#xA;                    not t.targetState.oclIsUndefined() implies as.outgoingTransitions->exists(at|&#xA;                        (at.targetState.oclIsTypeOf(ApplicationExitState) and&#xA;                         t.targetState.oclIsTypeOf(BehaviorModelExitState)) or&#xA;                       ((t.targetState.oclIsTypeOf(MarkovState) and&#xA;                         at.targetState.oclIsTypeOf(ApplicationState) and&#xA;                         at.targetState.oclAsType(ApplicationState).service =&#xA;                         t.targetState.oclAsType(MarkovState).service)))))"/>
     </eAnnotations>
