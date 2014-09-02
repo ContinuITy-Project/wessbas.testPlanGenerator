@@ -217,7 +217,7 @@
     <relativeFrequencies behaviorModel="//@behaviorModels.1" value="0.5"/>
     <relativeFrequencies behaviorModel="//@behaviorModels.0" value="0.5"/>
   </behaviorMix>
-  <behaviorModels name="Behavior Model 1" filename="output/filename1.csv" initialState="MSId11_Init*">
+  <behaviorModels name="Behavior Model 1" filename="./examples/transformation/carshare-gear/output/filename1.csv" initialState="MSId11_Init*">
     <markovStates eId="MSId2_EditReservation.End" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.0/@service">
       <outgoingTransitions targetState="MSId1" probability="1.0">
         <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime"/>
@@ -306,7 +306,7 @@
     </markovStates>
     <exitState eId="MSId1"/>
   </behaviorModels>
-  <behaviorModels name="Behavior Model 2" filename="output/filename2.csv" initialState="MSId28_Init*">
+  <behaviorModels name="Behavior Model 2" filename="./examples/transformation/carshare-gear/output/filename2.csv" initialState="MSId28_Init*">
     <markovStates eId="MSId19_EditReservation.End" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.0/@service">
       <outgoingTransitions targetState="MSId18" probability="1.0">
         <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime"/>
