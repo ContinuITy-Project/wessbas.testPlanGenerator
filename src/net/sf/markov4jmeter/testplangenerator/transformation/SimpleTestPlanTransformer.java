@@ -8,6 +8,7 @@ import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.voorn.markov4jmeter.control.MarkovController;
 
 import org.apache.jmeter.extractor.RegexExtractor;
+import org.apache.jmeter.modifiers.UserParameters;
 import org.apache.jmeter.protocol.http.control.CookieManager;
 import org.apache.jmeter.protocol.http.control.HeaderManager;
 import org.apache.jmeter.reporters.ResultCollector;
@@ -111,6 +112,12 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
         final CookieManager cookieManager =
                 testPlanElementFactory.createCookieManager();
 
+        final UserParameters userParameters =
+                testPlanElementFactory.createUserParameter(workloadModel.
+                		getApplicationModel().
+                		getSessionLayerEFSM().
+                		getGuardActionParameterList());
+
         final MarkovController markovController =
                 testPlanElementFactory.createMarkovController();
 
@@ -135,6 +142,7 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
         // add managers and Request Defaults as children of Thread Group;
         setupThreadGroupTree.add(headerManager);
         setupThreadGroupTree.add(cookieManager);
+        setupThreadGroupTree.add(userParameters);
 
         // add Markov Controller as child of Thread Group; the Markov Controller
         // will be embedded into an own Hash Tree, which will be returned; the

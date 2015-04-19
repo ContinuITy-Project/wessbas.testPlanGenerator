@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import m4jdsl.ApplicationTransition;
+import m4jdsl.GuardActionParameterType;
 import m4jdsl.SessionLayerEFSM;
 import m4jdsl.SessionLayerEFSMState;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
@@ -326,8 +327,8 @@ public class SessionLayerEFSMTransformer {
             final int targetStateId,
             final TestPlanElementFactory testPlanElementFactory) {
 
-        final String guard  = transition.getGuard();
-        final String action = transition.getAction();
+        final String guard  = getGuardString(transition);
+        final String action = getActionString(transition);
 
         final ApplicationStateTransition markovTransition =
                 new ApplicationStateTransition(targetStateId, guard, action);
@@ -337,6 +338,39 @@ public class SessionLayerEFSMTransformer {
         markovTransition.setDisabled(false);
 
         return markovTransition;
+    }
+
+    /**
+     * @param transition
+     * @return
+     */
+    private String getGuardString(final m4jdsl.ApplicationTransition transition) {
+    	String returnString = "";
+    	for (int i = 0; i < transition.getGuard().size(); i++) {
+    		if (transition.getGuard().get(i).getGuardParameter().getParameterType() == GuardActionParameterType.BOOLEAN) {
+    			returnString += "${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "}";
+    		} else if (transition.getGuard().get(i).getGuardParameter().getParameterType() == GuardActionParameterType.INTEGER) {
+    			returnString += "${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "} > 0";
+    		}
+    		if (i != transition.getGuard().size()-1) {
+    			returnString += " && ";
+    		}
+    	}
+    	return returnString;
+    }
+
+    /**
+     * @param transition
+     * @return
+     */
+    private String getActionString(final m4jdsl.ApplicationTransition transition) {
+    	String returnString = "";
+    	for (int i = 0; i < transition.getAction().size(); i++) {
+    		returnString += transition.getAction().get(i).getCondition() + "; ";
+
+
+    	}
+    	return returnString;
     }
 
     /**

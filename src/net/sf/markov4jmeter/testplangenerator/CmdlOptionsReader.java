@@ -39,7 +39,7 @@ public class CmdlOptionsReader {
     /* IMPLEMENTATION NOTE:
      * --------------------
      * this class has been already implemented for the AspectLegacy tool, and
-     * it has been adapted with the kind permission of André van Hoorn;
+     * it has been adapted with the kind permission of Andre van Hoorn;
      *
      * http://sourceforge.net/projects/dynamod/files/dynamod.aspectlegacy/
      */
