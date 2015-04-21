@@ -366,9 +366,7 @@ public class SessionLayerEFSMTransformer {
     private String getActionString(final m4jdsl.ApplicationTransition transition) {
     	String returnString = "";
     	for (int i = 0; i < transition.getAction().size(); i++) {
-    		returnString += transition.getAction().get(i).getCondition() + "; ";
-
-
+    		returnString += transition.getAction().get(i).getCondition() + ";";
     	}
     	return returnString;
     }
