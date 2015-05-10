@@ -113,10 +113,7 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
                 testPlanElementFactory.createCookieManager();
 
         final UserParameters userParameters =
-                testPlanElementFactory.createUserParameter(workloadModel.
-                		getApplicationModel().
-                		getSessionLayerEFSM().
-                		getGuardActionParameterList());
+                testPlanElementFactory.createUserParameter(workloadModel);
 
         final MarkovController markovController =
                 testPlanElementFactory.createMarkovController();

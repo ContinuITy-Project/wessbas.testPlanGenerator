@@ -7,6 +7,7 @@ import java.util.List;
 import m4jdsl.GuardActionParameter;
 import m4jdsl.GuardActionParameterList;
 import m4jdsl.GuardActionParameterType;
+import m4jdsl.WorkloadModel;
 import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.sf.markov4jmeter.testplangenerator.util.Configuration;
 import net.voorn.markov4jmeter.control.ApplicationState;
@@ -503,25 +504,37 @@ public final class TestPlanElementFactory {
      * @param guardActionParameterList
      * @return
      */
-    public UserParameters createUserParameter(final GuardActionParameterList guardActionParameterList) {
+    public UserParameters createUserParameter(final WorkloadModel workloadModel) {
+    	GuardActionParameterList guardActionParameterList = workloadModel.
+        		getApplicationModel().
+        		getSessionLayerEFSM().
+        		getGuardActionParameterList();
     	final UserParametersGui gui = new UserParametersGui();
         final UserParameters userParameters = (UserParameters) gui.createTestElement();
         userParameters.setPerIteration(true);
         List<String> parameterNames = new ArrayList<String>();
         List<List<String>> initialValues = new ArrayList<List<String>>();
         List<String> newList = new ArrayList<String>();
+        String initialStateName = workloadModel.getApplicationModel().getSessionLayerEFSM().getInitialState().getService().getName();
         for (GuardActionParameter guardActionParameter : guardActionParameterList.getGuardActionParameters()) {
         	parameterNames.add(guardActionParameter.getGuardActionParameterName());
         	if (guardActionParameter.getParameterType() == GuardActionParameterType.BOOLEAN) {
-        		newList.add("true");
+        		if (guardActionParameter.getGuardActionParameterName().equals(initialStateName)) {
+        			newList.add("true");
+        		} else {
+        			newList.add("false");
+        		}
         	} else if (guardActionParameter.getParameterType() == GuardActionParameterType.INTEGER) {
-        		newList.add("0");
+        		if (guardActionParameter.getSourceName().equals(initialStateName)) {
+        			newList.add("1");
+        		} else {
+        			newList.add("0");
+        		}
         	}
         }
         userParameters.setNames(parameterNames);
         initialValues.add(newList);
         userParameters.setThreadLists(initialValues);
-
     	return userParameters;
     }
 

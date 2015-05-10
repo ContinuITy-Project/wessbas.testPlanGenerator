@@ -348,7 +348,11 @@ public class SessionLayerEFSMTransformer {
     	String returnString = "";
     	for (int i = 0; i < transition.getGuard().size(); i++) {
     		if (transition.getGuard().get(i).getGuardParameter().getParameterType() == GuardActionParameterType.BOOLEAN) {
-    			returnString += "${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "}";
+    			if (transition.getGuard().get(i).isNegate()) {
+    				returnString += "${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "}";
+    			} else {
+    				returnString += "!${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "}";
+    			}
     		} else if (transition.getGuard().get(i).getGuardParameter().getParameterType() == GuardActionParameterType.INTEGER) {
     			returnString += "${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "} > 0";
     		}
@@ -366,7 +370,18 @@ public class SessionLayerEFSMTransformer {
     private String getActionString(final m4jdsl.ApplicationTransition transition) {
     	String returnString = "";
     	for (int i = 0; i < transition.getAction().size(); i++) {
-    		returnString += transition.getAction().get(i).getCondition() + ";";
+    		if (transition.getAction().get(i).getActionParameter().getParameterType() == GuardActionParameterType.BOOLEAN) {
+    			returnString += transition.getAction().get(i).getActionParameter().getGuardActionParameterName() + " = true;";
+    		} else if (transition.getAction().get(i).getActionParameter().getParameterType() == GuardActionParameterType.INTEGER) {
+    			String target = ((m4jdsl.ApplicationState) transition.getTargetState()).getService().getName();
+    			if (target.equals(transition.getAction().get(i).getActionParameter().getTargetName())) {
+    				returnString += transition.getAction().get(i).getActionParameter().getGuardActionParameterName() +
+							" = ${" + transition.getAction().get(i).getActionParameter().getGuardActionParameterName() + "} - 1;";
+    			} else if (target.equals(transition.getAction().get(i).getActionParameter().getSourceName())) {
+    				returnString += transition.getAction().get(i).getActionParameter().getGuardActionParameterName() +
+							" = ${" + transition.getAction().get(i).getActionParameter().getGuardActionParameterName() + "} + 1;";
+    			}
+    		}
     	}
     	return returnString;
     }
