@@ -7,6 +7,12 @@ import java.util.List;
 import m4jdsl.GuardActionParameter;
 import m4jdsl.GuardActionParameterList;
 import m4jdsl.GuardActionParameterType;
+import m4jdsl.Parameter;
+import m4jdsl.ProtocolLayerEFSM;
+import m4jdsl.ProtocolLayerEFSMState;
+import m4jdsl.ProtocolState;
+import m4jdsl.Request;
+import m4jdsl.SessionLayerEFSM;
 import m4jdsl.WorkloadModel;
 import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.sf.markov4jmeter.testplangenerator.util.Configuration;
@@ -499,18 +505,71 @@ public final class TestPlanElementFactory {
     }
 
     /**
+     * Add user defined variables to testplan.
+     *
+     * @param workloadModel
+     * @return
+     */
+    public Arguments createArguments (final WorkloadModel workloadModel) {
+    	ArgumentsPanel gui = new ArgumentsPanel("Test Data");
+    	Arguments arguments = (Arguments) gui.createTestElement();
+    	SessionLayerEFSM sessionLayerEFSM = workloadModel.getApplicationModel().getSessionLayerEFSM();
+		for (m4jdsl.ApplicationState applicationState:sessionLayerEFSM.getApplicationStates()) {
+			ProtocolLayerEFSM protocolLayerEFSM = applicationState.getProtocolDetails();
+			for (ProtocolLayerEFSMState protocolLayerEFSMState:protocolLayerEFSM.getProtocolStates()) {
+				if (protocolLayerEFSMState instanceof ProtocolState) {
+					ProtocolState protocolState = (ProtocolState) protocolLayerEFSMState;
+					Request request = protocolState.getRequest();
+					for (Parameter parameter : request.getParameters()) {
+						String[] parameterValues = parameter.getValue().split(";");
+						if (parameterValues.length > 1) {
+							arguments.addArgument(parameter.getName(), parameter.getValue());
+						}
+					}
+				}
+			}
+		}
+    	return arguments;
+    }
+
+//    /**
+//     * Create a new userParameters element which is needed for guards and actions.
+//     *
+//     * @param guardActionParameterList
+//     * @return
+//     */
+//    public UserParameters createUserParameterDataDependencies(final WorkloadModel workloadModel) {
+//    	GuardActionParameterList guardActionParameterList = workloadModel.
+//        		getApplicationModel().
+//        		getSessionLayerEFSM().
+//        		getGuardActionParameterList();
+//    	final UserParametersGui gui = new UserParametersGui();
+//        final UserParameters userParameters = (UserParameters) gui.createTestElement();
+//        gui.setName("Parameter Data Dependencies");
+//        userParameters.setPerIteration(true);
+//        List<String> parameterNames = new ArrayList<String>();
+//        List<List<String>> initialValues = new ArrayList<List<String>>();
+//        List<String> newList = new ArrayList<String>();
+//        userParameters.setNames(parameterNames);
+//        initialValues.add(newList);
+//        userParameters.setThreadLists(initialValues);
+//    	return userParameters;
+//    }
+
+    /**
      * Create a new userParameters element which is needed for guards and actions.
      *
      * @param guardActionParameterList
      * @return
      */
-    public UserParameters createUserParameter(final WorkloadModel workloadModel) {
+    public UserParameters createUserParameterGuardsAndActions(final WorkloadModel workloadModel) {
     	GuardActionParameterList guardActionParameterList = workloadModel.
         		getApplicationModel().
         		getSessionLayerEFSM().
         		getGuardActionParameterList();
     	final UserParametersGui gui = new UserParametersGui();
         final UserParameters userParameters = (UserParameters) gui.createTestElement();
+        gui.setName("Parameter Guards And Actions");
         userParameters.setPerIteration(true);
         List<String> parameterNames = new ArrayList<String>();
         List<List<String>> initialValues = new ArrayList<List<String>>();

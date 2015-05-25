@@ -121,8 +121,12 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
         }
 
         for (final Parameter parameter : parameters) {
-
-            sampler.addArgument(parameter.getName(), parameter.getValue());
+        	String[] parameterValues = parameter.getValue().split(";");
+			if (parameterValues.length > 1) {
+				sampler.addArgument(parameter.getName(), "${" + parameter.getName() + "}" );
+			} else {
+				sampler.addArgument(parameter.getName(), parameterValues[0]);
+			}
         }
 
         return sampler;

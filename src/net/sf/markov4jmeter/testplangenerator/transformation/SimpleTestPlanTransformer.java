@@ -7,6 +7,7 @@ import net.sf.markov4jmeter.testplangenerator.transformation.filters.BehaviorMix
 import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.voorn.markov4jmeter.control.MarkovController;
 
+import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.extractor.RegexExtractor;
 import org.apache.jmeter.modifiers.UserParameters;
 import org.apache.jmeter.protocol.http.control.CookieManager;
@@ -113,7 +114,10 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
                 testPlanElementFactory.createCookieManager();
 
         final UserParameters userParameters =
-                testPlanElementFactory.createUserParameter(workloadModel);
+                testPlanElementFactory.createUserParameterGuardsAndActions(workloadModel);
+
+        final Arguments arguments =
+                testPlanElementFactory.createArguments(workloadModel);
 
         final MarkovController markovController =
                 testPlanElementFactory.createMarkovController();
@@ -140,6 +144,7 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
         setupThreadGroupTree.add(headerManager);
         setupThreadGroupTree.add(cookieManager);
         setupThreadGroupTree.add(userParameters);
+        setupThreadGroupTree.add(arguments);
 
         // add Markov Controller as child of Thread Group; the Markov Controller
         // will be embedded into an own Hash Tree, which will be returned; the
