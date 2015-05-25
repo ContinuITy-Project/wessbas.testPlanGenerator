@@ -123,7 +123,7 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
         for (final Parameter parameter : parameters) {
         	String[] parameterValues = parameter.getValue().split(";");
 			if (parameterValues.length > 1) {
-				sampler.addArgument(parameter.getName(), "${" + parameter.getName() + "}" );
+				sampler.addArgument(parameter.getName(), "${__GetRandomString(${" + parameter.getName() + "},;)}" );
 			} else {
 				sampler.addArgument(parameter.getName(), parameterValues[0]);
 			}
