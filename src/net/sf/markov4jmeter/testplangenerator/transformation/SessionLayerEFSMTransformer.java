@@ -354,7 +354,8 @@ public class SessionLayerEFSMTransformer {
     				returnString += "!${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "}";
     			}
     		} else if (transition.getGuard().get(i).getGuardParameter().getParameterType() == GuardActionParameterType.INTEGER) {
-    			returnString += "${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "} > 0";
+    			returnString += "${" + transition.getGuard().get(i).getGuardParameter().getGuardActionParameterName() + "} > "
+    		              + transition.getGuard().get(i).getDiffMinimum();
     		}
     		if (i != transition.getGuard().size()-1) {
     			returnString += " && ";
