@@ -62,7 +62,7 @@ public class TestPlanGenerator {
     /** Default properties file for the Test Plan Generator, to be used in case
      *  no user-defined properties file can be read from command line. */
     private final static String GENERATOR_DEFAULT_PROPERTIES =
-            "configuration/generator.default.properties";
+            "testplangenerator/input/generator.default.properties";
 
     /** Property key for the JMeter home directory. */
     private final static String PKEY_JMETER__HOME = "jmeter_home";

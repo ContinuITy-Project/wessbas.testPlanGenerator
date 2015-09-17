@@ -301,6 +301,7 @@ public final class TestPlanElementFactory {
     PKEY_HTTP_SAMPLER_PROXY__IP_SOURCE                                 = "httpSamplerProxy_ipSource",
     PKEY_HTTP_SAMPLER_PROXY__USE_AS_MONITOR                            = "httpSamplerProxy_useAsMonitor",
     PKEY_HTTP_SAMPLER_PROXY__SAVE_RESPONSE_AS_MD5_HASH                 = "httpSamplerProxy_saveResponseAsMD5Hash",
+    PKEY_HTTP_SAMPLER_PROXY__ENCODE                                    = "httpSamplerProxy_encode",
 
     PKEY_SOAP_SAMPLER__NAME                                            = "soapSampler_name",
     PKEY_SOAP_SAMPLER__COMMENT                                         = "soapSampler_comment",
@@ -2525,6 +2526,12 @@ public final class TestPlanElementFactory {
                 ConfigTestElement.class);
 
         return configTestElement;
+    }
+
+
+    public boolean encodeHTTPRequests() {
+    	String key = TestPlanElementFactory.PKEY_HTTP_SAMPLER_PROXY__ENCODE;
+    	return this.configuration.getBoolean(key);
     }
 
     /**

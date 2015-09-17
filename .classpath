@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/jmeter/ext/markov4jmeter/org.mozilla.javascript-1.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/ext/ApacheJMeter_components.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/ext/ApacheJMeter_core.jar" sourcepath="C:/Program Files/Work/JMeter/src"/>

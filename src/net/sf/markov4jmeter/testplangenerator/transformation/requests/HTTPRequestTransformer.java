@@ -10,7 +10,10 @@ import m4jdsl.Request;
 import net.sf.markov4jmeter.testplangenerator.TestPlanElementFactory;
 import net.sf.markov4jmeter.testplangenerator.transformation.TransformationException;
 
+import org.apache.jmeter.config.Argument;
+import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
+import org.apache.jmeter.protocol.http.util.HTTPArgument;
 import org.apache.jorphan.collections.ListedHashTree;
 
 /**
@@ -116,7 +119,6 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
         sampler.setName(eId);
 
         for (final Property property : properties) {
-
             sampler.setProperty(property.getKey(), property.getValue());
         }
 
@@ -127,6 +129,17 @@ public class HTTPRequestTransformer extends AbstractRequestTransformer {
 			} else {
 				sampler.addArgument(parameter.getName(), parameterValues[0]);
 			}
+        }
+
+        if (!testPlanElementFactory.encodeHTTPRequests()) {
+            Arguments arguments = sampler.getArguments();
+            for (int i = 0; i < arguments.getArgumentCount(); i++) {
+            	Argument argument = arguments.getArgument(i);
+            	if (argument instanceof HTTPArgument) {
+            		HTTPArgument hTTPArgument = (HTTPArgument) argument;
+            		hTTPArgument.setAlwaysEncoded(false);
+            	}
+            }
         }
 
         return sampler;
