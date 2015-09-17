@@ -1,20 +1,30 @@
+INTRODUCTION
+------------
+
 This project contains the source code for the Test Plan Generator, which builds
 JMeter Test Plans, based on M4J-DSL models. Each resulting Test Plan can be
 loaded into JMeter and is associated with a set of Behavior Models, which are
 stored by the generator as matrices in CSV files; these files will be written to
 the location(s) defined in the regarding M4J-DSL model.
 
+Input: WESSBAS DSL instance, Configuration files
 
-TOOLING
--------
+Output: JMeter Testplan conforms to the JMeter Plugin markov4j
+
+SYSTEM REQUIREMENTS
+-------------------
 
 The project has been developed with the use of the following tools:
 
-  - Eclipse Kepler
   - JDK 1.7
-
-An Eclipse environment for this project should be configured accordingly.
-
+  - Xtext 2.5.4
+  - Eclipse Modeling Tools
+  
+ACADEMIC LITERATURE
+------------------  
+  
+Automatic extraction of probabilistic workload specifications for 
+load testing session-based application systems  (Hoorn, Vögele, Schulz, Hasselbring, Krcmar)  
 
 PROJECT CONTENT
 ---------------
@@ -74,8 +84,8 @@ command-line. The following options must be provided at least:
 An example options sequence (to be used in the Eclipse run configuration) might
 look as follows (in one row):
 
-  -i ./examples/transformation/carshare-gear/input/models/workloadmodel.xmi
-    -o ./examples/transformation/carshare-gear/output/testplan.jmx
+  -i ./examples/input/models/workloadmodel.xmi
+    -o ./examples/output/testplan.jmx
       -t ./configuration/testplan.default.properties
 
 Starting the application with these parameters will produce corresponding output

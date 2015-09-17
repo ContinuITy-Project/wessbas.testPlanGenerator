@@ -11,4 +11,9 @@
   	<version>1.0.0-SNAPSHOT</version>
   	<relativePath>../wessbas.build/pom.xml</relativePath>
   </parent>
+  
+  <build>
+  	<sourceDirectory>src/</sourceDirectory>
+   </build>
+  
 </project>

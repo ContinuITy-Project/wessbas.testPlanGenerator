@@ -72,15 +72,12 @@
 	<classpathentry kind="lib" path="lib/jmeter/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/jmeter/ext/markov4jmeter/Markov4JMeter-1.0.20140405.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/net.sf.markov4jmeter.m4jdsl"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
