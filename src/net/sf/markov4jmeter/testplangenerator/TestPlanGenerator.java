@@ -119,9 +119,6 @@ public class TestPlanGenerator {
     private final static String INFO_TEST_PLAN_GENERATION_STARTED =
             "Generating Test  Plan ...";
 
-    private final static String INFO_TEST_PLAN_GENERATION_SUCCESSFUL =
-            "Test Plan generation successful.";
-
     private final static String ERROR_TEST_PLAN_GENERATION_FAILED =
             "Test Plan generation failed.";
 
@@ -296,13 +293,9 @@ public class TestPlanGenerator {
             final boolean success =
                     this.writeOutput(testPlanTree, outputFilename);
 
-            if (success) {
+            if (!success) {
 
-                this.logInfo(
-                        TestPlanGenerator.INFO_TEST_PLAN_GENERATION_SUCCESSFUL);
-            } else {
-
-                this.logError(
+            	this.logError(
                     TestPlanGenerator.ERROR_TEST_PLAN_GENERATION_FAILED);
             }
         }
@@ -705,12 +698,20 @@ public class TestPlanGenerator {
 
         try {
 
+			System.out.println("****************************");
+			System.out.println("Start ApacheJMeter Testplan generation");
+			System.out.println("****************************");
+
             // initialize arguments handler for requesting the command line
             // values afterwards via get() methods; might throw a
             // NullPointer-, IllegalArgument- or ParseException;
             CommandLineArgumentsHandler.init(argv);
 
             TestPlanGenerator.readArgumentsAndGenerate();
+
+			System.out.println("****************************");
+			System.out.println("END ApacheJMeter Testplan generation");
+			System.out.println("****************************");
 
         } catch (final NullPointerException
                 | IllegalArgumentException
