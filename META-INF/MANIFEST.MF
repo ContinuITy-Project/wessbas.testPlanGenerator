@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Testplangenerator
-Bundle-SymbolicName: net.sf.markov4jmeter.testplangenerator
+Bundle-SymbolicName: net.sf.markov4jmeter.testplangenerator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: lib/jmeter/ext/markov4jmeter/org.mozilla.javascript-1.7.2.jar,
  lib/jmeter/ext/ApacheJMeter_components.jar,
@@ -75,3 +75,6 @@ Bundle-ClassPath: lib/jmeter/ext/markov4jmeter/org.mozilla.javascript-1.7.2.jar,
  lib/jmeter/commons-httpclient-3.1.jar,
  lib/jmeter/ext/markov4jmeter/Markov4JMeter-1.0.20140405.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: net.sf.markov4jmeter.testplangenerator
+Import-Package: m4jdsl
+Bundle-ActivationPolicy: lazy
