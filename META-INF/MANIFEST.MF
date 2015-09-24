@@ -78,3 +78,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: net.sf.markov4jmeter.testplangenerator
 Import-Package: m4jdsl
 Bundle-ActivationPolicy: lazy
+Require-Bundle: wessbas.commons;bundle-version="1.0.0",
+ net.sf.markov4jmeter.m4jdsl
