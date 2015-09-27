@@ -10,6 +10,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     <groupId>org.fortiss.pmwt.wex</groupId>
     <artifactId>parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>../../Applications/eclipse-modeling-juno-SR2-win32-x86_64/eclipse/workspace/org.fortiss.pmwt.wex.build/pom.xml</relativePath>
+    <relativePath>../org.fortiss.pmwt.wex.build/pom.xml</relativePath>
    </parent>  
 </project>
