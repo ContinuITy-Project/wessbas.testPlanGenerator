@@ -14,13 +14,14 @@ import net.sf.markov4jmeter.testplangenerator.transformation.filters.AbstractFil
 import net.sf.markov4jmeter.testplangenerator.transformation.filters.HeaderDefaultsFilter;
 import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.sf.markov4jmeter.testplangenerator.util.Configuration;
-import net.sf.markov4jmeter.testplangenerator.util.EcoreObjectValidator;
 
 import org.apache.commons.cli.ParseException;
 import org.apache.jmeter.save.SaveService;
 import org.apache.jorphan.collections.ListedHashTree;
 
+import wessbas.commons.util.EcoreObjectValidator;
 import wessbas.commons.util.XmiEcoreHandler;
+
 
 /**
  * Generator class for building Test Plans which result from M4J-DSL models.
