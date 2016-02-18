@@ -84,9 +84,9 @@ command-line. The following options must be provided at least:
 An example options sequence (to be used in the Eclipse run configuration) might
 look as follows (in one row):
 
-  -i ./examples/input/models/workloadmodel.xmi
-    -o ./examples/output/testplan.jmx
-      -t ./configuration/testplan.default.properties
+-i ".\examples\specj\input\workloadmodel.xmi" 
+-o ".\examples\specj\output\testplan.jmx" 
+-t ".\configuration\testplan.default.properties"
 
 Starting the application with these parameters will produce corresponding output
 in the "./examples/transformation/carshare-gear/output/" folder.
