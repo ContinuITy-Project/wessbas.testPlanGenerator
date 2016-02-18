@@ -295,20 +295,20 @@ public class BehaviorMixFilter extends AbstractFilter {
 
         try {
 
-            final String fullFilePath = this.getFullFilePath(
-                    this.behaviorModelsOutputPath,
-                    filename);
+//            final String fullFilePath = this.getFullFilePath(
+//                    this.behaviorModelsOutputPath,
+//                    filename);
 
             // might throw a FileNotFound-, IO-, Security- or
             // NullPointerException;
-            this.csvHandler.writeValues(fullFilePath, values);
+            this.csvHandler.writeValues(filename, values);
 
             // print confirmation message for successful writing; might throw
             // an IllegalFormat- or NullPointerException (never happens here);
             final String message = String.format(
                     BehaviorMixFilter.INFO_BEHAVIOR_MODEL_WRITTEN_TO_FILE,
                     name,
-                    fullFilePath);
+                    filename);
 
             System.out.println(message);
 
