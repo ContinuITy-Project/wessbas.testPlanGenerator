@@ -274,7 +274,7 @@ public class BehaviorMixFilter extends AbstractFilter {
         		file = new File(parent, child);
         	}
 
-            try {
+        	try {
 
                 // might throw an IO- or SecurityException;
                 fullPath = file.getCanonicalPath();

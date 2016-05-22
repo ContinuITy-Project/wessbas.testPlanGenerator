@@ -286,6 +286,7 @@ public class TestPlanGenerator {
 
         this.logInfo(TestPlanGenerator.INFO_TEST_PLAN_GENERATION_STARTED);
 
+
         //validationSuccessful = validator.validateAndPrintResult(workloadModel);
         validationSuccessful = true;
 
