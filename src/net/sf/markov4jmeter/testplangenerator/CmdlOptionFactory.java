@@ -1,8 +1,5 @@
 /***************************************************************************
- * Copyright 2011 by
- *  Christian-Albrechts-University of Kiel, 24098 Kiel, Germany
- *    + Department of Computer Science
- *     + Software Engineering Group
+ * Copyright (c) 2016 the WESSBAS project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ***************************************************************************/
+
+
 
 package net.sf.markov4jmeter.testplangenerator;
 
