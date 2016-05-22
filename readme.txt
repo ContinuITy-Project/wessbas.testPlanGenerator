@@ -88,10 +88,6 @@ look as follows (in one row):
 -o ".\examples\specj\output\testplan.jmx" 
 -t ".\configuration\testplan.default.properties"
 
-Starting the application with these parameters will produce corresponding output
-in the "./examples/transformation/carshare-gear/output/" folder.
-
-
 DEVELOPMENT NOTES
 -----------------
 
