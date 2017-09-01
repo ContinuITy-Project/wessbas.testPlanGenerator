@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ASCII"?>
+<m4jdsl:WorkloadModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:m4jdsl="http://m4jdsl/1.0" xsi:schemaLocation="http://m4jdsl/1.0 m4jdsl.ecore">
+  <workloadIntensity xsi:type="m4jdsl:ConstantWorkloadIntensity" formula="800" numberOfSessions="800"/>
+  <applicationModel>
+    <sessionLayerEFSM initialState="ASId3_INITIAL">
+      <applicationStates eId="ASId3_INITIAL">
+        <service name="INITIAL"/>
+        <protocolDetails initialState="PS4">
+          <protocolStates eId="PS4">
+            <request xsi:type="m4jdsl:HTTPRequest" eId="R2 (INITIAL)">
+              <properties key="HTTPSampler.domain" value=""/>
+              <properties key="HTTPSampler.port" value="0"/>
+              <properties key="HTTPSampler.path" value=""/>
+              <properties key="HTTPSampler.method" value=""/>
+              <properties key="HTTPSampler.encoding" value=""/>
+              <properties key="HTTPSampler.protocol" value=""/>
+            </request>
+            <outgoingTransitions guard="" targetState="PS3" action=""/>
+          </protocolStates>
+          <exitState eId="PS3"/>
+        </protocolDetails>
+        <outgoingTransitions targetState="$"/>
+        <outgoingTransitions targetState="ASId2_doFilter"/>
+      </applicationStates>
+      <applicationStates eId="ASId2_doFilter">
+        <service name="doFilter"/>
+        <protocolDetails initialState="PS2">
+          <protocolStates eId="PS2">
+            <request xsi:type="m4jdsl:HTTPRequest" eId="R1 (doFilter)">
+              <properties key="HTTPSampler.domain" value="localhost"/>
+              <properties key="HTTPSampler.port" value="8080"/>
+              <properties key="HTTPSampler.path" value="/dvdstore/home"/>
+              <properties key="HTTPSampler.method" value="GET"/>
+              <properties key="HTTPSampler.encoding" value="&lt;no-encoding>"/>
+              <properties key="HTTPSampler.protocol" value="http"/>
+              <parameters name="SearchForm%3ASearch" value="Search;"/>
+              <parameters name="emptycart%3AEmptyCartForm" value="emptycart%3AEmptyCartForm;"/>
+              <parameters name="SearchForm%3APageSize" value="15;"/>
+              <parameters name="conversationId" value="3;5;"/>
+              <parameters name="javax.faces.ViewState" value="H4sIAAAAAAAAAN08a4wbx3lz1OOeku50tl625NWjelI8PpZL8k6Pe0q65E6%2B6s5OYic5L8m5O9rLXWZ3eORFcBDDTdskrZEgSYECChK0%2FWn%2FaYH8KNDUQX8EUJAWMdAf7a%2BgTVEUaIuiaJG2P9rOzL53Z5fcJWWpPUCr5XLn43zvx3wz7%2F8TONBUweTrK2%2BKu2JKEuXt1MvlN2EFzXzjzz%2F9vXHtipQAoN0AAJQ0FeQqSj2lNeXUlliBWkpsNKRaRUQ1RU6tIxHBVVEWt6G6XG9IFzZUCO8rVfhvW3%2F8ww%2FSd%2F90jMBpXQbkjyO%2F1jagYJgNRYYySr2y%2FGoNth4oCsLval8AXwKJVp4OuKKo26k3y4qmpTQo1lPNmmPYDqpLqXv4slKT3wL77yl1GH%2F0%2Bo7SMEffjDp6bAUTQUMvq1WoaiYUnkK5FITyfbFek7cXFBmJNRmq4MCbm7WqYA4u4aH7o0xhaHXP%2FfPRSbAgqsgcvRh19OQa...;H4sIAAAAAAAAAN1cXWwcx30fnkSJ1IdFSrIsWR89ibIsyae727u9L8r6oEhKYkpKrEg7toxU3rtdkmcfdze7czoyggPnoQ1cA26aOAUKKGiA9qEP8UsK9CEo2gQpGiBBWtdA0aJPQVEgSNAWRdEiaR7azsx%2BzezO7u3unRS0BLTau9v578zv%2Fzn%2F%2Bc9841%2FAaNcAh95YfEt6KOU7krqev9t8S2nBy1%2F6q9d%2Bf8K80MkAsKUDAK6ZBii3tM282VXza1JLMfOSrnfaLQm2NTW%2FAiWoLEmqtK4YC5t65%2ByqoSh3NFn5j7Vv%2FdlHxVt%2Fvg%2FT6Z0H%2BC%2BL37ZlU0E0dU1VVJh%2FZeHVttK7p2kQPWt%2BFnweZHoV0uCCZqzn32pqppk3FWkz321TzTbgZid%2FG10W2%2BrbYOdtbVNJ33plQ9Od1leStt63iEAw4V1DVgzToSISKi%2BGDfmOtNlW12c1FUptVTHA6FsP2nLVadxATXcm6cLY0jb7%2BuQQ...;"/>
+              <parameters name="SearchForm" value="SearchForm;"/>
+              <parameters name="SearchForm%3AQuery" value="a+b;"/>
+              <parameters name="emptycart%3AEmptyCartForm%3AContinueShoppingButton" value="Continue+Shopping;"/>
+            </request>
+            <outgoingTransitions guard="" targetState="PS1" action=""/>
+          </protocolStates>
+          <exitState eId="PS1"/>
+        </protocolDetails>
+        <outgoingTransitions targetState="$"/>
+        <outgoingTransitions targetState="ASId2_doFilter"/>
+      </applicationStates>
+      <exitState eId="$"/>
+      <guardActionParameterList/>
+    </sessionLayerEFSM>
+  </applicationModel>
+  <behaviorMix>
+    <relativeFrequencies behaviorModel="//@behaviorModels.2"/>
+    <relativeFrequencies behaviorModel="//@behaviorModels.1" value="0.5"/>
+    <relativeFrequencies behaviorModel="//@behaviorModels.0" value="0.5"/>
+  </behaviorMix>
+  <behaviorModels name="gen_behavior_model0" filename="examples/inspectit/output/gen_behavior_model0.csv" initialState="MSId2_INITIAL">
+    <markovStates eId="MSId2_INITIAL" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.0/@service">
+      <outgoingTransitions targetState="MSId3_doFilter" probability="1.0">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime"/>
+      </outgoingTransitions>
+    </markovStates>
+    <markovStates eId="MSId3_doFilter" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.1/@service">
+      <outgoingTransitions targetState="MSId3_doFilter" probability="0.9565">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime" mean="14606.0" deviation="24149.0"/>
+      </outgoingTransitions>
+      <outgoingTransitions targetState="MSId1" probability="0.0435">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime"/>
+      </outgoingTransitions>
+    </markovStates>
+    <exitState eId="MSId1"/>
+  </behaviorModels>
+  <behaviorModels name="gen_behavior_model1" filename="examples/inspectit/output/gen_behavior_model1.csv" initialState="MSId5_INITIAL">
+    <markovStates eId="MSId5_INITIAL" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.0/@service">
+      <outgoingTransitions targetState="MSId6_doFilter" probability="1.0">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime"/>
+      </outgoingTransitions>
+    </markovStates>
+    <markovStates eId="MSId6_doFilter" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.1/@service">
+      <outgoingTransitions targetState="MSId4" probability="1.0">
+        <thinkTime xsi:type="m4jdsl:NormallyDistributedThinkTime"/>
+      </outgoingTransitions>
+    </markovStates>
+    <exitState eId="MSId4"/>
+  </behaviorModels>
+  <behaviorModels name="gen_behavior_model2" filename="examples/inspectit/output/gen_behavior_model2.csv" initialState="MSId8_INITIAL">
+    <markovStates eId="MSId8_INITIAL" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.0/@service"/>
+    <markovStates eId="MSId9_doFilter" service="//@applicationModel/@sessionLayerEFSM/@applicationStates.1/@service"/>
+    <exitState eId="MSId7"/>
+  </behaviorModels>
+</m4jdsl:WorkloadModel>
