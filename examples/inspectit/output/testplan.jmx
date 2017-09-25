@@ -98,12 +98,32 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="conversationId" elementType="Argument">
             <stringProp name="Argument.name">conversationId</stringProp>
-            <stringProp name="Argument.value">3;5;</stringProp>
+            <stringProp name="Argument.value">7;8;</stringProp>
+            <stringProp name="Argument.metadata"></stringProp>
+          </elementProp>
+          <elementProp name="conversationId" elementType="Argument">
+            <stringProp name="Argument.name">conversationId</stringProp>
+            <stringProp name="Argument.value">2;5;6;</stringProp>
             <stringProp name="Argument.metadata"></stringProp>
           </elementProp>
           <elementProp name="javax.faces.ViewState" elementType="Argument">
             <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
-            <stringProp name="Argument.value">H4sIAAAAAAAAAN08a4wbx3lz1OOeku50tl625NWjelI8PpZL8k6Pe0q65E6%2B6s5OYic5L8m5O9rLXWZ3eORFcBDDTdskrZEgSYECChK0%2FWn%2FaYH8KNDUQX8EUJAWMdAf7a%2BgTVEUaIuiaJG2P9rOzL53Z5fcJWWpPUCr5XLn43zvx3wz7%2F8TONBUweTrK2%2BKu2JKEuXt1MvlN2EFzXzjzz%2F9vXHtipQAoN0AAJQ0FeQqSj2lNeXUlliBWkpsNKRaRUQ1RU6tIxHBVVEWt6G6XG9IFzZUCO8rVfhvW3%2F8ww%2FSd%2F90jMBpXQbkjyO%2F1jagYJgNRYYySr2y%2FGoNth4oCsLval8AXwKJVp4OuKKo26k3y4qmpTQo1lPNmmPYDqpLqXv4slKT3wL77yl1GH%2F0%2Bo7SMEffjDp6bAUTQUMvq1WoaiYUnkK5FITyfbFek7cXFBmJNRmq4MCbm7WqYA4u4aH7o0xhaHXP%2FfPRSbAgqsgcvRh19OQa...;H4sIAAAAAAAAAN1cXWwcx30fnkSJ1IdFSrIsWR89ibIsyae727u9L8r6oEhKYkpKrEg7toxU3rtdkmcfdze7czoyggPnoQ1cA26aOAUKKGiA9qEP8UsK9CEo2gQpGiBBWtdA0aJPQVEgSNAWRdEiaR7azsx%2BzezO7u3unRS0BLTau9v578zv%2Fzn%2F%2Bc9841%2FAaNcAh95YfEt6KOU7krqev9t8S2nBy1%2F6q9d%2Bf8K80MkAsKUDAK6ZBii3tM282VXza1JLMfOSrnfaLQm2NTW%2FAiWoLEmqtK4YC5t65%2ByqoSh3NFn5j7Vv%2FdlHxVt%2Fvg%2FT6Z0H%2BC%2BL37ZlU0E0dU1VVJh%2FZeHVttK7p2kQPWt%2BFnweZHoV0uCCZqzn32pqppk3FWkz321TzTbgZid%2FG10W2%2BrbYOdtbVNJ33plQ9Od1leStt63iEAw4V1DVgzToSISKi%2BGDfmOtNlW12c1FUptVTHA6FsP2nLVadxATXcm6cLY0jb7%2BuQQ...;</stringProp>
+            <stringProp name="Argument.value">H4sIAAAAAAAAAM1bDXQb1ZV%2BUuxYduz4L4mdHzsiTuL8yLIlS7LsEPBvYrG2E2IHiE0xY2lsTSLNKDNPlowP2ZAtoYVzQrtkOdtACklplwUSuklDe9jdAgdKWLJAS9qlZbckp9suoUspCwmhC4fsu2800ow8ki3F24POyXi%2BmXfve%2Ffn3XfffZOn%2FoBywyIqH%2BrZyYwz1gDDj1m3jOxkvXjDN16%2F5ZESaW3AiFA0hBCqkkTU6BWCVinMW0cZLytZmVAowHkZzAm8tR8zmO1leGaMFT3BUGDlgMiyfYKPvTj67I%2BPNWx%2BrhD4RNYg%2BJmht2iMC%2BEZEniWx9btnps4NrJNEDBpK%2B1Ge5Ax4qQEawVxzLpzRJAkq8QyQWuYU5H5cTBg7SaXHo7fhXK6hSCbPXW%2FXwgp1BszpS7sIUqQ8BbRx4qSwsVBudSmErmPCXL8WIfAY4bjWRHl7hzmfC6FuJmQ5mQyBFPvhLb7zFXQwYhYoe7MlLp8...;H4sIAAAAAAAAAM1bDXQb1ZV%2BVuxYduz4L4mdHzsiTuL8yLIlS7LsEPBvErGyE2IHgk0xY2lsTSLNKDNPlowPachC2IVzQnfJcraBFJKyWwoktElDe%2BguPwdKKCnQknZp2ZbktOwSupSykBC6cMi%2B%2B0Yjzcgj2VK8e9A5Gc838%2B597%2F68%2B%2B67b%2FLkn1BeWEQVg54dzBhjCTD8qGXz8A7Wi9d94%2FXtD5dKqwMGhKIhhFC1JKImrxC0SGHeMsJ4WcnChEIBzstgTuAtfZjBbA%2FDM6Os6A6GAsv7RZbtFXzshZFnnj3auPG5IuATWYXgZ4LeojEuhGdI4FkeW7a5b%2BDYyFZBwKSttAvtRoaIgxKsFsRRy45hQZIsEssELWFORebHwYBlE7l4OH4nyt0kBNnsqfv8QkihXp8pdZGHKEHCm0UfK0oKFzvlUpdK5F4myPGjnQKPGY5nRZS3Y4jzORXiFkKam8kQjD3j2u4zV0EnI2KFuitT6oot...;</stringProp>
+            <stringProp name="Argument.metadata"></stringProp>
+          </elementProp>
+          <elementProp name="conversationId" elementType="Argument">
+            <stringProp name="Argument.name">conversationId</stringProp>
+            <stringProp name="Argument.value">6;10;</stringProp>
+            <stringProp name="Argument.metadata"></stringProp>
+          </elementProp>
+          <elementProp name="javax.faces.ViewState" elementType="Argument">
+            <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
+            <stringProp name="Argument.value">H4sIAAAAAAAAAN1da2wcx30fnkSJ1MMiJVmWrEdOoixL8ulu927vRVmWKJKSmJISLdJOJCGV926X5Ml3u%2BvdOfEYwYbzIWnhFGkCxwUKOEiA9EuB%2BEsDFEWLtgnawkCCtLCBoI9PQVEgfaPoA0laoO3M7GtmX7e7d1LQEvBq727nvzO%2F%2F3P%2B85%2Fxt%2F4JjHZ1cODe4gPxoZhvi8p6%2FlbjgdyEF7%2F8p5%2F%2B%2BoRxrp0BoKcBAC4bOig11U7e6Cr5NbEpG3lR09qtpghbqpJfgSKUl0RFXJf1hY7WPr2qy%2FJNVZL%2Ffe13%2F%2BAD7vof7sF0Ns8C%2FJfFb%2BtZVBBNTVVkBeZfWXi1JW%2FeVlWInjXeAG%2BBzGaZNDin6uv5Bw3VMPKGLHby3RbVbAN22vkb6LLYUl4H22%2BoHTl965UNVbNbX0raes8iAsGAt3RJ1g2bikCoPB825Jtip6Wsz6oKFFuKrIPRB%2FdbUsVuXEdNtyfpwtjSFvv65BDMijq0...;H4sIAAAAAAAAAN1ca2wcx30fnkSJ1MMiJVmWrEdPoixL8unu9m7vRVkPiqQkpqTEirRjy0jlvdslefZxd7M7pyMjOHA%2BpIFrwE0bt0ABBw3QfuiH%2BEsKFEVQtA5SNECCtK6BokU%2FBUWBIEFbFEWLuPnQdmb2NbM7u7e7d1LQEtBq727nvzO%2F%2F3P%2B85%2F55r%2BA0a4BDr22%2BIb0UMp3JHU9f7f5htKCl7%2F6V6%2F83oR5oZMBYEsHAFwzDVBuaZt5s6vm16SWYuYlXe%2B0WxJsa2p%2BBUpQWZJUaV0xFjb1ztlVQ1HuaLLyH2vf%2FrMPi7f%2BfB%2Bm0zsP8F8Wv23LpoJo6pqqqDD%2F0sLLbaV3T9Mgetb8PPgiyPQqpMEFzVjPv9HUTDNvKtJmvtummm3AzU7%2BNrosttU3wc7b2qaSvvXKhqY7ra8kbb1vEYFgwruGrBimQ0UkVJ4PG%2FIdabOtrs9qKpTaqmKA0TcetOWq07iBmu5M0oWxpW329ckh...;</stringProp>
+            <stringProp name="Argument.metadata"></stringProp>
+          </elementProp>
+          <elementProp name="SearchForm%3AQuery" elementType="Argument">
+            <stringProp name="Argument.name">SearchForm%3AQuery</stringProp>
+            <stringProp name="Argument.value">Syriana;Madagascar;</stringProp>
             <stringProp name="Argument.metadata"></stringProp>
           </elementProp>
         </collectionProp>
@@ -147,78 +167,77 @@
         <stringProp name="MarkovController.arrivalCtrlLogFile"></stringProp>
       </net.voorn.markov4jmeter.control.MarkovController>
       <hashTree>
-        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="doFilter" enabled="true">
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="HomeGET" enabled="true">
           <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
             <collectionProp name="ApplicationStateTransitions.transitions">
-              <elementProp name="1668351852" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">1668351852</intProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">false</boolProp>
               </elementProp>
-              <elementProp name="210276025" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">210276025</intProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">true</boolProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <intProp name="ApplicationState.id">1668351852</intProp>
+          <intProp name="ApplicationState.id">812766116</intProp>
         </net.voorn.markov4jmeter.control.ApplicationState>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R1 (doFilter)" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R10 (HomeGET)" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="SearchForm%3ASearch" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">SearchForm%3ASearch</stringProp>
-                  <stringProp name="Argument.value">Search</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="emptycart%3AEmptyCartForm" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">emptycart%3AEmptyCartForm</stringProp>
-                  <stringProp name="Argument.value">emptycart%3AEmptyCartForm</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="SearchForm%3APageSize" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">SearchForm%3APageSize</stringProp>
-                  <stringProp name="Argument.value">15</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="conversationId" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">conversationId</stringProp>
-                  <stringProp name="Argument.value">${__GetRandomString(${conversationId},;)}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
-                  <stringProp name="Argument.value">${__GetRandomString(${javax.faces.ViewState},;)}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="SearchForm" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">SearchForm</stringProp>
-                  <stringProp name="Argument.value">SearchForm</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="SearchForm%3AQuery" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">SearchForm%3AQuery</stringProp>
-                  <stringProp name="Argument.value">a+b</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-                <elementProp name="emptycart%3AEmptyCartForm%3AContinueShoppingButton" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">emptycart%3AEmptyCartForm%3AContinueShoppingButton</stringProp>
-                  <stringProp name="Argument.value">Continue+Shopping</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-              </collectionProp>
+              <collectionProp name="Arguments.arguments"/>
             </elementProp>
             <stringProp name="HTTPSampler.domain">localhost</stringProp>
             <stringProp name="HTTPSampler.port">8080</stringProp>
@@ -241,24 +260,955 @@
           </HTTPSamplerProxy>
           <hashTree/>
         </hashTree>
-        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="INITIAL" enabled="true">
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="ApplicationPerformanceSettingsGET" enabled="true">
           <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
             <collectionProp name="ApplicationStateTransitions.transitions">
-              <elementProp name="1668351852" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">1668351852</intProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">false</boolProp>
               </elementProp>
-              <elementProp name="210276025" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
-                <intProp name="ApplicationState.dstId">210276025</intProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
                 <stringProp name="ApplicationState.guard"></stringProp>
                 <stringProp name="ApplicationState.action"></stringProp>
                 <boolProp name="ApplicationState.disabled">true</boolProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <intProp name="ApplicationState.id">210276025</intProp>
+          <intProp name="ApplicationState.id">1761020070</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R1 (ApplicationPerformanceSettingsGET)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="actionMethod" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">actionMethod</stringProp>
+                  <stringProp name="Argument.value">performancesettings.xhtml%3Aperformancesettings.changeSlowLatestOrders%28%29</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="conversationId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">conversationId</stringProp>
+                  <stringProp name="Argument.value">${__GetRandomString(${conversationId},;)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/performancesettings</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="CartPOST" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">1132032012</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R7 (CartPOST)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="cartdetails%3ACartDetailsForm%3ACartItemsTable%3A0%3AQuantityValueText" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">cartdetails%3ACartDetailsForm%3ACartItemsTable%3A0%3AQuantityValueText</stringProp>
+                  <stringProp name="Argument.value">1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="cartdetails%3ACartDetailsForm%3AResetCartButton" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">cartdetails%3ACartDetailsForm%3AResetCartButton</stringProp>
+                  <stringProp name="Argument.value">Empty+Cart</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
+                  <stringProp name="Argument.value">H4sIAAAAAAAAAN09a2wcx3nD04sSKYmUbD0sS149qufpeI%2B9vTtSL4qkJDqkpIi0E9tw6b27IXn2cveyO0ceozpIAtVFbSRNkKRAWwcJkPxq4j8J0Bb9kcTojwAR0qICiqL9FRQJigJtURQtkvZH05nZ1%2Bzu7N7t3slSS8Crvb2d7%2BZ7P%2Bab8Xf%2FBWxr6WD%2Fa3NvyutyRpHVlcyd6puwhia%2B9Jef%2FMaIcU5JAdBuAgAqhg4KNW0tY7TUzLJcg0ZGbjaVRk1GDU3NLCAZwXlZlVegPrvWVE4t6hDe1urwP5b%2F%2FAcfZG%2F%2BcJjA2TgLyJ9Afq1tQcEwm5oKVZR5afblBty4p2kIv2t8CnwGpDaKdMA5TV%2FJvFnVDCNjQHkt02oww1bRmpK5hS9zDfUtsPWWtgaTj15Y1Zr26MtxRw%2FPYSIY6I5eh7phQxEplDNhKN%2BW1xrqypSmIrmhQh1se3OpUZfswRU8dGucKQzOb3p%2FPj4JpmQd2aOn...</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="cartdetails%3ACartDetailsForm" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">cartdetails%3ACartDetailsForm</stringProp>
+                  <stringProp name="Argument.value">cartdetails%3ACartDetailsForm</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/checkout</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="CartGET" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">1521340912</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R4 (CartGET)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="conversationId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">conversationId</stringProp>
+                  <stringProp name="Argument.value">6</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/checkout</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="LatestOrdersPOST" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">907927693</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R9 (LatestOrdersPOST)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="LoginForm%3APassword" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">LoginForm%3APassword</stringProp>
+                  <stringProp name="Argument.value">password</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="LogoutForm%3ALogout" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">LogoutForm%3ALogout</stringProp>
+                  <stringProp name="Argument.value">Logout</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="LoginForm%3ALogin" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">LoginForm%3ALogin</stringProp>
+                  <stringProp name="Argument.value">Login</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
+                  <stringProp name="Argument.value">${__GetRandomString(${javax.faces.ViewState},;)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="LoginForm" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">LoginForm</stringProp>
+                  <stringProp name="Argument.value">LoginForm</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="LoginForm%3AUsername" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">LoginForm%3AUsername</stringProp>
+                  <stringProp name="Argument.value">user1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="LogoutForm" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">LogoutForm</stringProp>
+                  <stringProp name="Argument.value">LogoutForm</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/latestorders</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="LatestOrdersGET" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">1057726784</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R3 (LatestOrdersGET)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/latestorders</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="DVDGET" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">2078708439</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R2 (DVDGET)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="actionMethod" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">actionMethod</stringProp>
+                  <stringProp name="Argument.value">dvd.xhtml%3Asearch.addToCart</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="conversationId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">conversationId</stringProp>
+                  <stringProp name="Argument.value">${__GetRandomString(${conversationId},;)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/dvd/195</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="ShopPOST" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">422082670</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R5 (ShopPOST)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="SearchForm%3ASearch" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">SearchForm%3ASearch</stringProp>
+                  <stringProp name="Argument.value">Search</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="SearchForm%3APageSize" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">SearchForm%3APageSize</stringProp>
+                  <stringProp name="Argument.value">15</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
+                  <stringProp name="Argument.value">${__GetRandomString(${javax.faces.ViewState},;)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="SearchForm" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">SearchForm</stringProp>
+                  <stringProp name="Argument.value">SearchForm</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+                <elementProp name="SearchForm%3AQuery" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">SearchForm%3AQuery</stringProp>
+                  <stringProp name="Argument.value">${__GetRandomString(${SearchForm%3AQuery},;)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/browse</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="ShopGET" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">278872925</intProp>
+        </net.voorn.markov4jmeter.control.ApplicationState>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="R8 (ShopGET)" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="conversationId" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">conversationId</stringProp>
+                  <stringProp name="Argument.value">${__GetRandomString(${conversationId},;)}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">localhost</stringProp>
+            <stringProp name="HTTPSampler.port">8080</stringProp>
+            <stringProp name="HTTPSampler.implementation"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/dvdstore/browse</stringProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.proxyHost"></stringProp>
+            <stringProp name="HTTPSampler.proxyPort"></stringProp>
+            <stringProp name="HTTPSampler.proxyUser"></stringProp>
+            <stringProp name="HTTPSampler.proxyPass"></stringProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.encoding">&lt;no-encoding&gt;</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <net.voorn.markov4jmeter.control.ApplicationState guiclass="net.voorn.markov4jmeter.control.gui.ApplicationStateGui" testclass="net.voorn.markov4jmeter.control.ApplicationState" testname="INITIAL" enabled="true">
+          <elementProp name="ApplicationState.transitions" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransitions">
+            <collectionProp name="ApplicationStateTransitions.transitions">
+              <elementProp name="278872925" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">278872925</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">false</boolProp>
+              </elementProp>
+              <elementProp name="812766116" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">812766116</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1761020070" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1761020070</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1132032012" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1132032012</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1521340912" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1521340912</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="907927693" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">907927693</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="1057726784" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">1057726784</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="2078708439" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">2078708439</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="422082670" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">422082670</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+              <elementProp name="137652150" elementType="net.voorn.markov4jmeter.control.ApplicationStateTransition">
+                <intProp name="ApplicationState.dstId">137652150</intProp>
+                <stringProp name="ApplicationState.guard"></stringProp>
+                <stringProp name="ApplicationState.action"></stringProp>
+                <boolProp name="ApplicationState.disabled">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <intProp name="ApplicationState.id">137652150</intProp>
         </net.voorn.markov4jmeter.control.ApplicationState>
         <hashTree/>
       </hashTree>
