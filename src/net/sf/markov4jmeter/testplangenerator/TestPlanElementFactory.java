@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import m4jdsl.ConstantWorkloadIntensity;
 import m4jdsl.GuardActionParameter;
 import m4jdsl.GuardActionParameterList;
 import m4jdsl.GuardActionParameterType;
@@ -30,6 +31,7 @@ import m4jdsl.ProtocolLayerEFSMState;
 import m4jdsl.ProtocolState;
 import m4jdsl.Request;
 import m4jdsl.SessionLayerEFSM;
+import m4jdsl.WorkloadIntensity;
 import m4jdsl.WorkloadModel;
 import net.sf.markov4jmeter.testplangenerator.util.CSVHandler;
 import net.sf.markov4jmeter.testplangenerator.util.Configuration;
@@ -764,10 +766,11 @@ public final class TestPlanElementFactory {
 
     /**
      * Creates a {@link SetupThreadGroup} instance with default properties.
+     * @param workloadModel
      *
      * @return  a valid instance of {@link SetupThreadGroup}.
      */
-    public SetupThreadGroup createSetupThreadGroup () {
+    public SetupThreadGroup createSetupThreadGroup (WorkloadModel workloadModel) {
 
         // JMeter uses the current time for start- and end-time by default;
         // final long currentTimeMillis = System.currentTimeMillis();
@@ -800,7 +803,12 @@ public final class TestPlanElementFactory {
 
         key = TestPlanElementFactory.PKEY_SETUP_THREAD_GROUP__NUM_THREADS;
 
-        if (forced || c.containsKey(key)) {
+        WorkloadIntensity intensity = workloadModel.getWorkloadIntensity();
+
+        if(intensity != null && intensity instanceof ConstantWorkloadIntensity && ((ConstantWorkloadIntensity)intensity).getNumberOfSessions() != 0){
+        	int numberOfUsers = ((ConstantWorkloadIntensity) workloadModel.getWorkloadIntensity()).getNumberOfSessions();
+        	setupThreadGroup.setNumThreads(numberOfUsers);
+        } else if (forced || c.containsKey(key)) {
 
             // number of threads;
             final int value = c.getInt(key);

@@ -122,7 +122,7 @@ public class SimpleTestPlanTransformer extends AbstractTestPlanTransformer {
                 testPlanElementFactory.createTestPlan();
 
         final SetupThreadGroup setupThreadGroup =
-                testPlanElementFactory.createSetupThreadGroup();
+                testPlanElementFactory.createSetupThreadGroup(workloadModel);
 
         final HeaderManager headerManager =
                 testPlanElementFactory.createHeaderManager();
